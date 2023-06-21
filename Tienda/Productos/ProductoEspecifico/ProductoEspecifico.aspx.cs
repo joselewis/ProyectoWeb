@@ -13,6 +13,7 @@ namespace Tienda.Productos.ProductoEspecifico
 {
     public partial class ProductoEspecifico : System.Web.UI.Page
     {
+        //Arreglar toda la pantalla del producto
         SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
         int id;
