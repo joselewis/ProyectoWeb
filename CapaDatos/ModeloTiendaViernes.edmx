@@ -19,6 +19,21 @@
           <Property Name="CONTRASENNA_ADMIN" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TIPO_USUARIO" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <EntityType Name="PRODUCTO_ROPA">
+          <Key>
+            <PropertyRef Name="CODIGO_PRODUCTO" />
+          </Key>
+          <Property Name="ID_PRODUCTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODIGO_PRODUCTO" Type="int" Nullable="false" />
+          <Property Name="TIPO_PRENDA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PRECIO_PRODUCTO" Type="int" Nullable="false" />
+          <Property Name="CANTIDAD_PRODUCTO" Type="int" Nullable="false" />
+          <Property Name="DESCRIPCION_PRODUCTO" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="TALLA_PRENDA" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="IMAGEN" Type="varbinary(max)" Nullable="false" />
+          <Property Name="MARCA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRODUCTO_ACTIVO" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
             <PropertyRef Name="CORREO_ELECTRONICO" />
@@ -35,6 +50,7 @@
         </EntityType>
         <EntityContainer Name="TIENDA_VIERNESModelStoreContainer">
           <EntitySet Name="ADMINISTRADORES" EntityType="Self.ADMINISTRADORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO_ROPA" EntityType="Self.PRODUCTO_ROPA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -58,6 +74,7 @@
         <EntityContainer Name="TIENDA_VIERNESEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIO" />
           <EntitySet Name="ADMINISTRADORES" EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" />
+          <EntitySet Name="PRODUCTO_ROPA" EntityType="TIENDA_VIERNESModel.PRODUCTO_ROPA" />
         </EntityContainer>
         <EntityType Name="ADMINISTRADORE">
           <Key>
@@ -72,6 +89,21 @@
           <Property Name="TELEFONO_ADMIN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CONTRASENNA_ADMIN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TIPO_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTO_ROPA">
+          <Key>
+            <PropertyRef Name="CODIGO_PRODUCTO" />
+          </Key>
+          <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="TIPO_PRENDA" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PRECIO_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPCION_PRODUCTO" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="TALLA_PRENDA" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="IMAGEN" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="MARCA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCTO_ACTIVO" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -106,6 +138,22 @@
                 <ScalarProperty Name="NOMBRE_USUARIO_ADMIN" ColumnName="NOMBRE_USUARIO_ADMIN" />
                 <ScalarProperty Name="CORREO_ELECTRONICO_ADMIN" ColumnName="CORREO_ELECTRONICO_ADMIN" />
                 <ScalarProperty Name="ID_USUARIO_ADMIN" ColumnName="ID_USUARIO_ADMIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTO_ROPA">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.PRODUCTO_ROPA">
+              <MappingFragment StoreEntitySet="PRODUCTO_ROPA">
+                <ScalarProperty Name="PRODUCTO_ACTIVO" ColumnName="PRODUCTO_ACTIVO" />
+                <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+                <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
+                <ScalarProperty Name="TALLA_PRENDA" ColumnName="TALLA_PRENDA" />
+                <ScalarProperty Name="DESCRIPCION_PRODUCTO" ColumnName="DESCRIPCION_PRODUCTO" />
+                <ScalarProperty Name="CANTIDAD_PRODUCTO" ColumnName="CANTIDAD_PRODUCTO" />
+                <ScalarProperty Name="PRECIO_PRODUCTO" ColumnName="PRECIO_PRODUCTO" />
+                <ScalarProperty Name="TIPO_PRENDA" ColumnName="TIPO_PRENDA" />
+                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

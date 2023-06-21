@@ -88,6 +88,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administrador\AgregarAdmin.aspx" />
+    <Content Include="Css\ProductosCss\ProductoEspecificoCss\ProductoEspecificoCss.css" />
+    <Content Include="Css\ProductosCss\Productos\ProductosCss.css" />
     <Content Include="Css\RegistroUsuario\Css_Registro_Usuario.css" />
     <Content Include="Css\RegistroUsuario\JS_Registro_Usuario.js" />
     <Content Include="Global.asax" />
@@ -99,9 +101,9 @@
     <Content Include="Login\Css_Login\css\bootstrap\mixins\_visibility.css" />
     <Content Include="Login\Css_Login\css\bootstrap\utilities\_stretched-link.css" />
     <Content Include="Login\Css_Login\css\bootstrap\_media.css" />
+    <Content Include="Login\Css_Login\css\LoginCss.css" />
     <Content Include="Login\Css_Login\css\style.css" />
-    <Content Include="Login\Css_Login\images\bg.jpg" />
-    <Content Include="Login\Css_Login\images\LoginFondo.jpg" />
+    <Content Include="Login\Css_Login\images\BG Login.jpg" />
     <Content Include="Login\Css_Login\js\bootstrap.min.js" />
     <Content Include="Login\Css_Login\js\jquery.min.js" />
     <Content Include="Login\Css_Login\js\main.js" />
@@ -114,7 +116,9 @@
     <Content Include="MasterPage\css\styles.css" />
     <Content Include="MasterPage\js\scripts.js" />
     <Content Include="PaginaPrincipal\PaginaPrincipal.aspx" />
+    <Content Include="Productos\ProductoEspecifico\ProductoEspecifico.aspx" />
     <Content Include="Productos\Productos.aspx" />
+    <Content Include="Productos\RegistroProducto\RegistroProducto.aspx" />
     <Content Include="Usuario\AgregarUsuario.aspx" />
     <Content Include="Usuario\PaginaPrincipalUsuario.aspx" />
     <Content Include="Web.config" />
@@ -166,12 +170,26 @@
     <Compile Include="PaginaPrincipal\PaginaPrincipal.aspx.designer.cs">
       <DependentUpon>PaginaPrincipal.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Productos\ProductoEspecifico\ProductoEspecifico.aspx.cs">
+      <DependentUpon>ProductoEspecifico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Productos\ProductoEspecifico\ProductoEspecifico.aspx.designer.cs">
+      <DependentUpon>ProductoEspecifico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Productos\Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Productos\Productos.aspx.designer.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Productos\RegistroProducto\RegistroProducto.aspx.cs">
+      <DependentUpon>RegistroProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Productos\RegistroProducto\RegistroProducto.aspx.designer.cs">
+      <DependentUpon>RegistroProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PáginaPrincipal.Master.cs">

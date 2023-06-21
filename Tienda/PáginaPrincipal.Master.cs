@@ -89,7 +89,7 @@ namespace Tienda
                                           "Registro admin" +
                                           "</a>" +
 
-                                          "<a class='nav-link' href='RegistroProductos.aspx'>" +
+                                          "<a class='nav-link' href='../Productos/RegistroProducto/RegistroProducto.aspx'>" +
                                           "<div class='sb-nav-link-icon'>" +
                                           "<i class='fas fa-chart-area'>" +
                                           "</i>" +

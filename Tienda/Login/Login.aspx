@@ -11,9 +11,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="Css_Login/css/style.css" rel="stylesheet" />
+    <link href="Css_Login/css/LoginCss.css" rel="stylesheet" />
 </head>
 <body>
-    <body class="img js-fullheight" style="background-image: url(/Login/Css_Login/images/bg.jpg);">
+    <body class="img js-fullheight" ">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -37,7 +38,7 @@
 					<asp:Button runat="server" ID="BotonInicioSesion" OnClick="BotonInicioSesion_Click" Text="Ingresar" class="form-control btn btn-primary submit px-3" />
 	            </div>
 				<center>
-					<a href="RegistrarUsuario.aspx" style="color: #fff">Registrarse</a>
+					<a href="../Usuario/AgregarUsuario.aspx" style="color: #fff">Registrarse</a>
 			   </center>
 	          </form>
 		      </div>
