@@ -89,6 +89,7 @@
   <ItemGroup>
     <Content Include="Administrador\AgregarAdmin.aspx" />
     <Content Include="Css\ProductosCss\ProductoEspecificoCss\ProductoEspecificoCss.css" />
+    <Content Include="Css\ProductosCss\Productos\ProductosCss.css" />
     <Content Include="Css\RegistroUsuario\Css_Registro_Usuario.css" />
     <Content Include="Css\RegistroUsuario\JS_Registro_Usuario.js" />
     <Content Include="Global.asax" />
