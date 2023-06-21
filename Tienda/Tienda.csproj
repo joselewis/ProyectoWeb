@@ -101,9 +101,9 @@
     <Content Include="Login\Css_Login\css\bootstrap\mixins\_visibility.css" />
     <Content Include="Login\Css_Login\css\bootstrap\utilities\_stretched-link.css" />
     <Content Include="Login\Css_Login\css\bootstrap\_media.css" />
+    <Content Include="Login\Css_Login\css\LoginCss.css" />
     <Content Include="Login\Css_Login\css\style.css" />
-    <Content Include="Login\Css_Login\images\bg.jpg" />
-    <Content Include="Login\Css_Login\images\LoginFondo.jpg" />
+    <Content Include="Login\Css_Login\images\BG Login.jpg" />
     <Content Include="Login\Css_Login\js\bootstrap.min.js" />
     <Content Include="Login\Css_Login\js\jquery.min.js" />
     <Content Include="Login\Css_Login\js\main.js" />
