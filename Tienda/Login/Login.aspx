@@ -10,11 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="Css_Login/css/style.css" rel="stylesheet" />
-    <link href="Css_Login/css/LoginCss.css" rel="stylesheet" />
+    <link href="../Css/Login/css/style.css" rel="stylesheet" />
+    <link href="../Css/Login/css/bootstrap/LoginCss.css" rel="stylesheet" />
 </head>
-<body>
-    <body class="img js-fullheight" ">
+<body class="img js-fullheight" ">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -50,6 +49,5 @@
 	<script src="Login/js/popper.js"></script>
 	<script src="Login/js/bootstrap.min.js"></script>
 	<script src="Login/js/main.js"></script>
-</body>
 </body>
 </html>
