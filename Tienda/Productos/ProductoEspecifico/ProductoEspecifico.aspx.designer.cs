@@ -7,21 +7,21 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Tienda.Productos
+namespace Tienda.Productos.ProductoEspecifico
 {
 
 
-    public partial class Productos
+    public partial class ProductoEspecifico
     {
 
         /// <summary>
-        /// Control DataListRopa.
+        /// Control d1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList DataListRopa;
+        protected global::System.Web.UI.WebControls.Repeater d1;
 
         /// <summary>
         /// Control lblError.

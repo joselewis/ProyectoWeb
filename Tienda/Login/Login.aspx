@@ -37,7 +37,7 @@
 					<asp:Button runat="server" ID="BotonInicioSesion" OnClick="BotonInicioSesion_Click" Text="Ingresar" class="form-control btn btn-primary submit px-3" />
 	            </div>
 				<center>
-					<a href="RegistrarUsuario.aspx" style="color: #fff">Registrarse</a>
+					<a href="../Usuario/AgregarUsuario.aspx" style="color: #fff">Registrarse</a>
 			   </center>
 	          </form>
 		      </div>
