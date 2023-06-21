@@ -13,7 +13,7 @@
     <link href="../Css/Login/css/style.css" rel="stylesheet" />
     <link href="../Css/Login/css/bootstrap/LoginCss.css" rel="stylesheet" />
 </head>
-<body class="img js-fullheight" ">
+<body class="img js-fullheight">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">

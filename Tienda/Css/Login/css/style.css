@@ -164,9 +164,9 @@ pre {
 figure {
   margin: 0 0 1rem; }
 
-img {
+/*img {
   vertical-align: middle;
-  border-style: none; }
+  border-style: none; }*/
 
 svg {
   overflow: hidden;
@@ -407,9 +407,9 @@ mark,
 .figure {
   display: inline-block; }
 
-.figure-img {
+/*.figure-img {
   margin-bottom: 0.5rem;
-  line-height: 1; }
+  line-height: 1; }*/
 
 .figure-caption {
   font-size: 90%;
@@ -3849,9 +3849,9 @@ input[type="button"].btn-block {
   left: 0;
   padding: 1.25rem; }
 
-.card-img {
+/*.card-img {
   width: 100%;
-  border-radius: calc(0.25rem - 1px); }
+  border-radius: calc(0.25rem - 1px); }*/
 
 .card-img-top {
   width: 100%;
@@ -8142,7 +8142,7 @@ body {
   z-index: 0;
   padding: 0; }
   body:after {
-    position: absolute;
+    
     top: 0;
     left: 0;
     right: 0;
@@ -8186,10 +8186,10 @@ h1, h2, h3, h4, h5,
   font-size: 28px;
   color: #fff; }
 
-.img {
+/*.img {
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center; }
+  background-position: center center; }*/
 
 .login-wrap {
   position: relative;
