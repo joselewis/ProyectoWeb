@@ -48,78 +48,40 @@ namespace Tienda
                                           "</i>" +
                                           "</div>" +
                                           "Perfil" +
-                                          "</a>" +
+                                          "</a>" /*+*/
 
-                                          "<a class='nav-link' href='CarritoCompras.aspx'>" +
-                                          "<div class='sb-nav-link-icon'>" +
-                                          "<i class='fas fa-chart-area'>" +
-                                          "</i>" +
-                                          "</div>" +
-                                          "Carrito" +
-                                          "</a>"
+                                          //"<a class='nav-link' href='CarritoCompras.aspx'>" +
+                                          //"<div class='sb-nav-link-icon'>" +
+                                          //"<i class='fas fa-chart-area'>" +
+                                          //"</i>" +
+                                          //"</div>" +
+                                          //"Carrito" +
+                                          //"</a>"
                                           ;
-
-                    /*<li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
-                            </ul>
-                        </li>*/
                     break;
 
                 case "Administrador":
-                    LinksMenuPrincipal += "<a class='nav-link' href='PerfilAdministrador.aspx'>" +
-                                          "<div class='sb-nav-link-icon'>" +
-                                          "<i class='fas fa-chart-area'>" +
-                                          "</i>" +
-                                          "</div>" +
-                                          "Perfil admin" +
-                                          "</a>" +
+                    LinksMenuPrincipal +=
+                                          "<div class='collapse navbar-collapse' id='navbarSupportedContent' >" +
+                                          "<ul class='navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4' runat='server' id='Titulo_Admin'>" +
+                                          "<li class='nav-item dropdown'>" +
+                                          "<a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Mantenimientos</a>" +
+                                          "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>" +
+                                          //"<li><a class='dropdown-item' href='../Productos/Productos.aspx'>Ver productos</a></ li >" +
+                                          "<li><a class='dropdown-item' href='../Mantenimientos/MantenimientoAdmin.aspx''>Administrador</a></li>" +
+                                          "<li><a class='dropdown-item' href='../Mantenimientos/MantenimientoProducto.aspx''>Producto</a></li>" +
+                                          "<li><a class='dropdown-item' href='../Mantenimientos/MantenimientoUsuario.aspx'>Usuario</a></li>" +
+                                          "</ul></li></ul></div>" +
 
-                                          "<a class='nav-link' href='RegistrarAdministrador.aspx'>" +
-                                          "<div class='sb-nav-link-icon'>" +
-                                          "<i class='fas fa-chart-area'>" +
-                                          "</i>" +
-                                          "</div>" +
-                                          "Registro admin" +
-                                          "</a>" +
+                                          "<div class='collapse navbar-collapse' id='navbarSupportedContent' >" +
+                                          "<ul class='navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4' runat='server' id='Titulo_Admin'>" +
+                                          "<li class='nav-item dropdown'>" +
+                                          "<a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Registrar</a>" +
+                                          "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>" +
+                                          "<li><a class='dropdown-item' href='../Productos/RegistroProducto/RegistroProducto.aspx'>Registrar Producto</a></ li >" +
+                                          "</ul></li></ul></div>";
 
-                                          "<a class='nav-link' href='../Productos/RegistroProducto/RegistroProducto.aspx'>" +
-                                          "<div class='sb-nav-link-icon'>" +
-                                          "<i class='fas fa-chart-area'>" +
-                                          "</i>" +
-                                          "</div>" +
-                                          "Registro productos" +
-                                          "</a>" +
-
-                                          "<a class='nav-link' href='MantenimientoAdmin.aspx'>" +
-                                          "<div class='sb-nav-link-icon'>" +
-                                          "<i class='fas fa-chart-area'>" +
-                                          "</i>" +
-                                          "</div>" +
-                                          "Admin" +
-                                          "</a>" +
-
-                                          "<a class='nav-link' href='MantenimientoProductos.aspx'>" +
-                                          "<div class='sb-nav-link-icon'>" +
-                                          "<i class='fas fa-chart-area'>" +
-                                          "</i>" +
-                                          "</div>" +
-                                          "Productos" +
-                                          "</a>" +
-
-                                          "<a class='nav-link' href='MantenimientoUsuarios.aspx'>" +
-                                          "<div class='sb-nav-link-icon'>" +
-                                          "<i class='fas fa-chart-area'>" +
-                                          "</i>" +
-                                          "</div>" +
-                                          "Usuarios" +
-                                          "</a>";
+                                          
 
                     break;
             }
