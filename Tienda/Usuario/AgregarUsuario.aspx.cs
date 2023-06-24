@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapaDatos;
 
 namespace Tienda.Usuario
 {
@@ -55,14 +54,38 @@ namespace Tienda.Usuario
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Error al crear la cuenta')", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Tiene que ingresar todos los campos solicitados')", true);
             }
         }
 
         protected void BotonRegistrarUsuario_Click(object sender, EventArgs e)
         {
-            Registrar_Usuario();
-            ValidarCreacionCuenta();
+            try
+            {
+                if (
+                    ReCajaNombre.Text != null &&
+                    ReCajaApellido1.Text != null &&
+                    ReCajaApellido2.Text != null &&
+                    ReCajaContrasenna.Text != null &&
+                    ReCajaCorreo.Text != null && 
+                    ReCajaNomUsuario != null &&
+                    ReCajaTelefono.Text != null
+                    )
+                {
+                    Registrar_Usuario();
+                    ValidarCreacionCuenta();
+                }
+                else
+                {
+                    lblCamposPagoNulo.Visible = true;
+                    lblCamposPagoNulo.Text = "Tiene que ingresar todos los campos solicitados";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblCamposPagoNulo.Visible = true;
+                lblCamposPagoNulo.Text = ex.Message;
+            }   
         }
     }
 }
