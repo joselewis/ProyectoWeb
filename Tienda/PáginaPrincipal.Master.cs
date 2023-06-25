@@ -81,8 +81,6 @@ namespace Tienda
                                           "<li><a class='dropdown-item' href='../Productos/RegistroProducto/RegistroProducto.aspx'>Registrar Producto</a></ li >" +
                                           "</ul></li></ul></div>";
 
-                                          
-
                     break;
             }
 
