@@ -50,7 +50,7 @@ namespace Tienda
                                           "Perfil" +
                                           "</a>" /*+*/
 
-                                          //"<a class='nav-link' href='CarritoCompras.aspx'>" +
+                                          //"<a class='nav-link' href='ProductosPrueba.aspx'>" +
                                           //"<div class='sb-nav-link-icon'>" +
                                           //"<i class='fas fa-chart-area'>" +
                                           //"</i>" +
