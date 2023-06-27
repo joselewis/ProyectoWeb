@@ -5,9 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="59519e8a4a984f94a0179d346ccf0afb" Name="Diagram1">
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.USUARIO" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.PRODUCTO_ROPA" Width="2.25" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.USUARIO" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

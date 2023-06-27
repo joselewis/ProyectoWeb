@@ -47,34 +47,21 @@
           <Property Name="TELEFONO_USUARIO" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="CONTRASENNA" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TIPO_USUARIO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IMAGEN_USUARIO" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityContainer Name="TIENDA_VIERNESModelStoreContainer">
           <EntitySet Name="ADMINISTRADORES" EntityType="Self.ADMINISTRADORES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTO_ROPA" EntityType="Self.PRODUCTO_ROPA" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="JoseLewis10" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TIENDA_VIERNESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="USUARIO">
-          <Key>
-            <PropertyRef Name="CORREO_ELECTRONICO" />
-          </Key>
-          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="APELLIDO_1_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="APELLIDO_2_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TELEFONO_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CONTRASENNA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TIPO_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="TIENDA_VIERNESEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="USUARIOS" EntityType="Self.USUARIO" />
           <EntitySet Name="ADMINISTRADORES" EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" />
           <EntitySet Name="PRODUCTO_ROPA" EntityType="TIENDA_VIERNESModel.PRODUCTO_ROPA" />
+          <EntitySet Name="USUARIOS" EntityType="TIENDA_VIERNESModel.USUARIO" />
         </EntityContainer>
         <EntityType Name="ADMINISTRADORE">
           <Key>
@@ -105,27 +92,27 @@
           <Property Name="MARCA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PRODUCTO_ACTIVO" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="CORREO_ELECTRONICO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CORREO_ELECTRONICO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO_1_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDO_2_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONO_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CONTRASENNA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IMAGEN_USUARIO" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TIENDA_VIERNESModelStoreContainer" CdmEntityContainer="TIENDA_VIERNESEntities">
-          <EntitySetMapping Name="USUARIOS">
-            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.USUARIO">
-              <MappingFragment StoreEntitySet="USUARIOS">
-                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
-                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
-                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="APELLIDO_1_USUARIO" ColumnName="APELLIDO_1_USUARIO" />
-                <ScalarProperty Name="APELLIDO_2_USUARIO" ColumnName="APELLIDO_2_USUARIO" />
-                <ScalarProperty Name="TELEFONO_USUARIO" ColumnName="TELEFONO_USUARIO" />
-                <ScalarProperty Name="CONTRASENNA" ColumnName="CONTRASENNA" />
-                <ScalarProperty Name="TIPO_USUARIO" ColumnName="TIPO_USUARIO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ADMINISTRADORES">
             <EntityTypeMapping TypeName="TIENDA_VIERNESModel.ADMINISTRADORE">
               <MappingFragment StoreEntitySet="ADMINISTRADORES">
@@ -154,6 +141,22 @@
                 <ScalarProperty Name="TIPO_PRENDA" ColumnName="TIPO_PRENDA" />
                 <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
                 <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="IMAGEN_USUARIO" ColumnName="IMAGEN_USUARIO" />
+                <ScalarProperty Name="TIPO_USUARIO" ColumnName="TIPO_USUARIO" />
+                <ScalarProperty Name="CONTRASENNA" ColumnName="CONTRASENNA" />
+                <ScalarProperty Name="TELEFONO_USUARIO" ColumnName="TELEFONO_USUARIO" />
+                <ScalarProperty Name="APELLIDO_2_USUARIO" ColumnName="APELLIDO_2_USUARIO" />
+                <ScalarProperty Name="APELLIDO_1_USUARIO" ColumnName="APELLIDO_1_USUARIO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
+                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

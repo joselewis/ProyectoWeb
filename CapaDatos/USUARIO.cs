@@ -23,5 +23,6 @@ namespace CapaDatos
         public string TELEFONO_USUARIO { get; set; }
         public string CONTRASENNA { get; set; }
         public string TIPO_USUARIO { get; set; }
+        public byte[] IMAGEN_USUARIO { get; set; }
     }
 }

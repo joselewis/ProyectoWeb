@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" >
-<asp:DataList   ID="DataListRopa" runat="server" GroupItemCount="4" RepeatDirection="Horizontal" RepeatColumns="5">
+<center>
+<asp:DataList ID="DataListRopa" runat="server" GroupItemCount="4" RepeatDirection="Horizontal" RepeatColumns="3">
+    
     <ItemTemplate>
         <div class="gallery">
                 <div class="content">
@@ -27,5 +29,7 @@
                 </div> 
             </div>
     </ItemTemplate>
+
 </asp:DataList>
+</center>
 </asp:Content>

@@ -42,13 +42,10 @@ namespace Tienda
                 case "Normal":
                     PaginaInicio = "../Usuario/PaginaPrincipalUsuario.aspx";
                     LinksMenuPrincipal +=
-                                          "<a class='nav-link' href='PerfilUsuario.aspx'>" +
-                                          "<div class='sb-nav-link-icon'>" +
-                                          "<i class='fas fa-chart-area'>" +
-                                          "</i>" +
-                                          "</div>" +
+                                         "<a class='nav-link' href='../Perfil/PerfilUsuario.aspx'>" +
                                           "Perfil" +
-                                          "</a>" /*+*/
+                                          "</a>" +
+                                          "</li>"
 
                                           //"<a class='nav-link' href='ProductosPrueba.aspx'>" +
                                           //"<div class='sb-nav-link-icon'>" +

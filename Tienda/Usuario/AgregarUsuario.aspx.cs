@@ -33,6 +33,7 @@ namespace Tienda.Usuario
                     oUsuario.CONTRASENNA = ReCajaContrasenna.Text;
                     oUsuario.TELEFONO_USUARIO = ReCajaTelefono.Text;
                     oUsuario.TIPO_USUARIO = "Normal";
+                    oUsuario.IMAGEN_USUARIO = ImagenPerfilUsuario.FileBytes;
 
                     ContextoDB.USUARIOS.Add(oUsuario);
                     ContextoDB.SaveChanges();
