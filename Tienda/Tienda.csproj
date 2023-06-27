@@ -104,6 +104,7 @@
     <Content Include="Css\Login\js\main.js" />
     <Content Include="Css\Login\js\popper.js" />
     <Content Include="Css\Productos\ProductosCss\ProductosCss.css" />
+    <Content Include="Css\Productos\ProductosCss\Prueba.css" />
     <Content Include="Css\Productos\ProductosJs\ProductosJs.js" />
     <Content Include="Css\RegistroUsuario\Css_Registro_Usuario.css" />
     <Content Include="Css\RegistroUsuario\JS_Registro_Usuario.js" />
@@ -117,6 +118,7 @@
     <Content Include="MasterPage\css\styles.css" />
     <Content Include="MasterPage\js\scripts.js" />
     <Content Include="PaginaPrincipal\PaginaPrincipal.aspx" />
+    <Content Include="ProductosPrueba.aspx" />
     <Content Include="Productos\ProductoEspecifico\ProductoEspecifico.aspx" />
     <Content Include="Productos\Productos.aspx" />
     <Content Include="Productos\RegistroProducto\RegistroProducto.aspx" />
@@ -170,6 +172,13 @@
     </Compile>
     <Compile Include="PaginaPrincipal\PaginaPrincipal.aspx.designer.cs">
       <DependentUpon>PaginaPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductosPrueba.aspx.cs">
+      <DependentUpon>ProductosPrueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductosPrueba.aspx.designer.cs">
+      <DependentUpon>ProductosPrueba.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos\ProductoEspecifico\ProductoEspecifico.aspx.cs">
       <DependentUpon>ProductoEspecifico.aspx</DependentUpon>
