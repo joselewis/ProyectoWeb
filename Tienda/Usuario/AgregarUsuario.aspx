@@ -88,7 +88,7 @@
                     <asp:Label ID="lblCamposPagoNulo" runat="server" ForeColor="Red" Visible="False"></asp:Label>
                 </div>
                 <div class="input-group mb-3">
-                  <asp:FileUpload runat="server" class="form-control" ID="ImagenPerfilUsuario" style="width:50px;" ></asp:FileUpload>
+                  <asp:FileUpload runat="server" class="form-control" ID="ReCajaImagenPerfilUsuario" style="width:50px;" ></asp:FileUpload>
                 </div>
                 <center class="col-8">
                     <asp:button runat="server" class="w-50 btn-black btn-lg" Text="Registrarse" ID="BotonRegistrarUsuario" OnClick="BotonRegistrarUsuario_Click" />              

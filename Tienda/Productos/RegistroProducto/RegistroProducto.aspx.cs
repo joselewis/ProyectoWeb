@@ -41,7 +41,7 @@ namespace Tienda.Productos.RegistroProducto
 
                     ProductoIngresado = 1;
                 }    
-            } 
+            }
             catch (Exception ex) 
             {
                 lblAlamacenado.Text = ex.Message;

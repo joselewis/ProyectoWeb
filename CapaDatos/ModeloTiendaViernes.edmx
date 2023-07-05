@@ -47,12 +47,12 @@
           <Property Name="TELEFONO_USUARIO" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="CONTRASENNA" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TIPO_USUARIO" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="IMAGEN_USUARIO" Type="varbinary(max)" Nullable="false" />
+          <Property Name="IMAGEN_USUARIO" Type="varbinary(max)" />
         </EntityType>
         <EntityContainer Name="TIENDA_VIERNESModelStoreContainer">
           <EntitySet Name="ADMINISTRADORES" EntityType="Self.ADMINISTRADORES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTO_ROPA" EntityType="Self.PRODUCTO_ROPA" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="JoseLewis10" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -105,7 +105,7 @@
           <Property Name="TELEFONO_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CONTRASENNA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TIPO_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="IMAGEN_USUARIO" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="IMAGEN_USUARIO" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

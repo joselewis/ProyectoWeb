@@ -24,6 +24,24 @@ namespace Tienda.Perfil
         protected global::System.Web.UI.WebControls.Image ImagenPerfilUsuario;
 
         /// <summary>
+        /// Control DataListFotoPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList DataListFotoPerfil;
+
+        /// <summary>
+        /// Control CambiarFoto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CambiarFoto;
+
+        /// <summary>
         /// Control Nombre.
         /// </summary>
         /// <remarks>

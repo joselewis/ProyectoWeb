@@ -8,8 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" >
 <center>
-<asp:DataList ID="DataListRopa" runat="server" GroupItemCount="4" RepeatDirection="Horizontal" RepeatColumns="3">
-    
+<asp:DataList ID="DataListRopa" runat="server" GroupItemCount="5" RepeatDirection="Horizontal" RepeatColumns="5">
     <ItemTemplate>
         <div class="gallery">
                 <div class="content">
@@ -18,7 +17,7 @@
                     </a>
                     <h3><%#Eval("TIPO_PRENDA")%></h3>
                     <p><%#Eval("DESCRIPCION_PRODUCTO")%></p>
-                    <h6><%#Eval("PRECIO_PRODUCTO")%></h6>
+                    <%--<h6>₡<%#Eval("PRECIO_PRODUCTO")%></h6>--%>
                     <ul>
                         <li><i class="fa fa-star checked"></i></li>
                         <li><i class="fa fa-star checked"></i></li>
@@ -29,7 +28,6 @@
                 </div> 
             </div>
     </ItemTemplate>
-
 </asp:DataList>
 </center>
 </asp:Content>

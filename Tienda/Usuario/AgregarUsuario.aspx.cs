@@ -33,7 +33,7 @@ namespace Tienda.Usuario
                     oUsuario.CONTRASENNA = ReCajaContrasenna.Text;
                     oUsuario.TELEFONO_USUARIO = ReCajaTelefono.Text;
                     oUsuario.TIPO_USUARIO = "Normal";
-                    oUsuario.IMAGEN_USUARIO = ImagenPerfilUsuario.FileBytes;
+                    oUsuario.IMAGEN_USUARIO = ReCajaImagenPerfilUsuario.FileBytes;
 
                     ContextoDB.USUARIOS.Add(oUsuario);
                     ContextoDB.SaveChanges();
@@ -51,6 +51,7 @@ namespace Tienda.Usuario
         {
             if (Creacion_Cuenta == 1)
             {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Cuenta creada, por favor inicie sesión')", true);
                 Response.Redirect("../Login/Login.aspx");
             }
             else
@@ -60,7 +61,7 @@ namespace Tienda.Usuario
         }
 
         protected void BotonRegistrarUsuario_Click(object sender, EventArgs e)
-        {
+         {
             try
             {
                 if (
