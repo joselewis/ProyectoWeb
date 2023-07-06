@@ -9,8 +9,6 @@ body {
     background: #fff;
 }
 
-
-
 .left, .right {
     width: 50%;
     padding: 30px;
@@ -41,7 +39,7 @@ body {
 }
 
 h3 {
-    color: #af827d;
+    color: #000;
     margin: 20px 0 20px 0;
     font-size: 25px;
 }
@@ -53,7 +51,7 @@ small {
 }
 
 h4 {
-    color: red;
+    color: #000;
 }
 
 p {
@@ -75,31 +73,31 @@ label,
     margin: 20px 10px 20px 0;
 }
 
-    .color span:nth-child(2) {
-        background: #EDEDED;
-    }
+.color span:nth-child(2) {
+    background: #EDEDED;
+}
 
-    .color span:nth-child(3) {
-        background: #D5D6D8;
-    }
+.color span:nth-child(3) {
+    background: #D5D6D8;
+}
 
-    .color span:nth-child(4) {
-        background: #EFE0DE;
-    }
+.color span:nth-child(4) {
+    background: #EFE0DE;
+}
 
-    .color span:nth-child(5) {
-        background: #AB8ED1;
-    }
+.color span:nth-child(5) {
+    background: #AB8ED1;
+}
 
-    .color span:nth-child(6) {
-        background: #F04D44;
-    }
+.color span:nth-child(6) {
+    background: #F04D44;
+}
 
 .add label,
 .add span {
     background: none;
-    border: 1px solid #C1908B;
-    color: #C1908B;
+    border: 1px solid #000;
+    color: #000;
     text-align: center;
     line-height: 25px;
 }
@@ -115,7 +113,7 @@ label,
     padding: 10px;
     border: none;
     outline: none;
-    background: #C1908B;
+    background: #000;
     color: white;
     margin-top: 20%;
     border-radius: 30px;

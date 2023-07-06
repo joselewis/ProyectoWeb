@@ -15,13 +15,13 @@ namespace Tienda.Perfil
     {
 
         /// <summary>
-        /// Control ImagenPerfilUsuario.
+        /// Control ImagenDefault.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImagenPerfilUsuario;
+        protected global::System.Web.UI.WebControls.Image ImagenDefault;
 
         /// <summary>
         /// Control DataListFotoPerfil.
@@ -40,6 +40,15 @@ namespace Tienda.Perfil
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button CambiarFoto;
+
+        /// <summary>
+        /// Control AnnadirTarjeta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AnnadirTarjeta;
 
         /// <summary>
         /// Control Nombre.
@@ -76,5 +85,14 @@ namespace Tienda.Perfil
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Telefono;
+
+        /// <summary>
+        /// Control lblError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }

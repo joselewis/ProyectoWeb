@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PáginaPrincipal.Master" AutoEventWireup="true" CodeBehind="ProductoEspecifico.aspx.cs" Inherits="Tienda.Productos.ProductoEspecifico.ProductoEspecifico" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PáginaPrincipal.Master" AutoEventWireup="true" CodeBehind="ProductoEspecifico2.aspx.cs" Inherits="Tienda.Productos.ProductoEspecifico.ProductoEspecifico" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../Css/Productos/ProductoEspecifico/ProductoEspecificoCss.css" rel="stylesheet" />
 </asp:Content>
@@ -15,7 +15,7 @@
                   </div>
                   <div class="right">
                     <h3><%#Eval("TIPO_PRENDA") %></h3>
-                    <h4> <small>₡</small><%#Eval("PRECIO_PRODUCTO")%></h4>
+                    <h4> <small style="color:#000;">₡</small><%#Eval("PRECIO_PRODUCTO")%></h4>
                     <p><%#Eval("DESCRIPCION_PRODUCTO")%></p>
                     <h5>Color-Rose Gold</h5>
                     <div class="color flex1">

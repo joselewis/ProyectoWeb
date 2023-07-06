@@ -12,7 +12,7 @@
     <ItemTemplate>
         <div class="gallery">
                 <div class="content">
-                    <a href="ProductoEspecifico/ProductoEspecifico.aspx?id=<%#Eval("CODIGO_PRODUCTO")%>">
+                    <a href="../Productos/ProductoEspecifico2.aspx?id=<%#Eval("CODIGO_PRODUCTO")%>">
                         <img src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"IMAGEN"))%>" alt=""/>
                     </a>
                     <h3><%#Eval("TIPO_PRENDA")%></h3>

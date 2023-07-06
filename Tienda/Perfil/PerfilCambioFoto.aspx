@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <form runat="server">
     <center>
-        <asp:FileUpload runat="server" class="form-control" ID="CajaNuevaFoto" style=" width:300px; margin:20px;"></asp:FileUpload>
+        <asp:FileUpload runat="server" class="form-control" ID="CajaNuevaFoto" style=" width:300px; margin:20px; text-align:center;"></asp:FileUpload>
     </center>
     <div class="d-flex justify-content-center mb-2">
         <asp:Button runat="server" type="button" class="btn btn-dark" Text="Cambiar foto de perfil" ID="NuevaFotoPerfil" OnClick="NuevaFotoPerfil_Click"></asp:Button>

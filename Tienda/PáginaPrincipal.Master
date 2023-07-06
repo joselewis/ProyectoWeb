@@ -32,8 +32,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="../Productos/Productos.aspx">Prueba</a></li>
-                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="../Productos/Productos.aspx">Ropa</a></li>
                                 <li><a class="dropdown-item" href="#!">Popular Items</a></li>
                                 <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                             </ul>
@@ -42,25 +41,20 @@
                     <asp:Label runat="server" ID="txtNombreUsuarioSesion" Visible="false"/>
                     <asp:Label runat="server" ID="txtNombreAdminSesion" Visible="false"/>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                        </button>
+                        <a href="../CarritoCompras/CarritoCompras.aspx">
+                            <asp:Label runat="server" Visible="false"> Ver Carrito</asp:Label>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16" color="#000">
+                                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                                <span class="badge bg-dark text-white ms-1 rounded-pill"><asp:Label runat="server" Visible="true" class="text-white ms-1 rounded-pill" ID="ContadorCarrito"></asp:Label></span>
+                            </svg>
+                        </a>
                     </form>
                 </div>
             </div>
         </nav>
         <!----------------------------------------CONTENEDOR-------------------------------------------------------->
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-                </div>
-            </div>
-        </header>
+            
         </asp:ContentPlaceHolder>
         <!----------------------------------------FIN CONTENEDOR-------------------------------------------------------->
         <footer class="py-5 bg-dark">

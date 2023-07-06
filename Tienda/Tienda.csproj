@@ -88,6 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Administrador\AgregarAdmin.aspx" />
+    <Content Include="CarritoCompras\CarritoCompras.aspx" />
+    <Content Include="Css\ImgMantenimiento\cancel2.png" />
+    <Content Include="Css\ImgMantenimiento\delete2.png" />
+    <Content Include="Css\ImgMantenimiento\editar.png" />
+    <Content Include="Css\ImgMantenimiento\guardar.png" />
+    <Content Include="Css\ImgMantenimiento\nuevo.png" />
     <Content Include="Css\Login\css\bootstrap.min.css" />
     <Content Include="Css\Login\css\bootstrap\LoginCss.css" />
     <Content Include="Css\Login\css\bootstrap\mixins\_border-radius.css" />
@@ -120,13 +126,14 @@
     <Content Include="MasterPage\assets\favicon.ico" />
     <Content Include="MasterPage\css\styles.css" />
     <Content Include="MasterPage\js\scripts.js" />
+    <Content Include="MetodoPago\MetodoPago.aspx" />
     <Content Include="PaginaPrincipal\PaginaPrincipal.aspx" />
     <Content Include="Perfil\PerfilCambioFoto.aspx" />
     <Content Include="Perfil\PerfilUsuario.aspx" />
     <Content Include="ProductosPrueba.aspx" />
-    <Content Include="Productos\ProductoEspecifico\ProductoEspecifico.aspx" />
+    <Content Include="Productos\ProductoEspecifico2.aspx" />
     <Content Include="Productos\Productos.aspx" />
-    <Content Include="Productos\RegistroProducto\RegistroProducto.aspx" />
+    <Content Include="Productos\RegistroProducto.aspx" />
     <Content Include="Usuario\AgregarUsuario.aspx" />
     <Content Include="Usuario\PaginaPrincipalUsuario.aspx" />
     <Content Include="Web.config" />
@@ -140,6 +147,13 @@
       <DependentUpon>AgregarAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="CarritoCompras\CarritoCompras.aspx.cs">
+      <DependentUpon>CarritoCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CarritoCompras\CarritoCompras.aspx.designer.cs">
+      <DependentUpon>CarritoCompras.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -171,6 +185,13 @@
     <Compile Include="Mantenimientos\MantenimientoUsuario.aspx.designer.cs">
       <DependentUpon>MantenimientoUsuario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MetodoPago\MetodoPago.aspx.cs">
+      <DependentUpon>MetodoPago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MetodoPago\MetodoPago.aspx.designer.cs">
+      <DependentUpon>MetodoPago.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaginaPrincipal\PaginaPrincipal.aspx.cs">
       <DependentUpon>PaginaPrincipal.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -199,12 +220,12 @@
     <Compile Include="ProductosPrueba.aspx.designer.cs">
       <DependentUpon>ProductosPrueba.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Productos\ProductoEspecifico\ProductoEspecifico.aspx.cs">
-      <DependentUpon>ProductoEspecifico.aspx</DependentUpon>
+    <Compile Include="Productos\ProductoEspecifico2.aspx.cs">
+      <DependentUpon>ProductoEspecifico2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Productos\ProductoEspecifico\ProductoEspecifico.aspx.designer.cs">
-      <DependentUpon>ProductoEspecifico.aspx</DependentUpon>
+    <Compile Include="Productos\ProductoEspecifico2.aspx.designer.cs">
+      <DependentUpon>ProductoEspecifico2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos\Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
@@ -213,11 +234,11 @@
     <Compile Include="Productos\Productos.aspx.designer.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Productos\RegistroProducto\RegistroProducto.aspx.cs">
+    <Compile Include="Productos\RegistroProducto.aspx.cs">
       <DependentUpon>RegistroProducto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Productos\RegistroProducto\RegistroProducto.aspx.designer.cs">
+    <Compile Include="Productos\RegistroProducto.aspx.designer.cs">
       <DependentUpon>RegistroProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -446,6 +467,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Css\Carrito\ImgCarrito\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

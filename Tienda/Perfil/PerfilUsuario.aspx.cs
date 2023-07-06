@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDatos;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace Tienda.Perfil
 {
@@ -21,6 +22,7 @@ namespace Tienda.Perfil
         {
             CargarPerfilUsuario();
             CargarFotoPerfil();
+
         }
 
         void CargarPerfilUsuario()
@@ -33,23 +35,25 @@ namespace Tienda.Perfil
 
         void CargarFotoPerfil()
         {
+            //String Usuario = Session["CORREO_ELECTRONICO"].ToString();
+            //String SessionFoto = Session["IMAGEN_USUARIO"].ToString();
+
             try
             {
-                if(CambiarFotoActual == 1)
-                {
-                    ImagenPerfilUsuario.Visible = true;
-                    AgregarFoto = 1;
-                }
-                else
-                {
-                    String Usuario = Session["CORREO_ELECTRONICO"].ToString();
+                //if (String.IsNullOrEmpty(SessionFoto))
+                //{
+                //    ImagenDefault.Visible = true;
+                //}
+                //else
+                //{
+                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
                     SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
                     con.Open();
 
                     SqlCommand cmd = con.CreateCommand();
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = "SELECT IMAGEN_USUARIO FROM USUARIOS WHERE CORREO_ELECTRONICO = '" + Usuario + "'";
+                    cmd.CommandText = "SELECT IMAGEN_USUARIO FROM USUARIOS WHERE CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
                     cmd.ExecuteNonQuery();
 
                     DataTable dt = new DataTable();
@@ -57,18 +61,24 @@ namespace Tienda.Perfil
                     adapter.Fill(dt);
                     DataListFotoPerfil.DataSource = dt;
                     DataListFotoPerfil.DataBind();
-                    con.Close(); 
-                }
+                    con.Close();
+                //}
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
             }
         }
 
         protected void CambiarFoto_Click(object sender, EventArgs e)
         {
             Response.Redirect("../Perfil/PerfilCambioFoto.aspx");
+        }
+
+        protected void AnnadirTarjeta_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../MetodoPago/MetodoPago.aspx");
         }
     }
 }

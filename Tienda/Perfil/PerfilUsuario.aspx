@@ -10,22 +10,26 @@
       <div class="col-lg-3">
         <div class="card mb-3">
             <div class="card-body text-center">
-                <asp:Image runat="server" ID="ImagenPerfilUsuario" src="../Css/Perfil/PerfilUsuario/Img/ImagenBase.png" Visible="false" class="rounded-circle img-fluid" style="width: 120px; height:170px;"/>
+                <asp:Image runat="server" ID="ImagenDefault" src="../Css/Perfil/PerfilUsuario/Img/ImagenBase.png" Visible="false" class="rounded-circle img-fluid" style="width: 170px; height:250px;"/>
             </div>
         <asp:DataList ID="DataListFotoPerfil" runat="server" GroupItemCount="4" RepeatDirection="Horizontal" RepeatColumns="3">
             <ItemTemplate>
                 <div class="card-body text-center">
-                  <img src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"IMAGEN_USUARIO"))%>" class="rounded-circle img-fluid" style="width: 120px; height:170px;"/>
+                  <img src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"IMAGEN_USUARIO"))%>" class="rounded-circle img-fluid" style="width: 170px; height:170px;"/>
                   <br />
                   <br />
                 </div>
             </ItemTemplate>
         </asp:DataList>
         <div class="d-flex justify-content-center mb-2">
-            <asp:Button runat="server" type="button" class="btn btn-dark" Text="Cambiar foto de perfil" ID="CambiarFoto" OnClick="CambiarFoto_Click"></asp:Button>
+            <span style="margin-left:5px; margin-right: 5px;">
+                <asp:Button runat="server" type="button" class="btn btn-dark" Text="Cambiar foto" ID="CambiarFoto" OnClick="CambiarFoto_Click"></asp:Button>
+            </span>
+            <span style="margin-left:5px; margin-right: 5px;">
+                <asp:Button runat="server" type="button" class="btn btn-dark" Text="Añadir tarjeta" ID="AnnadirTarjeta" OnClick="AnnadirTarjeta_Click"></asp:Button>
+            </span>
         </div>
-        </div>
-        
+        </div> 
       </div>
       <div class="col-lg-8">
         <div class="card mb-4">
@@ -68,8 +72,7 @@
               </div>
             </div>
                <hr>
-            <div class="row">
-                
+            <div class="row"> 
             </div>
           </div>
       </div>
@@ -77,4 +80,5 @@
   </div>
 </section>
 </form>
+<asp:Label ID="lblError" runat="server" ForeColor="Lime" Visible="false"></asp:Label>
 </asp:Content>

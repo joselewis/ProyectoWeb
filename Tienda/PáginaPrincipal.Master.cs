@@ -10,9 +10,12 @@ namespace Tienda
 {
     public partial class PáginaPrincipal : System.Web.UI.MasterPage
     {
+        int Contador = 12;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             MenuPrincipal();
+            ContadorProductosCarrito();
 
             //Filtra el tipo de usuario para redirigirlo según su tipo
             if (!Page.IsPostBack)
@@ -40,7 +43,7 @@ namespace Tienda
             switch (Rol)
             {
                 case "Normal":
-                    PaginaInicio = "../Usuario/PaginaPrincipalUsuario.aspx";
+                    PaginaInicio = "Usuario/PaginaPrincipalUsuario.aspx";
                     LinksMenuPrincipal +=
                                          "<a class='nav-link' href='../Perfil/PerfilUsuario.aspx'>" +
                                           "Perfil" +
@@ -75,18 +78,40 @@ namespace Tienda
                                           "<li class='nav-item dropdown'>" +
                                           "<a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Registrar</a>" +
                                           "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>" +
-                                          "<li><a class='dropdown-item' href='../Productos/RegistroProducto/RegistroProducto.aspx'>Registrar Producto</a></ li >" +
+                                          "<li><a class='dropdown-item' href='../Productos/RegistroProducto.aspx'>Registrar Producto</a></ li >" +
                                           "</ul></li></ul></div>";
 
                     break;
             }
 
             Titulo_Admin.InnerHtml += LinksMenuPrincipal;
+           
         }
 
         protected void btnBusqueda_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void ButtonVerCarrito_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../CarritoCompras/CarritoCompras.aspx");
+        }
+
+        void ContadorProductosCarrito()
+        {
+            try
+            {
+                if (Contador != 0)
+                {
+                    ContadorCarrito.Visible = true;
+                    ContadorCarrito.Text = Contador.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "sr1", "Swal.fire('Algo salió mal')", true);
+            }
         }
     }
 }
