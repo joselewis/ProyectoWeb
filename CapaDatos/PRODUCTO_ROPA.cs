@@ -14,6 +14,12 @@ namespace CapaDatos
     
     public partial class PRODUCTO_ROPA
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PRODUCTO_ROPA()
+        {
+            this.CLASIFICAR_ROPA = new HashSet<CLASIFICAR_ROPA>();
+        }
+    
         public int ID_PRODUCTO { get; set; }
         public int CODIGO_PRODUCTO { get; set; }
         public string TIPO_PRENDA { get; set; }
@@ -24,5 +30,8 @@ namespace CapaDatos
         public byte[] IMAGEN { get; set; }
         public string MARCA { get; set; }
         public bool PRODUCTO_ACTIVO { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLASIFICAR_ROPA> CLASIFICAR_ROPA { get; set; }
     }
 }

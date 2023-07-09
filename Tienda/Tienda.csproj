@@ -89,6 +89,7 @@
   <ItemGroup>
     <Content Include="Administrador\AgregarAdmin.aspx" />
     <Content Include="CarritoCompras\CarritoCompras.aspx" />
+    <Content Include="CategoriaRopa\CategoriaProducto.aspx" />
     <Content Include="Css\ImgMantenimiento\cancel2.png" />
     <Content Include="Css\ImgMantenimiento\delete2.png" />
     <Content Include="Css\ImgMantenimiento\editar.png" />
@@ -153,6 +154,13 @@
     </Compile>
     <Compile Include="CarritoCompras\CarritoCompras.aspx.designer.cs">
       <DependentUpon>CarritoCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaProducto.aspx.cs">
+      <DependentUpon>CategoriaProducto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaProducto.aspx.designer.cs">
+      <DependentUpon>CategoriaProducto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

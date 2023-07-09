@@ -19,6 +19,15 @@
           <Property Name="CONTRASENNA_ADMIN" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="TIPO_USUARIO" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <EntityType Name="CLASIFICAR_ROPA">
+          <Key>
+            <PropertyRef Name="ID_CLASIFICACION" />
+          </Key>
+          <Property Name="ID_CLASIFICACION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CATEGORIA_NUMERO" Type="int" Nullable="false" />
+          <Property Name="CATEGORIA_PRENDA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CODIGO_PRODUCTO" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="PRODUCTO_ROPA">
           <Key>
             <PropertyRef Name="CODIGO_PRODUCTO" />
@@ -49,10 +58,27 @@
           <Property Name="TIPO_USUARIO" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="IMAGEN_USUARIO" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="FK_PRENDA_CLASIFICAION">
+          <End Role="PRODUCTO_ROPA" Type="Self.PRODUCTO_ROPA" Multiplicity="1" />
+          <End Role="CLASIFICAR_ROPA" Type="Self.CLASIFICAR_ROPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Principal>
+            <Dependent Role="CLASIFICAR_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TIENDA_VIERNESModelStoreContainer">
           <EntitySet Name="ADMINISTRADORES" EntityType="Self.ADMINISTRADORES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLASIFICAR_ROPA" EntityType="Self.CLASIFICAR_ROPA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTO_ROPA" EntityType="Self.PRODUCTO_ROPA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PRENDA_CLASIFICAION" Association="Self.FK_PRENDA_CLASIFICAION">
+            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
+            <End Role="CLASIFICAR_ROPA" EntitySet="CLASIFICAR_ROPA" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -62,6 +88,11 @@
           <EntitySet Name="ADMINISTRADORES" EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" />
           <EntitySet Name="PRODUCTO_ROPA" EntityType="TIENDA_VIERNESModel.PRODUCTO_ROPA" />
           <EntitySet Name="USUARIOS" EntityType="TIENDA_VIERNESModel.USUARIO" />
+          <EntitySet Name="CLASIFICAR_ROPA" EntityType="TIENDA_VIERNESModel.CLASIFICAR_ROPA" />
+          <AssociationSet Name="FK_PRENDA_CLASIFICAION" Association="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION">
+            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
+            <End Role="CLASIFICAR_ROPA" EntitySet="CLASIFICAR_ROPA" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ADMINISTRADORE">
           <Key>
@@ -91,6 +122,7 @@
           <Property Name="IMAGEN" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="MARCA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PRODUCTO_ACTIVO" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CLASIFICAR_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION" FromRole="PRODUCTO_ROPA" ToRole="CLASIFICAR_ROPA" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -107,6 +139,28 @@
           <Property Name="TIPO_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IMAGEN_USUARIO" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="CLASIFICAR_ROPA">
+          <Key>
+            <PropertyRef Name="ID_CLASIFICACION" />
+          </Key>
+          <Property Name="ID_CLASIFICACION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CATEGORIA_NUMERO" Type="Int32" Nullable="false" />
+          <Property Name="CATEGORIA_PRENDA" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION" FromRole="CLASIFICAR_ROPA" ToRole="PRODUCTO_ROPA" />
+        </EntityType>
+        <Association Name="FK_PRENDA_CLASIFICAION">
+          <End Type="TIENDA_VIERNESModel.PRODUCTO_ROPA" Role="PRODUCTO_ROPA" Multiplicity="1" />
+          <End Type="TIENDA_VIERNESModel.CLASIFICAR_ROPA" Role="CLASIFICAR_ROPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Principal>
+            <Dependent Role="CLASIFICAR_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -157,6 +211,16 @@
                 <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
                 <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
                 <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLASIFICAR_ROPA">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.CLASIFICAR_ROPA">
+              <MappingFragment StoreEntitySet="CLASIFICAR_ROPA">
+                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
+                <ScalarProperty Name="CATEGORIA_PRENDA" ColumnName="CATEGORIA_PRENDA" />
+                <ScalarProperty Name="CATEGORIA_NUMERO" ColumnName="CATEGORIA_NUMERO" />
+                <ScalarProperty Name="ID_CLASIFICACION" ColumnName="ID_CLASIFICACION" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

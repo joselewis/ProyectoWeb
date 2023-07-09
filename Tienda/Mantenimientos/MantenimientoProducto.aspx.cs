@@ -10,14 +10,13 @@ namespace Tienda.Mantenimientos
 {
     public partial class MantenimientoProducto : System.Web.UI.Page
     {
-        int GridLleno = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 CargarProductos();
                 BotonVisible();
+
             }
         }
 
@@ -31,8 +30,6 @@ namespace Tienda.Mantenimientos
                 {
                     GridProductos.DataSource = ListadoProductos;
                     GridProductos.DataBind();
-
-                    GridLleno = 1;
                 }
                 else
                 {
@@ -46,8 +43,6 @@ namespace Tienda.Mantenimientos
                     GridProductos.Rows[0].Cells[0].ColumnSpan = 5;
                     GridProductos.Rows[0].Cells[0].Text = "No hay administradores registrados";
                     GridProductos.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
-
-                    GridLleno = 0;
                 }
             }
         }
@@ -80,15 +75,20 @@ namespace Tienda.Mantenimientos
 
         protected void GridProductos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            String CodigoProducto = Convert.ToString(GridProductos.DataKeys[e.RowIndex].Value);
+            int CodigoProducto = Convert.ToInt32(GridProductos.DataKeys[e.RowIndex].Value);
+            int CodigoClasificarProducto = Convert.ToInt32(GridProductos.DataKeys[e.RowIndex].Value);
 
             using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
             {
-                PRODUCTO_ROPA objProducto = ContextoDB.PRODUCTO_ROPA.First(x => x.CODIGO_PRODUCTO == Convert.ToInt32(CodigoProducto));
+                PRODUCTO_ROPA objProducto = ContextoDB.PRODUCTO_ROPA.First(x => x.CODIGO_PRODUCTO == CodigoProducto);
+                CLASIFICAR_ROPA objCategoriaProducto = ContextoDB.CLASIFICAR_ROPA.First(x => x.CODIGO_PRODUCTO == CodigoClasificarProducto);
+
+                ContextoDB.CLASIFICAR_ROPA.Remove(objCategoriaProducto);
                 ContextoDB.PRODUCTO_ROPA.Remove(objProducto);
                 ContextoDB.SaveChanges();
                 LblError.Text = "Eliminado correctamente";
-                CargarProductos();
+
+                Response.Redirect("../Mantenimientos/MantenimientoProducto.aspx");
             }
         }
 
@@ -164,7 +164,7 @@ namespace Tienda.Mantenimientos
         {
             try
             {
-                if (GridLleno == 1)
+                if (GridProductos.Rows.Count >= 1)
                 {
                     ButtonExportarProductoExcel.Visible = true;
                 }
@@ -179,6 +179,5 @@ namespace Tienda.Mantenimientos
                 LblError.Text = ex.Message;
             }
         }
-
     }
 }
