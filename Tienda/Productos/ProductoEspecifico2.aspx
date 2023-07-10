@@ -5,7 +5,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <asp:Repeater runat="server" ID="d1">
     <ItemTemplate>
-	    <form runat="server">
             <section>
                 <div class="container flex">
                   <div class="left">
@@ -37,7 +36,6 @@
                   </div>
                 </div>
             </section>
-	    </form>
 	</ItemTemplate>
 </asp:Repeater>
 <center>

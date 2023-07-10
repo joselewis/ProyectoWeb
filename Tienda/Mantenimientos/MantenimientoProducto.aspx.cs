@@ -25,9 +25,10 @@ namespace Tienda.Mantenimientos
             using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
             {
                 var ListadoProductos = ContextoDB.PRODUCTO_ROPA.ToList();
+                ////var ListadoCategorias =  ContextoDB.CLASIFICAR_ROPA.ToList();
 
-                if (ListadoProductos.Count >= 0)
-                {
+                if (ListadoProductos.Count >= 0 /*&& ListadoCategorias.Count >= 0*/)
+                { 
                     GridProductos.DataSource = ListadoProductos;
                     GridProductos.DataBind();
                 }

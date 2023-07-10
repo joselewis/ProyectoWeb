@@ -4,7 +4,9 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">  
 <form runat="server">
-    <h4>Mantenimiento de Productos</h4>
+    <center>
+        </br>
+        <h4>Mantenimiento de Productos</h4>
     </br>
     <asp:GridView ID="GridProductos"
         runat="server" class="table table-dark table-striped"
@@ -164,7 +166,8 @@
     </center>
     <br />
     <center>
-    <asp:Label ID="LblError" runat="server" ForeColor="red" Visible="false"></asp:Label><asp:Label ID="Label2" runat="server" ForeColor="red" Visible="false"></asp:Label><asp:Label ID="Label7" runat="server" ForeColor="red" Visible="false"></asp:Label><asp:Label ID="Label1" runat="server" ForeColor="red" Visible="false"></asp:Label>
-        </center>
+        <asp:Label ID="LblError" runat="server" ForeColor="red" Visible="false"></asp:Label><asp:Label ID="Label2" runat="server" ForeColor="red" Visible="false"></asp:Label><asp:Label ID="Label7" runat="server" ForeColor="red" Visible="false"></asp:Label><asp:Label ID="Label1" runat="server" ForeColor="red" Visible="false"></asp:Label>
+    </center>
+    </center>
 </form>
 </asp:Content>

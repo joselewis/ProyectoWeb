@@ -22,10 +22,11 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <form runat="server">
     <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light" >
             <div class="container px-4 px-lg-5" >
-                <a class="navbar-brand" href="../PaginaPrincipal/PaginaPrincipal.aspx">Start Bootstrap </a>
+                <a class="navbar-brand" href="../PaginaPrincipal/PaginaPrincipal.aspx">MICHI'S</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" runat="server" id="Titulo_Admin">
@@ -48,7 +49,10 @@
                                 <span class="badge bg-dark text-white ms-1 rounded-pill"><asp:Label runat="server" Visible="true" class="text-white ms-1 rounded-pill" ID="ContadorCarrito"></asp:Label></span>
                             </svg>
                         </a>
-                    </form>
+                        <span style="margin-left:20px; margin-right:20px; margin-top:4px;">
+                            <asp:ImageButton runat="server" ID="BtnCerrarSesion" OnClick="BtnCerrarSesion_Click" src="../Css/ImgCerrarSesion/box_arrow_right_icon_160371.png" Width="25" Height="25"/>
+                        </span>
+                    </form>  
                 </div>
             </div>
         </nav>
@@ -64,5 +68,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+    </form>
 </body>
 </html>

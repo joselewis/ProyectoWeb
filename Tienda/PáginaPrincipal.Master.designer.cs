@@ -60,6 +60,15 @@ namespace Tienda
         protected global::System.Web.UI.WebControls.Label ContadorCarrito;
 
         /// <summary>
+        /// Control BtnCerrarSesion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BtnCerrarSesion;
+
+        /// <summary>
         /// Control ContentPlaceHolder1.
         /// </summary>
         /// <remarks>

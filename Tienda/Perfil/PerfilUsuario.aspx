@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<form runat="server">
+<%--<form runat="server">--%>
 <br />
 <section style="background-color: #ffff;">
   <div class="container py-2">
@@ -21,14 +21,14 @@
                 </div>
             </ItemTemplate>
         </asp:DataList>
-        <div class="d-flex justify-content-center mb-2">
-            <span style="margin-left:5px; margin-right: 5px;">
-                <asp:Button runat="server" type="button" class="btn btn-dark" Text="Cambiar foto" ID="CambiarFoto" OnClick="CambiarFoto_Click"></asp:Button>
-            </span>
-            <span style="margin-left:5px; margin-right: 5px;">
-                <asp:Button runat="server" type="button" class="btn btn-dark" Text="Añadir tarjeta" ID="AnnadirTarjeta" OnClick="AnnadirTarjeta_Click"></asp:Button>
-            </span>
-        </div>
+            <div class="d-flex justify-content-center mb-2">
+                <span style="margin-left:5px; margin-right: 5px;">
+                    <asp:Button runat="server" type="button" class="btn btn-dark" Text="Cambiar foto" ID="CambiarFoto" OnClick="CambiarFoto_Click"></asp:Button>
+                </span>
+                <span style="margin-left:5px; margin-right: 5px;">
+                    <asp:Button runat="server"  type="button" class="btn btn-dark" Text="Añadir tarjeta" ID="AnnadirTarjeta" OnClick="AnnadirTarjeta_Click"></asp:Button>
+                </span>
+            </div>
         </div> 
       </div>
       <div class="col-lg-8">
@@ -79,6 +79,6 @@
     </div>
   </div>
 </section>
-</form>
+<%--</form>--%>
 <asp:Label ID="lblError" runat="server" ForeColor="Lime" Visible="false"></asp:Label>
 </asp:Content>

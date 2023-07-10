@@ -90,6 +90,7 @@
     <Content Include="Administrador\AgregarAdmin.aspx" />
     <Content Include="CarritoCompras\CarritoCompras.aspx" />
     <Content Include="CategoriaRopa\CategoriaProducto.aspx" />
+    <Content Include="Css\ImgCerrarSesion\box_arrow_right_icon_160371.png" />
     <Content Include="Css\ImgMantenimiento\cancel2.png" />
     <Content Include="Css\ImgMantenimiento\delete2.png" />
     <Content Include="Css\ImgMantenimiento\editar.png" />

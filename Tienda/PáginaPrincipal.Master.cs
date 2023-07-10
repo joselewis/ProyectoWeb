@@ -85,7 +85,7 @@ namespace Tienda
             }
 
             Titulo_Admin.InnerHtml += LinksMenuPrincipal;
-           
+
         }
 
         protected void btnBusqueda_Click(object sender, EventArgs e)
@@ -111,6 +111,19 @@ namespace Tienda
             catch (Exception ex)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "sr1", "Swal.fire('Algo salió mal')", true);
+            }
+        }
+
+        protected void BtnCerrarSesion_Click(object sender, ImageClickEventArgs e)
+        {
+            try
+            {
+                Session.Abandon();
+                Response.Redirect("../Login/Login.aspx");
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "sr1", "Swal.fire('No se ha podido cerrar sesión')" + ex, true);
             }
         }
     }
