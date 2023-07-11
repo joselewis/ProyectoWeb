@@ -120,7 +120,6 @@
     <Content Include="Css\RegistroUsuario\JS_Registro_Usuario.js" />
     <Content Include="Css\RegistroUsuario\RegistrarUsuarioCss.css" />
     <Content Include="DB\BD_TIENDA_VIERNES.sql" />
-    <Content Include="DB\SQLQuery_TiendaViernesNO.sql" />
     <Content Include="Global.asax" />
     <Content Include="Login\Login.aspx" />
     <Content Include="Mantenimientos\MantenimientoAdmin.aspx" />
@@ -130,6 +129,7 @@
     <Content Include="MasterPage\css\styles.css" />
     <Content Include="MasterPage\js\scripts.js" />
     <Content Include="MetodoPago\MetodoPago.aspx" />
+    <Content Include="MetodoPago\MetodoPago2.aspx" />
     <Content Include="PaginaPrincipal\PaginaPrincipal.aspx" />
     <Content Include="Perfil\PerfilCambioFoto.aspx" />
     <Content Include="Perfil\PerfilUsuario.aspx" />
@@ -201,6 +201,13 @@
     </Compile>
     <Compile Include="MetodoPago\MetodoPago.aspx.designer.cs">
       <DependentUpon>MetodoPago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MetodoPago\MetodoPago2.aspx.cs">
+      <DependentUpon>MetodoPago2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MetodoPago\MetodoPago2.aspx.designer.cs">
+      <DependentUpon>MetodoPago2.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaginaPrincipal\PaginaPrincipal.aspx.cs">
       <DependentUpon>PaginaPrincipal.aspx</DependentUpon>

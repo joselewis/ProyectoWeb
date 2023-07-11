@@ -60,6 +60,9 @@
       <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
     </Compile>
     <Compile Include="ClassTipoPrenda.cs" />
+    <Compile Include="METODO_PAGO.cs">
+      <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModeloTiendaViernes.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

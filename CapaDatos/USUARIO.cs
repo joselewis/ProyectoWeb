@@ -14,6 +14,12 @@ namespace CapaDatos
     
     public partial class USUARIO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public USUARIO()
+        {
+            this.METODO_PAGO = new HashSet<METODO_PAGO>();
+        }
+    
         public int ID_USUARIO { get; set; }
         public string CORREO_ELECTRONICO { get; set; }
         public string NOMBRE_USUARIO { get; set; }
@@ -24,5 +30,8 @@ namespace CapaDatos
         public string CONTRASENNA { get; set; }
         public string TIPO_USUARIO { get; set; }
         public byte[] IMAGEN_USUARIO { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<METODO_PAGO> METODO_PAGO { get; set; }
     }
 }

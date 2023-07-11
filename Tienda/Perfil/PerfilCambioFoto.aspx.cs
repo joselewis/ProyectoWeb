@@ -49,9 +49,9 @@ namespace Tienda.Perfil
             {
                 using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
                 {
-                    String IdAdmin = Session["CORREO_ELECTRONICO"].ToString();
+                    String Usuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                    USUARIO oUsuario = ContextoDB.USUARIOS.First(x => x.CORREO_ELECTRONICO == IdAdmin);
+                    USUARIO oUsuario = ContextoDB.USUARIOS.First(x => x.CORREO_ELECTRONICO == Usuario);
 
                     oUsuario.IMAGEN_USUARIO = CajaNuevaFoto.FileBytes;
 

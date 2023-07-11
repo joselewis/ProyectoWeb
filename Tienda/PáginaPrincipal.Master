@@ -41,7 +41,7 @@
                     </ul>
                     <asp:Label runat="server" ID="txtNombreUsuarioSesion" Visible="false"/>
                     <asp:Label runat="server" ID="txtNombreAdminSesion" Visible="false"/>
-                    <form class="d-flex">
+                    <%--<form class="d-flex">--%>
                         <a href="../CarritoCompras/CarritoCompras.aspx">
                             <asp:Label runat="server" Visible="false"> Ver Carrito</asp:Label>
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16" color="#000">
@@ -52,7 +52,7 @@
                         <span style="margin-left:20px; margin-right:20px; margin-top:4px;">
                             <asp:ImageButton runat="server" ID="BtnCerrarSesion" OnClick="BtnCerrarSesion_Click" src="../Css/ImgCerrarSesion/box_arrow_right_icon_160371.png" Width="25" Height="25"/>
                         </span>
-                    </form>  
+                    <%--</form>--%> 
                 </div>
             </div>
         </nav>

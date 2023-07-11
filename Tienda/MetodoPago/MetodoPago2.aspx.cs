@@ -1,5 +1,4 @@
-﻿using CapaDatos;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +8,7 @@ using CapaDatos;
 
 namespace Tienda.MetodoPago
 {
-    public partial class MetodoPago : System.Web.UI.Page
+    public partial class MetodoPago2 : System.Web.UI.Page
     {
         int Creacion_Metodo_Pago = 0;
 
@@ -18,39 +17,39 @@ namespace Tienda.MetodoPago
             CargarMetodoPago();
         }
 
-        //void CrearMetodoPago()
-        //{
-        //    try
-        //    {   
-        //        using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
-        //        {
-        //            METODO_PAGO oMetodoPago = new METODO_PAGO();
+        void CrearMetodoPago()
+        {
+            try
+            {
+                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                {
+                    String Usuario = Session["CORREO_ELECTRONICO"].ToString();
 
-        //            string CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+                    METODO_PAGO oPago = new METODO_PAGO();
 
-        //            oMetodoPago.NUMERO_TARJETA = Convert.ToInt64(CajaNumeroTarjeta.Text);
-        //            oMetodoPago.NUMERO_EXPIRA_1 = Convert.ToInt32(CajaMesTarjeta.Text);
-        //            oMetodoPago.NUMERO_EXPIRA_2 = Convert.ToInt32(CajaAnnoTarjeta.Text);
-        //            oMetodoPago.TARJETA_ACTICA = CheckBoxActiva.Checked;
-        //            oMetodoPago.CORREO_ELECTRONICO = CorreoUsuario;
+                    oPago.NUMERO_TARJETA = Convert.ToInt64(CajaNumeroTarjeta.Text);
+                    oPago.NUMERO_EXPIRA_1 = Convert.ToInt32(CajaMesTarjeta.Text);
+                    oPago.NUMERO_EXPIRA_2 = Convert.ToInt32(CajaAnnoTarjeta.Text);
+                    oPago.CODIGO_TARJETA = Convert.ToInt32(CajaCódigoTarjeta.Text);
+                    oPago.TARJETA_ACTICA = CheckBoxTarjetaActiva.Checked;
+                    oPago.CORREO_ELECTRONICO = Usuario;
 
-        //            ContextoDB.METODO_PAGO.Add(oMetodoPago);
-        //            ContextoDB.SaveChanges();
-
-        //            Creacion_Metodo_Pago = 1;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblCamposPagoNulo.Visible = true;
-        //        lblCamposPagoNulo.Text = ex.Message;
-        //    }
-        //}
+                    ContextoDB.METODO_PAGO.Add(oPago);
+                    ContextoDB.SaveChanges();
+                    Creacion_Metodo_Pago = 1;
+                }
+            }
+            catch(Exception ex) 
+            {
+                lblCamposPagoNulo.Visible = true;
+                lblCamposPagoNulo.Text = ex.Message;
+            }
+        }
 
         void ValidacionIngresoMetodoPago()
         {
             try
-            {   
+            {
                 if (Creacion_Metodo_Pago == 1)
                 {
                     Response.Redirect("/CarritoCompras.aspx");
@@ -75,6 +74,7 @@ namespace Tienda.MetodoPago
 
                     if (ListadoMetodoPago.Count > 0)
                     {
+                        LabelMetodoPagoRegistrado.Visible = true;
                         GridMetodoPago.Visible = true;
                         GridMetodoPago.DataSource = ListadoMetodoPago;
                         GridMetodoPago.DataBind();
@@ -100,11 +100,6 @@ namespace Tienda.MetodoPago
                 lblCamposPagoNulo.Visible = true;
                 lblCamposPagoNulo.Text = ex.Message;
             }
-        }
-
-        protected void GridMetodoPago_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-
         }
 
         protected void GridMetodoPago_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -184,35 +179,34 @@ namespace Tienda.MetodoPago
 
         }
 
+        protected void GridMetodoPago_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+
+        }
+
         protected void GridMetodoPago_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        //protected void NuevoPago_Click()
-        //{
-        //    try
-        //    {
-        //        if (CajaAnnoTarjeta.Text != null &&
-        //            CajaMesTarjeta.Text != null &&
-        //            CajaNumeroTarjeta.Text != null &&
-        //            CheckBoxActiva.Checked
-        //            )
-        //        {
-        //            CrearMetodoPago();
-        //            ValidacionIngresoMetodoPago();
-        //        }
-        //        else
-        //        {
-        //            lblCamposPagoNulo.Visible = true;
-        //            lblCamposPagoNulo.Text = "Se ha producido un error";
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblCamposPagoNulo.Visible = true;
-        //        lblCamposPagoNulo.Text = ex.Message;
-        //    }
-        //}
+        protected void ButtonAnnadirPago_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CajaAnnoTarjeta.Text != null &&
+                    CajaCódigoTarjeta.Text != null &&
+                    CajaMesTarjeta.Text != null &&
+                    CajaNumeroTarjeta != null
+                    )
+                {
+                    CrearMetodoPago();
+                }
+            }
+            catch(Exception ex)
+            {
+                lblCamposPagoNulo.Visible = true;
+                lblCamposPagoNulo.Text = ex.Message;
+            }
+        }
     }
 }

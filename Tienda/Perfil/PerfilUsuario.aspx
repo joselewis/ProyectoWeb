@@ -2,7 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<%--<form runat="server">--%>
 <br />
 <section style="background-color: #ffff;">
   <div class="container py-2">
@@ -23,9 +22,11 @@
         </asp:DataList>
             <div class="d-flex justify-content-center mb-2">
                 <span style="margin-left:5px; margin-right: 5px;">
+                    <%--<a href="../Perfil/PerfilCambioFoto.aspx">Cambiar Foto</a>--%>
                     <asp:Button runat="server" type="button" class="btn btn-dark" Text="Cambiar foto" ID="CambiarFoto" OnClick="CambiarFoto_Click"></asp:Button>
                 </span>
                 <span style="margin-left:5px; margin-right: 5px;">
+                    <%--<a href="../MetodoPago/MetodoPago.aspx">Añadir Pago</a>--%>
                     <asp:Button runat="server"  type="button" class="btn btn-dark" Text="Añadir tarjeta" ID="AnnadirTarjeta" OnClick="AnnadirTarjeta_Click"></asp:Button>
                 </span>
             </div>
@@ -78,7 +79,7 @@
       </div>
     </div>
   </div>
+</div>
 </section>
-<%--</form>--%>
 <asp:Label ID="lblError" runat="server" ForeColor="Lime" Visible="false"></asp:Label>
 </asp:Content>
