@@ -118,7 +118,7 @@ namespace Tienda
         {
             try
             {
-                Session.Abandon();
+                Session.Clear();
                 Response.Redirect("../Login/Login.aspx");
             }
             catch (Exception ex)

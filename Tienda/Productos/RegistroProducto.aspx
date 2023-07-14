@@ -6,7 +6,6 @@
     <script src="Alertas/js/JavaScript.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<form runat="server">
     <div class="Formulario" style="margin-left:100px; margin-right:100px;">
         </br>
         <center>
@@ -50,5 +49,4 @@
         <asp:Label ID="lblAlamacenado" runat="server" ForeColor="Lime" Visible="True"></asp:Label>
         </br>
     </div>
-</form>
 </asp:Content>

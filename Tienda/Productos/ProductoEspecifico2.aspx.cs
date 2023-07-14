@@ -12,6 +12,9 @@ namespace Tienda.Productos.ProductoEspecifico
 {
     public partial class ProductoEspecifico : System.Web.UI.Page
     {
+        int AumentarCantidadProducto = 0;
+        int Cantidad = 0;
+
         //Arreglar toda la pantalla del producto
         SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
@@ -22,6 +25,11 @@ namespace Tienda.Productos.ProductoEspecifico
         protected void Page_Load(object sender, EventArgs e)
         {
             VerProductoEspecifico();
+
+            if (!Page.IsPostBack)
+            {
+                //AumentarCantidad();
+            }
         }
 
         void VerProductoEspecifico()
@@ -104,6 +112,28 @@ namespace Tienda.Productos.ProductoEspecifico
         //    }
         //}
 
+        //void AumentarCantidad()
+        //{
+        //    try
+        //    {
+        //        using(TIENDA_VIERNESEntities ContextoBD = new TIENDA_VIERNESEntities())
+        //        {
+        //            PRODUCTO_ROPA Ropa = new PRODUCTO_ROPA();  
+
+        //            for (int i = Ropa.CANTIDAD_PRODUCTO; i <= Ropa.CANTIDAD_PRODUCTO; i++)
+        //            {
+        //                AumentarCantidadProducto++;
+        //                LabelCantidad.Text = AumentarCantidadProducto.ToString();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblError.Visible = true;
+        //        lblError.Text = ex.Message;
+        //    }
+        //}
+
         protected void BotonAnnadirCarrito_Click(object sender, EventArgs e)
         {
             //AnnadirProducto();
@@ -113,6 +143,16 @@ namespace Tienda.Productos.ProductoEspecifico
         protected void BotonAnnadirCarrito_Click1(object sender, EventArgs e)
         {
 
+        }
+
+        protected void BotonMenosCantidad_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
+
+        protected void BotonMasCantidad_Click(object sender, ImageClickEventArgs e)
+        {
+            //AumentarCantidad();
         }
     }
 }

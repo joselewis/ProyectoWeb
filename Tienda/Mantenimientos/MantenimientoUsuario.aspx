@@ -112,7 +112,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Tipo" Visible="True">
+            <asp:TemplateField HeaderText="Tipo" Visible="False">
                 <EditItemTemplate>
                     <asp:TextBox ID="Txt_Tipo_Usuario" runat="server" Text='<%# Eval("TIPO_USUARIO") %>'></asp:TextBox>
                 </EditItemTemplate>

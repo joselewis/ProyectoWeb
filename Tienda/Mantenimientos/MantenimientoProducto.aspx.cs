@@ -16,7 +16,6 @@ namespace Tienda.Mantenimientos
             {
                 CargarProductos();
                 BotonVisible();
-
             }
         }
 
@@ -67,6 +66,7 @@ namespace Tienda.Mantenimientos
         {
             GridProductos.EditIndex = -1;
             CargarProductos();
+            Response.Redirect("../Mantenimientos/MantenimientoProducto.aspx");
         }
 
         protected void GridProductos_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -76,20 +76,28 @@ namespace Tienda.Mantenimientos
 
         protected void GridProductos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            int CodigoProducto = Convert.ToInt32(GridProductos.DataKeys[e.RowIndex].Value);
-            int CodigoClasificarProducto = Convert.ToInt32(GridProductos.DataKeys[e.RowIndex].Value);
-
-            using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+            try
             {
-                PRODUCTO_ROPA objProducto = ContextoDB.PRODUCTO_ROPA.First(x => x.CODIGO_PRODUCTO == CodigoProducto);
-                CLASIFICAR_ROPA objCategoriaProducto = ContextoDB.CLASIFICAR_ROPA.First(x => x.CODIGO_PRODUCTO == CodigoClasificarProducto);
+                int CodigoProducto = Convert.ToInt32(GridProductos.DataKeys[e.RowIndex].Value);
+                int CodigoClasificarProducto = Convert.ToInt32(GridProductos.DataKeys[e.RowIndex].Value);
 
-                ContextoDB.CLASIFICAR_ROPA.Remove(objCategoriaProducto);
-                ContextoDB.PRODUCTO_ROPA.Remove(objProducto);
-                ContextoDB.SaveChanges();
-                LblError.Text = "Eliminado correctamente";
+                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                {
+                    PRODUCTO_ROPA objProducto = ContextoDB.PRODUCTO_ROPA.First(x => x.CODIGO_PRODUCTO == CodigoProducto);
+                    CLASIFICAR_ROPA objCategoriaProducto = ContextoDB.CLASIFICAR_ROPA.First(x => x.CODIGO_PRODUCTO == CodigoClasificarProducto);
 
-                Response.Redirect("../Mantenimientos/MantenimientoProducto.aspx");
+                    ContextoDB.CLASIFICAR_ROPA.Remove(objCategoriaProducto);
+                    ContextoDB.PRODUCTO_ROPA.Remove(objProducto);
+                    ContextoDB.SaveChanges();
+                    LblError.Text = "Eliminado correctamente";
+
+                    Response.Redirect("../Mantenimientos/MantenimientoProducto.aspx");
+                }
+            }
+            catch (Exception ex) 
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
             }
         }
 
@@ -141,6 +149,7 @@ namespace Tienda.Mantenimientos
                         LblError.Text = "Producto actualizado";
                         GridProductos.EditIndex = -1;
                         CargarProductos();
+                        Response.Redirect("../Mantenimientos/MantenimientoProducto.aspx");
                     }
                 }
             }

@@ -14,7 +14,10 @@ namespace Tienda.MetodoPago
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CargarMetodoPago();
+            if (!Page.IsPostBack)
+            {
+                CargarMetodoPago();
+            }
         }
 
         void CrearMetodoPago()
@@ -36,6 +39,7 @@ namespace Tienda.MetodoPago
 
                     ContextoDB.METODO_PAGO.Add(oPago);
                     ContextoDB.SaveChanges();
+
                     Creacion_Metodo_Pago = 1;
                 }
             }
@@ -52,7 +56,7 @@ namespace Tienda.MetodoPago
             {
                 if (Creacion_Metodo_Pago == 1)
                 {
-                    Response.Redirect("/CarritoCompras.aspx");
+                    Response.Redirect("../MetodoPago/MetodoPago2.aspx");
                 }
             }
             catch (Exception ex)
@@ -82,6 +86,7 @@ namespace Tienda.MetodoPago
                     else
                     {
                         METODO_PAGO objPago = new METODO_PAGO();
+
                         ListadoMetodoPago.Add(objPago);
 
                         GridMetodoPago.DataSource = ListadoMetodoPago;
@@ -104,41 +109,41 @@ namespace Tienda.MetodoPago
 
         protected void GridMetodoPago_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            try
-            {
-                if (e.CommandName.Equals("AddNew"))
-                {
-                    METODO_PAGO objPago = new METODO_PAGO();
-                    USUARIO objUsuario = new USUARIO();
+            //try
+            //{
+            //    if (e.CommandName.Equals("AddNew"))
+            //    {
+            //        METODO_PAGO objPago = new METODO_PAGO();
+            //        USUARIO objUsuario = new USUARIO();
 
-                    String Usuario = Request.QueryString["CORREO_ELECTRONICO"];
-                    String SessionUsuario = Session["CORREO_ELECTRONICO"].ToString();
+            //        String Usuario = Request.QueryString["CORREO_ELECTRONICO"];
+            //        String SessionUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                    objPago.CORREO_ELECTRONICO = SessionUsuario;
-                    objPago.NUMERO_TARJETA = int.Parse((GridMetodoPago.FooterRow.FindControl("txt_footer_Numero_Tarjeta") as TextBox).Text.Trim());
-                    objPago.NUMERO_EXPIRA_1 = int.Parse((GridMetodoPago.FooterRow.FindControl("txt_footer_Tarjeta_Mes") as TextBox).Text.Trim());
-                    objPago.NUMERO_EXPIRA_2 = int.Parse((GridMetodoPago.FooterRow.FindControl("txt_footer_Tarjeta_Anno") as TextBox).Text.Trim());
-                    objPago.TARJETA_ACTICA = bool.Parse((GridMetodoPago.FooterRow.FindControl("txt_CheckBox_Pago") as CheckBox).Text.Trim());
+            //        objPago.CORREO_ELECTRONICO = SessionUsuario;
+            //        objPago.NUMERO_TARJETA = int.Parse((GridMetodoPago.FooterRow.FindControl("txt_footer_Numero_Tarjeta") as TextBox).Text.Trim());
+            //        objPago.NUMERO_EXPIRA_1 = int.Parse((GridMetodoPago.FooterRow.FindControl("txt_footer_Tarjeta_Mes") as TextBox).Text.Trim());
+            //        objPago.NUMERO_EXPIRA_2 = int.Parse((GridMetodoPago.FooterRow.FindControl("txt_footer_Tarjeta_Anno") as TextBox).Text.Trim());
+            //        objPago.TARJETA_ACTICA = bool.Parse((GridMetodoPago.FooterRow.FindControl("txt_CheckBox_Pago") as CheckBox).Text.Trim());
 
-                    using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
-                    {
-                        ContextoDB.METODO_PAGO.Add(objPago);
-                        ContextoDB.SaveChanges();
-                        GridMetodoPago.EditIndex = -1;
-                        CargarMetodoPago();
-                    }
-                }
-                else
-                {
-                    lblCamposPagoNulo.Visible = true;
-                    lblCamposPagoNulo.Text = "Error al registar el método de pago";
-                }
-            }
-            catch (Exception ex)
-            {
-                lblCamposPagoNulo.Visible = true;
-                lblCamposPagoNulo.Text = ex.Message;
-            }
+            //        using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+            //        {
+            //            ContextoDB.METODO_PAGO.Add(objPago);
+            //            ContextoDB.SaveChanges();
+            //            GridMetodoPago.EditIndex = -1;
+            //            CargarMetodoPago();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        lblCamposPagoNulo.Visible = true;
+            //        lblCamposPagoNulo.Text = "Error al registar el método de pago";
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    lblCamposPagoNulo.Visible = true;
+            //    lblCamposPagoNulo.Text = ex.Message;
+            //}
         }
 
         protected void GridMetodoPago_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -147,7 +152,7 @@ namespace Tienda.MetodoPago
             {
                 METODO_PAGO objPago = new METODO_PAGO();
 
-                string usuario = Request.QueryString["USUARIO"];
+                string usuario = Request.QueryString["CORREO_ELECTRONICO"];
 
                 objPago.NUMERO_TARJETA = Int64.Parse((GridMetodoPago.DataKeys[e.RowIndex].Value.ToString()));
 
@@ -160,6 +165,8 @@ namespace Tienda.MetodoPago
                     CargarMetodoPago();
                     lblCamposPagoNulo.Visible = true;
                     lblCamposPagoNulo.Text = "Eliminado correctamente";
+
+                    Response.Redirect("../MetodoPago/MetodoPago2.aspx");
                 }
             }
             catch (Exception ex)
@@ -200,6 +207,12 @@ namespace Tienda.MetodoPago
                     )
                 {
                     CrearMetodoPago();
+                    ValidacionIngresoMetodoPago();
+                }
+                else
+                {
+                    lblCamposPagoNulo.Visible = true;
+                    lblCamposPagoNulo.Text = "Ha ocurrido un error";
                 }
             }
             catch(Exception ex)

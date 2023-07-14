@@ -30,5 +30,6 @@ namespace CapaDatos
         public virtual DbSet<USUARIO> USUARIOS { get; set; }
         public virtual DbSet<CLASIFICAR_ROPA> CLASIFICAR_ROPA { get; set; }
         public virtual DbSet<METODO_PAGO> METODO_PAGO { get; set; }
+        public virtual DbSet<CARRITO> CARRITOes { get; set; }
     }
 }

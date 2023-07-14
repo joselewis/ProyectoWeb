@@ -1,16 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PáginaPrincipal.Master" AutoEventWireup="true" CodeBehind="ProductoEspecifico2.aspx.cs" Inherits="Tienda.Productos.ProductoEspecifico.ProductoEspecifico" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PáginaPrincipal.Master" AutoEventWireup="true" CodeBehind="CategoriaProductoEspecifico.aspx.cs" Inherits="Tienda.CategoriaRopa.CategoriaProductoEspecifico" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../Css/Productos/ProductoEspecifico/ProductoEspecificoCss.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<asp:Repeater runat="server" ID="d1">
+<asp:Repeater runat="server" ID="d2">
     <ItemTemplate>
             <section>
                 <div class="container flex">
                   <div class="left">
                     <div class="main_image">
                         <image id="ImagenEspecifica" class="card-img-top" src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"IMAGEN"))%>" alt="" OnRowDataBound="ImagenEspecifica_RowDataBound" class="slide"/>
-				     </div>
+                    </div>
                   </div>
                   <div class="right">
                     <h3><%#Eval("TIPO_PRENDA") %></h3>

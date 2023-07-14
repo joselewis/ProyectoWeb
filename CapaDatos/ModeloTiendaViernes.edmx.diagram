@@ -12,6 +12,9 @@
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.METODO_PAGO" Width="1.5" PointX="3.625" PointY="1.125" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_USUARIO_TARJETA" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.CARRITO" Width="1.5" PointX="6.625" PointY="4.125" />
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" />
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

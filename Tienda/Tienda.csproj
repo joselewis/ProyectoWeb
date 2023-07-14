@@ -89,7 +89,9 @@
   <ItemGroup>
     <Content Include="Administrador\AgregarAdmin.aspx" />
     <Content Include="CarritoCompras\CarritoCompras.aspx" />
-    <Content Include="CategoriaRopa\CategoriaProducto.aspx" />
+    <Content Include="CategoriaRopa\CategoriaProductoEspecifico.aspx" />
+    <Content Include="CategoriaRopa\CategoriaSweater.aspx" />
+    <Content Include="CategoriaRopa\CategoriaZapatos.aspx" />
     <Content Include="Css\ImgCerrarSesion\box_arrow_right_icon_160371.png" />
     <Content Include="Css\ImgMantenimiento\cancel2.png" />
     <Content Include="Css\ImgMantenimiento\delete2.png" />
@@ -112,6 +114,8 @@
     <Content Include="Css\Login\js\main.js" />
     <Content Include="Css\Login\js\popper.js" />
     <Content Include="Css\Perfil\PerfilUsuario\Img\ImagenBase.png" />
+    <Content Include="Css\ProductoCarrito\Menos.png" />
+    <Content Include="Css\ProductoCarrito\Mas.png" />
     <Content Include="Css\Productos\ProductoEspecifico\ProductoEspecificoCss.css" />
     <Content Include="Css\Productos\ProductosCss\ProductosCss.css" />
     <Content Include="Css\Productos\ProductosCss\Prueba.css" />
@@ -157,12 +161,26 @@
     <Compile Include="CarritoCompras\CarritoCompras.aspx.designer.cs">
       <DependentUpon>CarritoCompras.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CategoriaRopa\CategoriaProducto.aspx.cs">
-      <DependentUpon>CategoriaProducto.aspx</DependentUpon>
+    <Compile Include="CategoriaRopa\CategoriaProductoEspecifico.aspx.cs">
+      <DependentUpon>CategoriaProductoEspecifico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CategoriaRopa\CategoriaProducto.aspx.designer.cs">
-      <DependentUpon>CategoriaProducto.aspx</DependentUpon>
+    <Compile Include="CategoriaRopa\CategoriaProductoEspecifico.aspx.designer.cs">
+      <DependentUpon>CategoriaProductoEspecifico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaSweater.aspx.cs">
+      <DependentUpon>CategoriaSweater.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaSweater.aspx.designer.cs">
+      <DependentUpon>CategoriaSweater.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaZapatos.aspx.cs">
+      <DependentUpon>CategoriaZapatos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaZapatos.aspx.designer.cs">
+      <DependentUpon>CategoriaZapatos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

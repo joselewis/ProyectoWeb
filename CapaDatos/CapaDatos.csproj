@@ -56,9 +56,13 @@
     <Compile Include="ADMINISTRADORE.cs">
       <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
     </Compile>
+    <Compile Include="CARRITO.cs">
+      <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
+    </Compile>
     <Compile Include="CLASIFICAR_ROPA.cs">
       <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClassCantidadProducto.cs" />
     <Compile Include="ClassTipoPrenda.cs" />
     <Compile Include="METODO_PAGO.cs">
       <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>

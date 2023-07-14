@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PáginaPrincipal.Master" AutoEventWireup="true" CodeBehind="MetodoPago2.aspx.cs" Inherits="Tienda.MetodoPago.MetodoPago2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <center>
@@ -106,26 +106,11 @@
                     <asp:CheckBox ID="txt_CheckBox_Pago" runat="server"></asp:CheckBox>
                 </FooterTemplate>
                 <ItemTemplate>
-                    <asp:Label ID="Label11" runat="server" Text='<%# Eval("TARJETA_ACTICA") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-         
-            <asp:TemplateField>
-                <EditItemTemplate>
-                    <asp:ImageButton runat="server" ID="ImageButton1" class="auto-style1" ImageUrl="../Css/ImgMantenimiento/guardar.png" CommandName="Update" Height="20px" ToolTip="Guardar" Width="20px" />
-                </EditItemTemplate>
-                <FooterTemplate>
-                    <asp:ImageButton runat="server" ID="BtnAgregarAdministrador" class="auto-style1" ImageUrl="../Css/ImgMantenimiento/nuevo.png" CommandName="AddNew" Height="20px" ToolTip="Nuevo" Width="20px" />
-                </FooterTemplate>
-                <ItemTemplate>
-                    <asp:ImageButton runat="server" ID="ImageButton4" class="auto-style1" ImageUrl="../Css/ImgMantenimiento/editar.png" CommandName="Edit" Height="20px" ToolTip="Editar" Width="20px"/>
+                    <asp:Label ID="Label17" runat="server" Text='<%# Eval("TARJETA_ACTICA") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
 
             <asp:TemplateField>
-                <EditItemTemplate>
-                    <asp:ImageButton runat="server" ID="ImageButton3" class="auto-style1" ImageUrl="../Css/ImgMantenimiento/cancel2.png" CommandName="Cancel" Height="20px" ToolTip="Cancelar" Width="20px"/>
-                </EditItemTemplate>
                 <ItemTemplate>
                     <asp:ImageButton runat="server"  ID="ImageButton5" class="auto-style1" ImageUrl="../Css/ImgMantenimiento/delete2.png" CommandName="Delete" Height="20px" ToolTip="Borrar" Width="20px" />
                 </ItemTemplate>

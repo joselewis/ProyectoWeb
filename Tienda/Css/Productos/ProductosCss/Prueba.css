@@ -1,6 +1,5 @@
 ﻿body {
     margin: 0;
-    font-family: sans-serif;
     background: #f2f2f2;
 }
 
@@ -38,10 +37,10 @@ a {
     background: #f2f2f2;
 }
 
-    .content:hover {
-        box-shadow: 0 3px 6px rgba(0,0,0,0.16) 0 3px 6px rgba(0,0,0,0.23);
-        transform: translate(0px, -8px);
-    }
+.content:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16) 0 3px 6px rgba(0,0,0,0.23);
+    transform: translate(0px, -8px);
+}
 
 img {
     width: 200px;

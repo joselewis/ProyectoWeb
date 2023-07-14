@@ -7,38 +7,29 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Tienda.Productos.ProductoEspecifico
+namespace Tienda.CategoriaRopa
 {
 
 
-    public partial class ProductoEspecifico
+    public partial class CategoriaProducto
     {
 
         /// <summary>
-        /// Control d1.
+        /// Control LblNoHayNada.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater d1;
+        protected global::System.Web.UI.WebControls.Label LblNoHayNada;
 
         /// <summary>
-        /// Control BotonAnnadirCarrito.
+        /// Control DataListCategoriaRopa.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonAnnadirCarrito;
-
-        /// <summary>
-        /// Control lblError.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.DataList DataListCategoriaRopa;
     }
 }
