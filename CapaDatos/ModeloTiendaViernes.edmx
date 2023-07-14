@@ -39,6 +39,15 @@
           <Property Name="CATEGORIA_PRENDA" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CODIGO_PRODUCTO" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="GENERO_ROPA">
+          <Key>
+            <PropertyRef Name="ID_GENERO" />
+          </Key>
+          <Property Name="ID_GENERO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GENERO_PRENDA" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="NUMERO_GENERO" Type="int" Nullable="false" />
+          <Property Name="CODIGO_PRODUCTO" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="METODO_PAGO">
           <Key>
             <PropertyRef Name="NUMERO_TARJETA" />
@@ -104,6 +113,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PRENDA_GENERO">
+          <End Role="PRODUCTO_ROPA" Type="Self.PRODUCTO_ROPA" Multiplicity="1" />
+          <End Role="GENERO_ROPA" Type="Self.GENERO_ROPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Principal>
+            <Dependent Role="GENERO_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PRODUCTO_CARRITO">
           <End Role="PRODUCTO_ROPA" Type="Self.PRODUCTO_ROPA" Multiplicity="1" />
           <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
@@ -132,6 +153,7 @@
           <EntitySet Name="ADMINISTRADORES" EntityType="Self.ADMINISTRADORES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CARRITO" EntityType="Self.CARRITO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLASIFICAR_ROPA" EntityType="Self.CLASIFICAR_ROPA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GENERO_ROPA" EntityType="Self.GENERO_ROPA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="METODO_PAGO" EntityType="Self.METODO_PAGO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTO_ROPA" EntityType="Self.PRODUCTO_ROPA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
@@ -142,6 +164,10 @@
           <AssociationSet Name="FK_PRENDA_CLASIFICAION" Association="Self.FK_PRENDA_CLASIFICAION">
             <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
             <End Role="CLASIFICAR_ROPA" EntitySet="CLASIFICAR_ROPA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRENDA_GENERO" Association="Self.FK_PRENDA_GENERO">
+            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
+            <End Role="GENERO_ROPA" EntitySet="GENERO_ROPA" />
           </AssociationSet>
           <AssociationSet Name="FK_PRODUCTO_CARRITO" Association="Self.FK_PRODUCTO_CARRITO">
             <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
@@ -179,6 +205,11 @@
             <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
             <End Role="CARRITO" EntitySet="CARRITOes" />
           </AssociationSet>
+          <EntitySet Name="GENERO_ROPA" EntityType="TIENDA_VIERNESModel.GENERO_ROPA" />
+          <AssociationSet Name="FK_PRENDA_GENERO" Association="TIENDA_VIERNESModel.FK_PRENDA_GENERO">
+            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
+            <End Role="GENERO_ROPA" EntitySet="GENERO_ROPA" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ADMINISTRADORE">
           <Key>
@@ -210,6 +241,7 @@
           <Property Name="PRODUCTO_ACTIVO" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CLASIFICAR_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION" FromRole="PRODUCTO_ROPA" ToRole="CLASIFICAR_ROPA" />
           <NavigationProperty Name="CARRITOes" Relationship="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" FromRole="PRODUCTO_ROPA" ToRole="CARRITO" />
+          <NavigationProperty Name="GENERO_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRENDA_GENERO" FromRole="PRODUCTO_ROPA" ToRole="GENERO_ROPA" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -311,6 +343,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="GENERO_ROPA">
+          <Key>
+            <PropertyRef Name="ID_GENERO" />
+          </Key>
+          <Property Name="ID_GENERO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GENERO_PRENDA" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="NUMERO_GENERO" Type="Int32" Nullable="false" />
+          <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRENDA_GENERO" FromRole="GENERO_ROPA" ToRole="PRODUCTO_ROPA" />
+        </EntityType>
+        <Association Name="FK_PRENDA_GENERO">
+          <End Type="TIENDA_VIERNESModel.PRODUCTO_ROPA" Role="PRODUCTO_ROPA" Multiplicity="1" />
+          <End Type="TIENDA_VIERNESModel.GENERO_ROPA" Role="GENERO_ROPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Principal>
+            <Dependent Role="GENERO_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -395,6 +449,16 @@
                 <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
                 <ScalarProperty Name="NUMERO_CARRITO" ColumnName="NUMERO_CARRITO" />
                 <ScalarProperty Name="ID_CARRITO" ColumnName="ID_CARRITO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GENERO_ROPA">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.GENERO_ROPA">
+              <MappingFragment StoreEntitySet="GENERO_ROPA">
+                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
+                <ScalarProperty Name="NUMERO_GENERO" ColumnName="NUMERO_GENERO" />
+                <ScalarProperty Name="GENERO_PRENDA" ColumnName="GENERO_PRENDA" />
+                <ScalarProperty Name="ID_GENERO" ColumnName="ID_GENERO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

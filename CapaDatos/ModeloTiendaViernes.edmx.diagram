@@ -5,16 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="59519e8a4a984f94a0179d346ccf0afb" Name="Diagram1">
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" Width="1.5" PointX="6.75" PointY="0.5" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.PRODUCTO_ROPA" Width="2" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.USUARIO" Width="2.125" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.CLASIFICAR_ROPA" Width="2.125" PointX="3.5" PointY="5.375" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" Width="1.5" PointX="6.625" PointY="0.5" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.PRODUCTO_ROPA" Width="2" PointX="0.625" PointY="4.25" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.USUARIO" Width="2.125" PointX="0.625" PointY="0.75" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.CLASIFICAR_ROPA" Width="2.125" PointX="3.375" PointY="4.875" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.METODO_PAGO" Width="1.5" PointX="3.625" PointY="1.125" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.METODO_PAGO" Width="1.5" PointX="3.5" PointY="1.125" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_USUARIO_TARJETA" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.CARRITO" Width="1.5" PointX="6.625" PointY="4.125" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.CARRITO" Width="1.5" PointX="6.5" PointY="4.125" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.GENERO_ROPA" Width="1.75" PointX="3.625" PointY="7.125" />
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRENDA_GENERO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

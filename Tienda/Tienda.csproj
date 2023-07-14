@@ -89,6 +89,10 @@
   <ItemGroup>
     <Content Include="Administrador\AgregarAdmin.aspx" />
     <Content Include="CarritoCompras\CarritoCompras.aspx" />
+    <Content Include="CategoriaRopa\CategoriaCamisa.aspx" />
+    <Content Include="CategoriaRopa\CategoriaCorbatas.aspx" />
+    <Content Include="CategoriaRopa\CategoriaEnagua.aspx" />
+    <Content Include="CategoriaRopa\CategoriaPantalon.aspx" />
     <Content Include="CategoriaRopa\CategoriaProductoEspecifico.aspx" />
     <Content Include="CategoriaRopa\CategoriaSweater.aspx" />
     <Content Include="CategoriaRopa\CategoriaZapatos.aspx" />
@@ -160,6 +164,34 @@
     </Compile>
     <Compile Include="CarritoCompras\CarritoCompras.aspx.designer.cs">
       <DependentUpon>CarritoCompras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaCamisa.aspx.cs">
+      <DependentUpon>CategoriaCamisa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaCamisa.aspx.designer.cs">
+      <DependentUpon>CategoriaCamisa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaCorbatas.aspx.cs">
+      <DependentUpon>CategoriaCorbatas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaCorbatas.aspx.designer.cs">
+      <DependentUpon>CategoriaCorbatas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaEnagua.aspx.cs">
+      <DependentUpon>CategoriaEnagua.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaEnagua.aspx.designer.cs">
+      <DependentUpon>CategoriaEnagua.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaPantalon.aspx.cs">
+      <DependentUpon>CategoriaPantalon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaPantalon.aspx.designer.cs">
+      <DependentUpon>CategoriaPantalon.aspx</DependentUpon>
     </Compile>
     <Compile Include="CategoriaRopa\CategoriaProductoEspecifico.aspx.cs">
       <DependentUpon>CategoriaProductoEspecifico.aspx</DependentUpon>

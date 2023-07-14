@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDatos;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
@@ -6,11 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CapaDatos;
 
 namespace Tienda.CategoriaRopa
 {
-    public partial class CategoriaProducto : System.Web.UI.Page
+    public partial class CategoriaEnagua : System.Web.UI.Page
     {
         int Validar = 0;
 
@@ -26,7 +26,7 @@ namespace Tienda.CategoriaRopa
 
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = "SELECT * FROM PRODUCTO_ROPA INNER JOIN CLASIFICAR_ROPA ON PRODUCTO_ROPA.CODIGO_PRODUCTO = CLASIFICAR_ROPA.CODIGO_PRODUCTO WHERE CATEGORIA_PRENDA = 'Sweater'";
+            cmd.CommandText = "SELECT * FROM PRODUCTO_ROPA INNER JOIN CLASIFICAR_ROPA ON PRODUCTO_ROPA.CODIGO_PRODUCTO = CLASIFICAR_ROPA.CODIGO_PRODUCTO WHERE CATEGORIA_PRENDA = 'Enaguas'";
             cmd.ExecuteNonQuery();
 
             DataTable dt = new DataTable();
@@ -41,9 +41,9 @@ namespace Tienda.CategoriaRopa
         {
             try
             {
-                using(TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities()) 
+                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
                 {
-                    var ListadoProductos = ContextoDB.CLASIFICAR_ROPA.Where(s => s.CATEGORIA_PRENDA == "Sweater").ToList();
+                    var ListadoProductos = ContextoDB.CLASIFICAR_ROPA.Where(s => s.CATEGORIA_PRENDA == "Enaguas").ToList();
 
                     if (ListadoProductos.Count >= 1)
                     {
@@ -52,11 +52,11 @@ namespace Tienda.CategoriaRopa
                     else
                     {
                         LblNoHayNada.Visible = true;
-                        LblNoHayNada.Text = "No hay sweaters disponibles";
+                        LblNoHayNada.Text = "No hay enaguas disponibles";
                     }
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 LblNoHayNada.Visible = true;
                 LblNoHayNada.Text = ex.Message;

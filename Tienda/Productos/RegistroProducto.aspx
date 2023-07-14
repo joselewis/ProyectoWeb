@@ -36,7 +36,12 @@
         <div class="input-group mb-3">
           <asp:TextBox runat="server" ID="CajaMarcaProducto" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder ="Marca"></asp:TextBox>
         </div>
-        <asp:DropDownList runat="server" ID="DropDwonListTipoPrenda" class="form-select" aria-label="Default select example"></asp:DropDownList>
+        <div class="input-group mb-3">
+            <asp:DropDownList runat="server" ID="DropDwonListTipoPrenda" class="form-select" aria-label="Default select example"></asp:DropDownList>
+        </div>
+        <div class="input-group mb-3">
+            <asp:DropDownList runat="server" ID="DropDownListGenero" class="form-select" aria-label="Default select example"></asp:DropDownList>
+        </div>
         <div class="form-check">
           <asp:CheckBox runat="server" class="form-check-input" type="checkbox" value="" ID="CheckBoxProductoActivo"></asp:CheckBox>
           <asp:label runat="server" class="form-check-label" for="flexCheckDefault">

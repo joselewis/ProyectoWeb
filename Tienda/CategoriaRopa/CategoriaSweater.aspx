@@ -11,7 +11,6 @@
     <br />
     <asp:Label runat="server" ID="LblNoHayNada" Visible="false"></asp:Label>
     <br />
-    <br />
 </center>
 <center>  
 <asp:DataList ID="DataListCategoriaRopa" runat="server" GroupItemCount="5" RepeatDirection="Horizontal" RepeatColumns="5">
@@ -36,6 +35,5 @@
     </ItemTemplate>
 </asp:DataList>
 </center>
-<br />
 <br />
 </asp:Content>

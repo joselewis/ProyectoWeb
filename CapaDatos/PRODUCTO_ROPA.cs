@@ -19,6 +19,7 @@ namespace CapaDatos
         {
             this.CLASIFICAR_ROPA = new HashSet<CLASIFICAR_ROPA>();
             this.CARRITOes = new HashSet<CARRITO>();
+            this.GENERO_ROPA = new HashSet<GENERO_ROPA>();
         }
     
         public int ID_PRODUCTO { get; set; }
@@ -36,5 +37,7 @@ namespace CapaDatos
         public virtual ICollection<CLASIFICAR_ROPA> CLASIFICAR_ROPA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CARRITO> CARRITOes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GENERO_ROPA> GENERO_ROPA { get; set; }
     }
 }

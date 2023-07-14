@@ -36,7 +36,10 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaZapatos.aspx">Zapatos</a></li>
                                 <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaSweater.aspx">Sweaters</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                                <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaCamisa.aspx">Camisas</a></li>
+                                <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaPantalon.aspx">Pantalones</a></li>
+                                <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaEnagua.aspx">Enaguas</a></li>
+                                <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaCorbatas.aspx">Corbatas</a></li>
                             </ul>
                         </li>
                     </ul>

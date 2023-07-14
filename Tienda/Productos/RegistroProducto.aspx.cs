@@ -11,23 +11,31 @@ namespace Tienda.Productos.RegistroProducto
 {
     public partial class RegistroProducto : System.Web.UI.Page
     {
-
         int ProductoIngresado = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                CargarDropDownList();
+                CargarDropDownTipoPrenda();
+                CargarDropDownGenero();
             }
         }
 
-        void CargarDropDownList()
+        void CargarDropDownTipoPrenda()
         {
             DropDwonListTipoPrenda.DataSource = ClassTipoPrenda.ListadoPrendas;
             DropDwonListTipoPrenda.DataValueField = "CATEGORIA_NUMERO";
             DropDwonListTipoPrenda.DataTextField = "CATEGORIA_PRENDA";
             DropDwonListTipoPrenda.DataBind();
+        }
+
+        void CargarDropDownGenero()
+        {
+            DropDownListGenero.DataSource = ClassGeneroRopa.ListadoGenero;
+            DropDownListGenero.DataValueField = "NUMERO_GENERO";
+            DropDownListGenero.DataTextField = "GENERO_PRENDA";
+            DropDownListGenero.DataBind();
         }
 
         void RegistrarProducto()
@@ -38,6 +46,7 @@ namespace Tienda.Productos.RegistroProducto
                 {
                     PRODUCTO_ROPA oProductoRopa = new PRODUCTO_ROPA();
                     CLASIFICAR_ROPA oClasificar = new CLASIFICAR_ROPA();
+                    GENERO_ROPA oGenero = new GENERO_ROPA();
 
                     oProductoRopa.CODIGO_PRODUCTO = Convert.ToInt32(CajaCodigoProducto.Text);
                     oProductoRopa.TIPO_PRENDA = CajaTipoPrenda.Text;
@@ -52,6 +61,10 @@ namespace Tienda.Productos.RegistroProducto
                     oClasificar.CODIGO_PRODUCTO = Convert.ToInt32(CajaCodigoProducto.Text);
                     oClasificar.CATEGORIA_NUMERO = Convert.ToInt32(DropDwonListTipoPrenda.SelectedValue);
                     oClasificar.CATEGORIA_PRENDA = DropDwonListTipoPrenda.SelectedItem.Text;
+
+                    oGenero.CODIGO_PRODUCTO = Convert.ToInt32(CajaCodigoProducto.Text);
+                    oGenero.NUMERO_GENERO = Convert.ToInt32(DropDownListGenero.SelectedValue);
+                    oGenero.GENERO_PRENDA = DropDownListGenero.SelectedItem.Text;
 
                     ContextoDB.PRODUCTO_ROPA.Add(oProductoRopa);
                     ContextoDB.CLASIFICAR_ROPA.Add(oClasificar);
@@ -101,7 +114,9 @@ namespace Tienda.Productos.RegistroProducto
                     CajaTallaPrenda.Text != null &&
                     CajaTipoPrenda.Text != null &&
                     ImagenProducto.FileBytes != null &&
-                    CheckBoxProductoActivo != null
+                    CheckBoxProductoActivo != null && 
+                    DropDownListGenero != null &&
+                    DropDwonListTipoPrenda != null
                     )
                 {
                     RegistrarProducto();
