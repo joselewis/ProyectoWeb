@@ -30,16 +30,25 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" runat="server" id="Titulo_Admin">
-                        <a class='nav-link' href="../Productos/Productos.aspx">Todo los productos</a>
+                        <a class='nav-link' href="../Productos/Productos.aspx">Productos</a>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaZapatos.aspx">Zapatos</a></li>
                                 <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaSweater.aspx">Sweaters</a></li>
                                 <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaCamisa.aspx">Camisas</a></li>
+                                <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaCamisetas.aspx">Camisetas</a></li>
                                 <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaPantalon.aspx">Pantalones</a></li>
                                 <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaEnagua.aspx">Enaguas</a></li>
                                 <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaCorbatas.aspx">Corbatas</a></li>
+                                <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaMedias.aspx">Medias</a></li> 
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ropa Interior</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaRopaIntMasc.aspx">Masculina</a></li>
+                                <li><a class="dropdown-item" href="../CategoriaRopa/CategoriaRopaIntFem.aspx">Femenina</a></li>
                             </ul>
                         </li>
                     </ul>

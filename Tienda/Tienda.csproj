@@ -90,10 +90,14 @@
     <Content Include="Administrador\AgregarAdmin.aspx" />
     <Content Include="CarritoCompras\CarritoCompras.aspx" />
     <Content Include="CategoriaRopa\CategoriaCamisa.aspx" />
+    <Content Include="CategoriaRopa\CategoriaCamisetas.aspx" />
     <Content Include="CategoriaRopa\CategoriaCorbatas.aspx" />
     <Content Include="CategoriaRopa\CategoriaEnagua.aspx" />
+    <Content Include="CategoriaRopa\CategoriaMedias.aspx" />
     <Content Include="CategoriaRopa\CategoriaPantalon.aspx" />
     <Content Include="CategoriaRopa\CategoriaProductoEspecifico.aspx" />
+    <Content Include="CategoriaRopa\CategoriaRopaIntFem.aspx" />
+    <Content Include="CategoriaRopa\CategoriaRopaIntMasc.aspx" />
     <Content Include="CategoriaRopa\CategoriaSweater.aspx" />
     <Content Include="CategoriaRopa\CategoriaZapatos.aspx" />
     <Content Include="Css\ImgCerrarSesion\box_arrow_right_icon_160371.png" />
@@ -172,6 +176,13 @@
     <Compile Include="CategoriaRopa\CategoriaCamisa.aspx.designer.cs">
       <DependentUpon>CategoriaCamisa.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CategoriaRopa\CategoriaCamisetas.aspx.cs">
+      <DependentUpon>CategoriaCamisetas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaCamisetas.aspx.designer.cs">
+      <DependentUpon>CategoriaCamisetas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CategoriaRopa\CategoriaCorbatas.aspx.cs">
       <DependentUpon>CategoriaCorbatas.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -186,6 +197,13 @@
     <Compile Include="CategoriaRopa\CategoriaEnagua.aspx.designer.cs">
       <DependentUpon>CategoriaEnagua.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CategoriaRopa\CategoriaMedias.aspx.cs">
+      <DependentUpon>CategoriaMedias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaMedias.aspx.designer.cs">
+      <DependentUpon>CategoriaMedias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CategoriaRopa\CategoriaPantalon.aspx.cs">
       <DependentUpon>CategoriaPantalon.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -199,6 +217,20 @@
     </Compile>
     <Compile Include="CategoriaRopa\CategoriaProductoEspecifico.aspx.designer.cs">
       <DependentUpon>CategoriaProductoEspecifico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaRopaIntFem.aspx.cs">
+      <DependentUpon>CategoriaRopaIntFem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaRopaIntFem.aspx.designer.cs">
+      <DependentUpon>CategoriaRopaIntFem.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaRopaIntMasc.aspx.cs">
+      <DependentUpon>CategoriaRopaIntMasc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoriaRopa\CategoriaRopaIntMasc.aspx.designer.cs">
+      <DependentUpon>CategoriaRopaIntMasc.aspx</DependentUpon>
     </Compile>
     <Compile Include="CategoriaRopa\CategoriaSweater.aspx.cs">
       <DependentUpon>CategoriaSweater.aspx</DependentUpon>

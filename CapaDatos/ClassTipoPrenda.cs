@@ -20,7 +20,8 @@ namespace CapaDatos
             new CLASIFICAR_ROPA(){ CATEGORIA_NUMERO = 7, CATEGORIA_PRENDA = "Ropa interior masculina"},
             new CLASIFICAR_ROPA(){ CATEGORIA_NUMERO = 8, CATEGORIA_PRENDA = "Ropa interior femenina"},
             new CLASIFICAR_ROPA(){ CATEGORIA_NUMERO = 9, CATEGORIA_PRENDA = "Sweater"},
-            new CLASIFICAR_ROPA(){ CATEGORIA_NUMERO = 10, CATEGORIA_PRENDA = "Enaguas"}
+            new CLASIFICAR_ROPA(){ CATEGORIA_NUMERO = 10, CATEGORIA_PRENDA = "Enaguas"},
+            new CLASIFICAR_ROPA(){ CATEGORIA_NUMERO = 11, CATEGORIA_PRENDA = "Medias"}
         };
     }
 }

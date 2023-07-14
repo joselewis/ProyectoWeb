@@ -24,15 +24,6 @@ namespace Tienda.CategoriaRopa
         protected global::System.Web.UI.WebControls.Repeater d2;
 
         /// <summary>
-        /// Control BotonAnnadirCarrito.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BotonAnnadirCarrito;
-
-        /// <summary>
         /// Control lblError.
         /// </summary>
         /// <remarks>

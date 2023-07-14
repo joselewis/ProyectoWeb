@@ -3,6 +3,7 @@
     <link href="../../Css/Productos/ProductoEspecifico/ProductoEspecificoCss.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<br />
 <asp:Repeater runat="server" ID="d2">
     <ItemTemplate>
             <section>
@@ -38,13 +39,12 @@
                             <asp:ImageButton runat="server" ID="BotonMasCantidad" src="../Css/ProductoCarrito/Mas.png" OnClick="BotonMasCantidad_Click" Width="25" Height="25" />
                         </span>
                     </div>
+                      <asp:Button runat="server" ID="BotonAnnadirCarrito" OnClick="BotonAnnadirCarrito_Click1" Text="Añadir Al Carrito" class="button"/>
                   </div>
                 </div>
             </section>
 	</ItemTemplate>
 </asp:Repeater>
-<asp:Button runat="server" ID="BotonAnnadirCarrito" OnClick="BotonAnnadirCarrito_Click1" Text="Añadir Al Carrito" class="button"/>
-<center>
-</center>
 <asp:Label ID="lblError" runat="server" ForeColor="Lime" Text="Error" Visible="False"></asp:Label>
+<br />
 </asp:Content>
