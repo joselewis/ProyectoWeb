@@ -121,6 +121,7 @@
     <Content Include="Css\Login\js\jquery.min.js" />
     <Content Include="Css\Login\js\main.js" />
     <Content Include="Css\Login\js\popper.js" />
+    <Content Include="Css\MatenimientosCss\MatenimientoCss.css" />
     <Content Include="Css\Perfil\PerfilUsuario\Img\ImagenBase.png" />
     <Content Include="Css\ProductoCarrito\Menos.png" />
     <Content Include="Css\ProductoCarrito\Mas.png" />

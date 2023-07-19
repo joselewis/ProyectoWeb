@@ -1,4 +1,4 @@
-﻿* {
+﻿﻿* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -23,14 +23,20 @@ body {
     display: flex;
 }
 
+.Nombre, .Cantidad,
+.Descripcion, .Precio{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .main_image {
     width: auto;
     height: auto;
 }
 
-.option img {
-    width: 75px;
-    height: 75px;
+.Imagen_Pendeja {
+    width: 100%;
+    height: 100%;
     padding: 10px;
 }
 
@@ -38,28 +44,42 @@ body {
     padding: 50px 100px 50px 50px;
 }
 
-h3 {
+.Nombre {
     color: #000;
     margin: 20px 0 20px 0;
     font-size: 25px;
 }
 
-h5,
-p,
+.Cantidad,
+.Descripcion,
 small {
     color: #837D7C;
 }
 
-h4 {
-    color: #000;
+.Descripcion{
+    color: #837D7C;
 }
 
-p {
+.Colones {
+    color: #837D7C;
+    font-size: 20px;
+}
+
+.Cantidad {
+    color: #837D7C;
+}
+
+.Precio {
+    color: #837D7C;
+    font-size: 20px;
+}
+
+.Descripcion {
     margin: 20px 0 50px 0;
     line-height: 25px;
 }
 
-h5 {
+.Cantidad {
     font-size: 15px;
 }
 
@@ -73,25 +93,25 @@ label,
     margin: 20px 10px 20px 0;
 }
 
-.color span:nth-child(2) {
-    background: #EDEDED;
-}
+    .color span:nth-child(2) {
+        background: #EDEDED;
+    }
 
-.color span:nth-child(3) {
-    background: #D5D6D8;
-}
+    .color span:nth-child(3) {
+        background: #D5D6D8;
+    }
 
-.color span:nth-child(4) {
-    background: #EFE0DE;
-}
+    .color span:nth-child(4) {
+        background: #EFE0DE;
+    }
 
-.color span:nth-child(5) {
-    background: #AB8ED1;
-}
+    .color span:nth-child(5) {
+        background: #AB8ED1;
+    }
 
-.color span:nth-child(6) {
-    background: #F04D44;
-}
+    .color span:nth-child(6) {
+        background: #F04D44;
+    }
 
 .add label,
 .add span {
@@ -146,7 +166,7 @@ label,
         padding: 0;
     }
 
-    img {
+    .Imagen_Pendeja {
         width: 100%;
         height: 100%;
     }
