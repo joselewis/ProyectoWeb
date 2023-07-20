@@ -133,6 +133,7 @@
     <Content Include="Css\RegistroUsuario\JS_Registro_Usuario.js" />
     <Content Include="Css\RegistroUsuario\RegistrarUsuarioCss.css" />
     <Content Include="DB\BD_TIENDA_VIERNES.sql" />
+    <Content Include="DB\SQLQuery_SP_TIENDA_VIERNES.sql" />
     <Content Include="Global.asax" />
     <Content Include="Login\Login.aspx" />
     <Content Include="Mantenimientos\MantenimientoAdmin.aspx" />
