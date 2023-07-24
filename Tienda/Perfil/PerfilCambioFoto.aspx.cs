@@ -26,7 +26,7 @@ namespace Tienda.Perfil
             {
                 String SessionUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
                 con.Open();
 
                 SqlCommand cmd = con.CreateCommand();

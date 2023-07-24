@@ -15,10 +15,9 @@ namespace CapaDatos
     public partial class CARRITO
     {
         public int ID_CARRITO { get; set; }
-        public int NUMERO_CARRITO { get; set; }
         public string CORREO_ELECTRONICO { get; set; }
         public int CODIGO_PRODUCTO { get; set; }
-        public int CANTIDAD { get; set; }
+        public int NUMERO_CANTIDAD { get; set; }
         public bool CARRITO_ACTIVO { get; set; }
     
         public virtual USUARIO USUARIO { get; set; }

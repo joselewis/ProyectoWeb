@@ -10,7 +10,7 @@ namespace Tienda
 {
     public partial class PáginaPrincipal : System.Web.UI.MasterPage
     {
-        int Contador = 12;
+        int Contador = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -100,18 +100,7 @@ namespace Tienda
 
         void ContadorProductosCarrito()
         {
-            try
-            {
-                if (Contador != 0)
-                {
-                    ContadorCarrito.Visible = true;
-                    ContadorCarrito.Text = Contador.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "sr1", "Swal.fire('Algo salió mal')", true);
-            }
+            
         }
 
         protected void BtnCerrarSesion_Click(object sender, ImageClickEventArgs e)

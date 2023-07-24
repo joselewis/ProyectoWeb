@@ -52,6 +52,7 @@ namespace Tienda.Productos.RegistroProducto
                     oProductoRopa.TIPO_PRENDA = CajaTipoPrenda.Text;
                     oProductoRopa.PRECIO_PRODUCTO = Convert.ToInt32(CajaPrecioProducto.Text);
                     oProductoRopa.CANTIDAD_PRODUCTO = Convert.ToInt32(CajaCantidadProducto.Text);
+                    oProductoRopa.NUMERO_CANTIDAD_PRODUCTO = Convert.ToInt32(CajaCantidadProducto.Text);
                     oProductoRopa.DESCRIPCION_PRODUCTO = CajaDescripcionProducto.Text;
                     oProductoRopa.TALLA_PRENDA = CajaTallaPrenda.Text.ToUpper();
                     oProductoRopa.MARCA = CajaMarcaProducto.Text;

@@ -18,14 +18,15 @@ namespace CapaDatos
         public PRODUCTO_ROPA()
         {
             this.CLASIFICAR_ROPA = new HashSet<CLASIFICAR_ROPA>();
-            this.CARRITOes = new HashSet<CARRITO>();
             this.GENERO_ROPA = new HashSet<GENERO_ROPA>();
+            this.CARRITOes = new HashSet<CARRITO>();
         }
     
         public int ID_PRODUCTO { get; set; }
         public int CODIGO_PRODUCTO { get; set; }
         public string TIPO_PRENDA { get; set; }
         public int PRECIO_PRODUCTO { get; set; }
+        public int NUMERO_CANTIDAD_PRODUCTO { get; set; }
         public int CANTIDAD_PRODUCTO { get; set; }
         public string DESCRIPCION_PRODUCTO { get; set; }
         public string TALLA_PRENDA { get; set; }
@@ -36,8 +37,8 @@ namespace CapaDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLASIFICAR_ROPA> CLASIFICAR_ROPA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CARRITO> CARRITOes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GENERO_ROPA> GENERO_ROPA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CARRITO> CARRITOes { get; set; }
     }
 }

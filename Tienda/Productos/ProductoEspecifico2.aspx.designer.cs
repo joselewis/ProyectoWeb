@@ -51,6 +51,15 @@ namespace Tienda.Productos.ProductoEspecifico
         protected global::System.Web.UI.WebControls.Label LabelDescripcion;
 
         /// <summary>
+        /// Control Label1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// Control LabelCantidad.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,24 @@ namespace Tienda.Productos.ProductoEspecifico
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelCantidad;
+
+        /// <summary>
+        /// Control DropDownCantidadProducto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownCantidadProducto;
+
+        /// <summary>
+        /// Control BotonAnnadirCarrito.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BotonAnnadirCarrito;
 
         /// <summary>
         /// Control lblError.

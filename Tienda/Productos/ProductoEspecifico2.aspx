@@ -15,7 +15,6 @@
         <asp:Label runat="server" ID="LabelNombre" CssClass="Nombre"></asp:Label><br />
         <small><asp:Label runat="server" Cssclass="Colones" Text="₡"></asp:Label><asp:Label runat="server" ID="LabelPrecio" CssClass="Precio"></asp:Label></small><br />
         <asp:Label runat="server" ID="LabelDescripcion" CssClass="Descripcion"></asp:Label>
-        <h5>Color-Rose Gold</h5>
         <div class="color flex1">
           <span></span>
           <span></span>
@@ -25,14 +24,16 @@
           <span></span>
           <span></span>
         </div>
+        <span>
+            <asp:Label runat="server" ID="Label1" CssClass="Cantidad" Text="Cantidad:"></asp:Label>
+        </span>
         <asp:Label runat="server" ID="LabelCantidad" CssClass="Cantidad"></asp:Label>
         <div class="add flex1">
-          <span>-</span>
-          <label>1</label>
-          <span>+</span>
+            <span>
+                <asp:DropDownList runat="server" ID="DropDownCantidadProducto"></asp:DropDownList>
+            </span>
         </div>
-
-        <button>Add to Bag</button>
+        <asp:Button runat="server" ID="BotonAnnadirCarrito" OnClick="BotonAnnadirCarrito_Click1" Text="Añadir Al Carrito" class="button"/>
       </div>
     </div>
 </section>		

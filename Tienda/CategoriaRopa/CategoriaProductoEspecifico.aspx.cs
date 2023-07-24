@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapaDatos;
 
 namespace Tienda.CategoriaRopa
 {
@@ -15,11 +16,11 @@ namespace Tienda.CategoriaRopa
         int AumentarCantidadProducto = 0;
         int Cantidad = 0;
 
-        SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+        SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
         int id;
 
-        int AnnadirAlCarrito = 0;
+        int ValidarAnnadirAlCarrito = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -67,14 +68,11 @@ namespace Tienda.CategoriaRopa
             }
         }
 
-        protected void BotonAnnadirCarrito_Click(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         protected void BotonAnnadirCarrito_Click1(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void BotonMenosCantidad_Click(object sender, ImageClickEventArgs e)

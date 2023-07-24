@@ -14,32 +14,27 @@ namespace Tienda.Productos.ProductoEspecifico
 {
     public partial class ProductoEspecifico : System.Web.UI.Page
     {
-        int AumentarCantidadProducto = 0;
+        int Aumento = 0;
         int Cantidad = 0;
-
-        string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-
-        //Arreglar toda la pantalla del producto
-        SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
-
         int id;
-
-        int AnnadirAlCarrito = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             //VerProductoEspecifico();
-            MostrarImagen();
-            CargarInfoProducto();
 
             if (!Page.IsPostBack)
             {
-                //AumentarCantidad();
+                MostrarImagen();
+                CargarInfoProducto();
+                CargarCantidaProducto();
             }
         }
 
         void MostrarImagen()
         {
+            string cs = @"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+            SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(cs))
@@ -72,11 +67,13 @@ namespace Tienda.Productos.ProductoEspecifico
             }
         }
 
-
         void CargarInfoProducto()
         {
             try
             {
+                string cs = @"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+
                 using (SqlConnection connection = new SqlConnection(cs))
                 {
                     SqlCommand cmd = new SqlCommand("SPSACARIMAGEN", con);
@@ -120,99 +117,100 @@ namespace Tienda.Productos.ProductoEspecifico
             }
         }
 
-        //void VerProductoEspecifico()
-        //{
-        //    try
-        //    {
-        //        if (Request.QueryString["id"] == null)
-        //        {
-        //            Response.Redirect("PaginaPrincipal/PaginaPrincipal.aspx");
-        //        }
-        //        else
-        //        {
-        //            id = Convert.ToInt32(Request.QueryString["id"].ToString());
+        void CargarCantidaProducto()
+        {
+            SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+            id = Convert.ToInt32(Request.QueryString["id"].ToString());
 
-        //            con.Open();
-        //            SqlCommand cmd = con.CreateCommand();
-        //            cmd.CommandType = CommandType.Text;
-        //            cmd.CommandText = "SELECT * FROM PRODUCTO_ROPA WHERE CODIGO_PRODUCTO = " + id;
-        //            cmd.ExecuteNonQuery();
+            try
+            {
+                using(con)
+                {
+                    using (SqlCommand cmd = new SqlCommand("SP_SACAR_CANTIDAD", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-        //            con.Open();
+                        SqlParameter paramId = new SqlParameter()
+                        {
+                            ParameterName = "@ID",
+                            Value = Request.QueryString["ID"],
+                        };
 
-        //            DataTable dt = new DataTable();
-        //            SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //            da.Fill(dt);
-        //            d1.DataSource = dt;
-        //            d1.DataBind();
+                        cmd.Parameters.Add(paramId);
 
-        //            con.Close();
-        //        }
-        //    }
-        //    catch(Exception ex) 
-        //    {
-        //        lblError.Visible = true;
-        //        lblError.Text = ex.Message;
-        //    }
-        //}
+                        con.Open();
 
-        //void AnnadirProducto()
-        //{
-        //    try
-        //    {
-        //        using (TIENDA_VIERNESEntities ContextoBD = new TIENDA_VIERNESEntities())
-        //        {
-        //            CARRITO oCarrito = new CARRITO();
+                        using (SqlDataReader dr = cmd.ExecuteReader())
+                        {
+                            PRODUCTO_ROPA oProducto = new PRODUCTO_ROPA();
 
-        //            string CorreoUsuario = (string)Page.Session["CORREO_ELECTRONICO"];
+                            if (dr.HasRows)
+                            {
+                                DropDownCantidadProducto.DataSource = dr;
+                                DropDownCantidadProducto.DataValueField = "NUMERO_CANTIDAD_PRODUCTO";
+                                DropDownCantidadProducto.DataTextField = "CANTIDAD_PRODUCTO";
+                                
+                                //for (int i = 0; i >= ; i++)
+                                //{
+                                    DropDownCantidadProducto.DataBind();
+                                    DropDownCantidadProducto.Items.Insert(0, new ListItem("-Select-","0"));
+                                
+                                    //i++;
+                                    //string CantidadProduct = Convert.ToString(i);
+                                    //DropDownCantidadProducto.Items.Insert(i, new ListItem(CantidadProduct));
+                                //}
 
-        //            oCarrito.CORREO_ELECTRONICO = CorreoUsuario;
-        //            oCarrito.CODIGO_PRODUCTO = Convert.ToInt32(id);
-        //            oCarrito.CANTIDAD = Convert.ToInt32(CajaCantidadProducto.Text);
-        //            oCarrito.CARRITO_ACTIVO = true;
+                            }
+                        }
 
-        //            ContextoBD.CARRITO.Add(oCarrito);
-        //            ContextoBD.SaveChanges();
-        //        }
+                        con.Close();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }
 
-        //        AnnadirAlCarrito = 1;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblError.Visible = true;
-        //        lblError.Text = ex.Message;
-        //    }
-        //}
-
-        //void ValidacionIngresoMetodoPago()
-        //{
-        //    try
-        //    {
-        //        if (AnnadirAlCarrito == 1)
-        //        {
-        //            Response.Redirect("/PaginaPrincipal.aspx");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblError.Visible = true;
-        //        lblError.Text = ex.Message;
-        //    }
-        //}
-
-        void AumentarCantidad()
+        void CalcularCantidadProductos()
         {
             try
             {
-                using (TIENDA_VIERNESEntities ContextoBD = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
                 {
-                    PRODUCTO_ROPA Ropa = new PRODUCTO_ROPA();
+                    
+                }
+            }
+            catch(Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }
 
-                    for (int i = Ropa.CANTIDAD_PRODUCTO; i <= Ropa.CANTIDAD_PRODUCTO; i++)
-                    {
-                        AumentarCantidadProducto++;
-                        
-                    }
+        void AnnadirAlCarrito()
+        {
+            try
+            {
+                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                {
+                    CARRITO oCarrito = new CARRITO();
+
+                    string CorreoUsuario = (string)Page.Session["CORREO_ELECTRONICO"];
+
+                    id = Convert.ToInt32(Request.QueryString["id"].ToString());
+
+                    oCarrito.CORREO_ELECTRONICO = CorreoUsuario;
+                    oCarrito.CODIGO_PRODUCTO = id;
+                    oCarrito.CARRITO_ACTIVO = true;
+                    oCarrito.NUMERO_CANTIDAD = Convert.ToInt32(DropDownCantidadProducto.SelectedValue);
+
+                    ContextoDB.CARRITOes.Add(oCarrito);
+                    ContextoDB.SaveChanges();
+
+                    Response.Redirect("../../Productos/ProductoEspecifico2.aspx?" + id);
                 }
             }
             catch (Exception ex)
@@ -222,25 +220,17 @@ namespace Tienda.Productos.ProductoEspecifico
             }
         }
 
-        protected void BotonAnnadirCarrito_Click(object sender, EventArgs e)
-        {
-            //AnnadirProducto();
-            //ValidacionIngresoMetodoPago();
-        }
-
         protected void BotonAnnadirCarrito_Click1(object sender, EventArgs e)
         {
-
-        }
-
-        protected void BotonMenosCantidad_Click(object sender, ImageClickEventArgs e)
-        {
-            
-        }
-
-        protected void BotonMasCantidad_Click(object sender, ImageClickEventArgs e)
-        {
-            AumentarCantidad();
+            try
+            {
+                AnnadirAlCarrito();
+            }
+            catch (Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
         }
     }
 }
