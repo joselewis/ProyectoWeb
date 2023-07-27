@@ -68,8 +68,6 @@ namespace Tienda.CategoriaRopa
             }
         }
 
-        
-
         protected void BotonAnnadirCarrito_Click1(object sender, EventArgs e)
         {
             

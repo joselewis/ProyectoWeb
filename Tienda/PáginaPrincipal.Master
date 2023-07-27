@@ -69,7 +69,11 @@
                 </div>
             </div>
         </nav>
-        <!----------------------------------------CONTENEDOR-------------------------------------------------------->
+        <center>
+            <asp:Label ID="lblError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
+        </center>
+        <br />
+        <!-------------------------------------------CONTENEDOR-------------------------------------------------------->
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             
         </asp:ContentPlaceHolder>

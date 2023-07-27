@@ -14,14 +14,10 @@ namespace Tienda.Productos.ProductoEspecifico
 {
     public partial class ProductoEspecifico : System.Web.UI.Page
     {
-        int Aumento = 0;
-        int Cantidad = 0;
         int id;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //VerProductoEspecifico();
-
             if (!Page.IsPostBack)
             {
                 MostrarImagen();
@@ -150,37 +146,13 @@ namespace Tienda.Productos.ProductoEspecifico
                                 DropDownCantidadProducto.DataValueField = "NUMERO_CANTIDAD_PRODUCTO";
                                 DropDownCantidadProducto.DataTextField = "CANTIDAD_PRODUCTO";
                                 
-                                //for (int i = 0; i >= ; i++)
-                                //{
-                                    DropDownCantidadProducto.DataBind();
-                                    DropDownCantidadProducto.Items.Insert(0, new ListItem("-Select-","0"));
-                                
-                                    //i++;
-                                    //string CantidadProduct = Convert.ToString(i);
-                                    //DropDownCantidadProducto.Items.Insert(i, new ListItem(CantidadProduct));
-                                //}
-
+                                DropDownCantidadProducto.DataBind();
+                                DropDownCantidadProducto.Items.Insert(0, new ListItem("-Select-","0"));
                             }
                         }
 
                         con.Close();
                     }
-                }
-            }
-            catch(Exception ex)
-            {
-                lblError.Visible = true;
-                lblError.Text = ex.Message;
-            }
-        }
-
-        void CalcularCantidadProductos()
-        {
-            try
-            {
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
-                {
-                    
                 }
             }
             catch(Exception ex)
@@ -209,8 +181,6 @@ namespace Tienda.Productos.ProductoEspecifico
 
                     ContextoDB.CARRITOes.Add(oCarrito);
                     ContextoDB.SaveChanges();
-
-                    Response.Redirect("../../Productos/ProductoEspecifico2.aspx?" + id);
                 }
             }
             catch (Exception ex)
