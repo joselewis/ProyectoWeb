@@ -5,8 +5,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <br />
 <center>
+    <asp:Label ID="LblCarritoVacio" runat="server" ForeColor="Black" Visible="false"></asp:Label>
     <div style="margin-left: 50px; margin-right: 50px;">
-    <asp:GridView ID="GridViewCarrito" runat="server" AutoGenerateColumns="False" class="table" OnRowDeleting="GridViewCarrito_RowDeleting">
+    <asp:GridView ID="GridViewCarrito" runat="server" AutoGenerateColumns="False" class="table" OnRowDeleting="GridViewCarrito_RowDeleting" DataKeyNames="ID_CARRITO">
         <Columns >
             <asp:TemplateField HeaderText="Nombre">
                 <ItemTemplate>

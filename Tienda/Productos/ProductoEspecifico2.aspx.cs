@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
+using System.Web; 
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
@@ -22,7 +22,7 @@ namespace Tienda.Productos.ProductoEspecifico
             {
                 MostrarImagen();
                 CargarInfoProducto();
-                CargarCantidaProducto();
+                CargarCantidaProducto();   
             }
         }
 
@@ -150,7 +150,6 @@ namespace Tienda.Productos.ProductoEspecifico
                                 DropDownCantidadProducto.Items.Insert(0, new ListItem("-Select-","0"));
                             }
                         }
-
                         con.Close();
                     }
                 }

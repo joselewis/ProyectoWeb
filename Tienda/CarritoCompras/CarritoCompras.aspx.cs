@@ -19,6 +19,7 @@ namespace Tienda.CarritoCompras
             if (!Page.IsPostBack)
             {
                 CargarCarrito();
+                LabelCarrito();
             }
         }
 
@@ -27,7 +28,7 @@ namespace Tienda.CarritoCompras
             String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
             string cs = @"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
             SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
-            string Command = "SELECT TIPO_PRENDA, PRECIO_PRODUCTO, CANTIDAD_PRODUCTO, TALLA_PRENDA, MARCA, NUMERO_CANTIDAD  FROM PRODUCTO_ROPA " +
+            string Command = "SELECT TIPO_PRENDA, PRECIO_PRODUCTO, CANTIDAD_PRODUCTO, TALLA_PRENDA, MARCA, NUMERO_CANTIDAD, ID_CARRITO  FROM PRODUCTO_ROPA " +
                              "INNER JOIN CARRITO ON CARRITO.CODIGO_PRODUCTO = PRODUCTO_ROPA.CODIGO_PRODUCTO " +
                              "INNER JOIN USUARIOS ON USUARIOS.CORREO_ELECTRONICO = CARRITO.CORREO_ELECTRONICO WHERE USUARIOS.CORREO_ELECTRONICO ='" + CorreoUsuario + "'";
 
@@ -43,31 +44,44 @@ namespace Tienda.CarritoCompras
             GridViewCarrito.DataSource = dt;
             GridViewCarrito.DataBind();
             con.Close();
+        }
 
+        void LabelCarrito()
+        {
+            try
+            {
+                if (GridViewCarrito.Rows.Count <= 0)
+                {
+                    LblCarritoVacio.Visible = true;
+                    LblCarritoVacio.Text = "No hay productos añadidos al carrito";
+                }
+                else
+                {
+                    LblCarritoVacio.Visible = false;
+                }
+            }
+            catch(Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
         }
 
         protected void GridViewCarrito_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
-                int CodigoProducto = Convert.ToInt32(GridViewCarrito.DataKeys[e.RowIndex].Value);
-                int IdCarrito = Convert.ToInt32(GridViewCarrito.DataKeys[e.RowIndex].Value);
-                int UsuarioCorreo = Convert.ToInt32(GridViewCarrito.DataKeys[e.RowIndex].Value);
-
                 using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
                 {
-                    PRODUCTO_ROPA objProducto = ContextoDB.PRODUCTO_ROPA.First(x => x.CODIGO_PRODUCTO == CodigoProducto);
-                    USUARIO objUsuario = ContextoDB.USUARIOS.First(x => x.CORREO_ELECTRONICO == Convert.ToString(UsuarioCorreo));
-                    CARRITO objCarrito = ContextoDB.CARRITOes.First(x => x.CORREO_ELECTRONICO == Convert.ToString(UsuarioCorreo));
+                    int CarritoId = Convert.ToInt32(GridViewCarrito.DataKeys[e.RowIndex].Value);
 
-                    ContextoDB.USUARIOS.Remove(objUsuario);
-                    ContextoDB.PRODUCTO_ROPA.Remove(objProducto);
+                    CARRITO objCarrito = ContextoDB.CARRITOes.First(x => x.ID_CARRITO == CarritoId);
                     ContextoDB.CARRITOes.Remove(objCarrito);
                     ContextoDB.SaveChanges();
-                    LblError.Visible = true;
-                    LblError.Text = "Eliminado correctamente";
+                    LblCarritoVacio.Visible = false;
+                    CargarCarrito();
 
-                    Response.Redirect("../../CarritoCompras/CarritoCompras.aspx");
+                    Response.Redirect("../CarritoCompras/CarritoCompras.aspx");
                 }
             }
             catch (Exception ex)
