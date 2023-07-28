@@ -42,9 +42,6 @@
             </asp:TemplateField>
             
             <asp:TemplateField HeaderText="Contraseña" Visible="false">
-                <EditItemTemplate>
-                    <asp:TextBox ID="Txt_Contrasenna_Usuario" runat="server" Text='<%# Eval("CONTRASENNA") %>'></asp:TextBox>
-                </EditItemTemplate>
                 <FooterTemplate>
                     <asp:TextBox ID="txt_footer_Contrasenna_Usuario" runat="server"></asp:TextBox>
                 </FooterTemplate>
@@ -114,14 +111,23 @@
             </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Tipo" Visible="False">
-                <EditItemTemplate>
-                    <asp:TextBox ID="Txt_Tipo_Usuario" runat="server" Text='<%# Eval("TIPO_USUARIO") %>'></asp:TextBox>
-                </EditItemTemplate>
                 <FooterTemplate>
                     <asp:TextBox ID="txt_footer_Tipo_Usuario" runat="server"></asp:TextBox>
                 </FooterTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label8" runat="server" Text='<%# Eval("TIPO_USUARIO") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Estado" Visible="True">
+                <EditItemTemplate>
+                    <asp:TextBox ID="Txt_Cuenta_Activa" runat="server" Text='<%# Eval("CUENTA_ACTIVA") %>'></asp:TextBox>
+                </EditItemTemplate>
+                <FooterTemplate>
+                    <asp:TextBox ID="txt_footer_Cuenta_Activa" runat="server"></asp:TextBox>
+                </FooterTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="LabelCuentaActiva" runat="server" Text='<%# Eval("CUENTA_ACTIVA") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
 

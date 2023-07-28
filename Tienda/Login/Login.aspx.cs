@@ -27,7 +27,7 @@ namespace Tienda.Login
                 {
                     foreach (var usuario in contextoDB.USUARIOS)
                     {
-                        if (usuario.NOMBRE_USUARIO == CajaUsuario.Text && usuario.CONTRASENNA == CajaContrasenna.Text)
+                        if (usuario.NOMBRE_USUARIO == CajaUsuario.Text && usuario.CONTRASENNA == CajaContrasenna.Text && usuario.CUENTA_ACTIVA)
                         {
                             Page.Session["NOMBRE"] = usuario.NOMBRE + " " + usuario.APELLIDO_1_USUARIO + " " + usuario.APELLIDO_2_USUARIO;
                             Page.Session["NOMBRE_USUARIO"] = usuario.NOMBRE_USUARIO;
@@ -58,7 +58,7 @@ namespace Tienda.Login
                 {
                     foreach (var administrador in ContextoDB.ADMINISTRADORES)
                     {
-                        if (administrador.NOMBRE_USUARIO_ADMIN == CajaUsuario.Text && administrador.CONTRASENNA_ADMIN == CajaContrasenna.Text)
+                        if (administrador.NOMBRE_USUARIO_ADMIN == CajaUsuario.Text && administrador.CONTRASENNA_ADMIN == CajaContrasenna.Text && administrador.CUENTA_ACTIVA == true)
                         {
                             Page.Session["NOMBRE_ADMIN"] = administrador.NOMBRE_ADMIN + " " + administrador.APELLIDO_1_ADMIN + " " + administrador.APELLIDO_2_ADMIN;
                             Page.Session["NOMBRE_USUARIO_ADMIN"] = administrador.NOMBRE_USUARIO_ADMIN;

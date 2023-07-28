@@ -34,6 +34,7 @@ namespace Tienda.Usuario
                     oUsuario.TELEFONO_USUARIO = ReCajaTelefono.Text;
                     oUsuario.TIPO_USUARIO = "Normal";
                     oUsuario.IMAGEN_USUARIO = ReCajaImagenPerfilUsuario.FileBytes;
+                    oUsuario.CUENTA_ACTIVA = true;
 
                     ContextoDB.USUARIOS.Add(oUsuario);
                     ContextoDB.SaveChanges();

@@ -109,41 +109,7 @@ namespace Tienda.MetodoPago
 
         protected void GridMetodoPago_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            //try
-            //{
-            //    if (e.CommandName.Equals("AddNew"))
-            //    {
-            //        METODO_PAGO objPago = new METODO_PAGO();
-            //        USUARIO objUsuario = new USUARIO();
-
-            //        String Usuario = Request.QueryString["CORREO_ELECTRONICO"];
-            //        String SessionUsuario = Session["CORREO_ELECTRONICO"].ToString();
-
-            //        objPago.CORREO_ELECTRONICO = SessionUsuario;
-            //        objPago.NUMERO_TARJETA = int.Parse((GridMetodoPago.FooterRow.FindControl("txt_footer_Numero_Tarjeta") as TextBox).Text.Trim());
-            //        objPago.NUMERO_EXPIRA_1 = int.Parse((GridMetodoPago.FooterRow.FindControl("txt_footer_Tarjeta_Mes") as TextBox).Text.Trim());
-            //        objPago.NUMERO_EXPIRA_2 = int.Parse((GridMetodoPago.FooterRow.FindControl("txt_footer_Tarjeta_Anno") as TextBox).Text.Trim());
-            //        objPago.TARJETA_ACTICA = bool.Parse((GridMetodoPago.FooterRow.FindControl("txt_CheckBox_Pago") as CheckBox).Text.Trim());
-
-            //        using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
-            //        {
-            //            ContextoDB.METODO_PAGO.Add(objPago);
-            //            ContextoDB.SaveChanges();
-            //            GridMetodoPago.EditIndex = -1;
-            //            CargarMetodoPago();
-            //        }
-            //    }
-            //    else
-            //    {
-            //        lblCamposPagoNulo.Visible = true;
-            //        lblCamposPagoNulo.Text = "Error al registar el método de pago";
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    lblCamposPagoNulo.Visible = true;
-            //    lblCamposPagoNulo.Text = ex.Message;
-            //}
+            
         }
 
         protected void GridMetodoPago_RowDeleting(object sender, GridViewDeleteEventArgs e)

@@ -21,29 +21,37 @@ namespace Tienda.Mantenimientos
 
         void CargarProductos()
         {
-            using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+            try
             {
-                var ListadoProductos = ContextoDB.PRODUCTO_ROPA.ToList();
-                ////var ListadoCategorias =  ContextoDB.CLASIFICAR_ROPA.ToList();
-
-                if (ListadoProductos.Count >= 0 /*&& ListadoCategorias.Count >= 0*/)
-                { 
-                    GridProductos.DataSource = ListadoProductos;
-                    GridProductos.DataBind();
-                }
-                else
+                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
                 {
-                    PRODUCTO_ROPA objProducto = new PRODUCTO_ROPA();
+                    var ListadoProductos = ContextoDB.PRODUCTO_ROPA.ToList();
+                    ////var ListadoCategorias =  ContextoDB.CLASIFICAR_ROPA.ToList();
 
-                    ListadoProductos.Add(objProducto);
-                    GridProductos.DataSource = ListadoProductos;
-                    GridProductos.DataBind();
-                    GridProductos.Rows[0].Cells.Clear();
-                    GridProductos.Rows[0].Cells.Add(new TableCell());
-                    GridProductos.Rows[0].Cells[0].ColumnSpan = 5;
-                    GridProductos.Rows[0].Cells[0].Text = "No hay administradores registrados";
-                    GridProductos.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+                    if (ListadoProductos.Count >= 0 /*&& ListadoCategorias.Count >= 0*/)
+                    {
+                        GridProductos.DataSource = ListadoProductos;
+                        GridProductos.DataBind();
+                    }
+                    else
+                    {
+                        PRODUCTO_ROPA objProducto = new PRODUCTO_ROPA();
+
+                        ListadoProductos.Add(objProducto);
+                        GridProductos.DataSource = ListadoProductos;
+                        GridProductos.DataBind();
+                        GridProductos.Rows[0].Cells.Clear();
+                        GridProductos.Rows[0].Cells.Add(new TableCell());
+                        GridProductos.Rows[0].Cells[0].ColumnSpan = 5;
+                        GridProductos.Rows[0].Cells[0].Text = "No hay administradores registrados";
+                        GridProductos.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
             }
         }
 
@@ -64,9 +72,17 @@ namespace Tienda.Mantenimientos
 
         protected void GridProductos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            GridProductos.EditIndex = -1;
-            CargarProductos();
-            Response.Redirect("../Mantenimientos/MantenimientoProducto.aspx");
+            try
+            {
+                GridProductos.EditIndex = -1;
+                CargarProductos();
+                Response.Redirect("../Mantenimientos/MantenimientoProducto.aspx");
+            }
+            catch(Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
         }
 
         protected void GridProductos_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -103,8 +119,16 @@ namespace Tienda.Mantenimientos
 
         protected void GridProductos_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            GridProductos.EditIndex = e.NewEditIndex;
-            CargarProductos();
+            try
+            {
+                GridProductos.EditIndex = e.NewEditIndex;
+                CargarProductos();
+            }
+            catch (Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
         }
 
         protected void GridProductos_RowUpdating(object sender, GridViewUpdateEventArgs e)

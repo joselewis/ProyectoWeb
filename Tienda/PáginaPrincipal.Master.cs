@@ -54,15 +54,12 @@ namespace Tienda
                                              "<a class='nav-link' href='../Perfil/PerfilUsuario.aspx'>" +
                                               "Perfil" +
                                               "</a>" +
-                                              "</li>"
+                                              "</li>" +
 
-                                              //"<a class='nav-link' href='ProductosPrueba.aspx'>" +
-                                              //"<div class='sb-nav-link-icon'>" +
-                                              //"<i class='fas fa-chart-area'>" +
-                                              //"</i>" +
-                                              //"</div>" +
-                                              //"Carrito" +
-                                              //"</a>"
+                                              "<a class='nav-link' href='../Programador/Programador.aspx'>" +
+                                              "Información" +
+                                              "</a>" +
+                                              "</li>"
                                               ;
                         break;
 
@@ -114,19 +111,28 @@ namespace Tienda
         {
             try
             {
-                String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+                String Rol = Session["TIPO_USUARIO"].ToString();
 
-                string cs = @"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-                SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
-                string Command = "SELECT COUNT(*) FROM PRODUCTO_ROPA " +
-                                 "INNER JOIN CARRITO ON CARRITO.CODIGO_PRODUCTO = PRODUCTO_ROPA.CODIGO_PRODUCTO INNER JOIN USUARIOS ON USUARIOS.CORREO_ELECTRONICO = CARRITO.CORREO_ELECTRONICO WHERE USUARIOS.CORREO_ELECTRONICO ='" + CorreoUsuario + "'";
+                if (Rol == "Normal")
+                {
+                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                SqlConnection SqlServer = new SqlConnection(cs);
-                con.Open();
-                SqlCommand cmd = new SqlCommand(Command, con);
-                
-                ContadorCarrito.Text = Convert.ToString(cmd.ExecuteScalar());
-                con.Close();
+                    string cs = @"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                    SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                    string Command = "SELECT COUNT(*) FROM PRODUCTO_ROPA " +
+                                        "INNER JOIN CARRITO ON CARRITO.CODIGO_PRODUCTO = PRODUCTO_ROPA.CODIGO_PRODUCTO INNER JOIN USUARIOS ON USUARIOS.CORREO_ELECTRONICO = CARRITO.CORREO_ELECTRONICO WHERE USUARIOS.CORREO_ELECTRONICO ='" + CorreoUsuario + "'";
+
+                    SqlConnection SqlServer = new SqlConnection(cs);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(Command, con);
+
+                    ContadorCarrito.Text = Convert.ToString(cmd.ExecuteScalar());
+                    con.Close();
+                }
+                else
+                {
+                    ContadorCarrito.Visible = false;
+                }
             }
             catch(Exception ex)
             {

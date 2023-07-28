@@ -86,6 +86,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloTiendaViernes.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ORDEN_COMPRA.cs">
+      <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
+    </Compile>
     <Compile Include="PRODUCTO_ROPA.cs">
       <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
     </Compile>

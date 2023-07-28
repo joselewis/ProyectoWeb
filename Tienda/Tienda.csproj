@@ -129,10 +129,14 @@
     <Content Include="Css\Productos\ProductosCss\ProductosCss.css" />
     <Content Include="Css\Productos\ProductosCss\Prueba.css" />
     <Content Include="Css\Productos\ProductosJs\ProductosJs.js" />
+    <Content Include="Css\ProgramadorCss\ProgramadorCss.css" />
     <Content Include="Css\RegistroUsuario\Css_Registro_Usuario.css" />
     <Content Include="Css\RegistroUsuario\JS_Registro_Usuario.js" />
     <Content Include="Css\RegistroUsuario\RegistrarUsuarioCss.css" />
     <Content Include="DB\BD_TIENDA_VIERNES.sql" />
+    <Content Include="DB\SQLQuery_SP_CANTIDAD_CARRITO.sql" />
+    <Content Include="DB\SQLQuery_SP_CANTIDAD_PRODUCTO.sql" />
+    <Content Include="DB\SQLQuery_SP_CARRITO.sql" />
     <Content Include="DB\SQLQuery_SP_TIENDA_VIERNES.sql" />
     <Content Include="Global.asax" />
     <Content Include="Login\Login.aspx" />
@@ -151,6 +155,7 @@
     <Content Include="Productos\ProductoEspecifico2.aspx" />
     <Content Include="Productos\Productos.aspx" />
     <Content Include="Productos\RegistroProducto.aspx" />
+    <Content Include="Programador\Programador.aspx" />
     <Content Include="Usuario\AgregarUsuario.aspx" />
     <Content Include="Usuario\PaginaPrincipalUsuario.aspx" />
     <Content Include="Web.config" />
@@ -341,6 +346,13 @@
     </Compile>
     <Compile Include="Productos\RegistroProducto.aspx.designer.cs">
       <DependentUpon>RegistroProducto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Programador\Programador.aspx.cs">
+      <DependentUpon>Programador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Programador\Programador.aspx.designer.cs">
+      <DependentUpon>Programador.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PáginaPrincipal.Master.cs">

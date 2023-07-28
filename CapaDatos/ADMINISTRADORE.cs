@@ -23,5 +23,6 @@ namespace CapaDatos
         public string TELEFONO_ADMIN { get; set; }
         public string CONTRASENNA_ADMIN { get; set; }
         public string TIPO_USUARIO { get; set; }
+        public bool CUENTA_ACTIVA { get; set; }
     }
 }

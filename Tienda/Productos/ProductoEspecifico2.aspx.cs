@@ -194,6 +194,10 @@ namespace Tienda.Productos.ProductoEspecifico
             try
             {
                 AnnadirAlCarrito();
+
+                id = Convert.ToInt32(Request.QueryString["id"].ToString());
+
+                Response.Redirect("../Productos/ProductoEspecifico2.aspx?id=" + id);
             }
             catch (Exception ex)
             {
