@@ -4,23 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="59519e8a4a984f94a0179d346ccf0afb" Name="Diagram1" ZoomLevel="81">
+      <Diagram DiagramId="59519e8a4a984f94a0179d346ccf0afb" Name="Diagram1" ZoomLevel="80">
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.CLASIFICAR_ROPA" Width="1.5" PointX="3.875" PointY="7.375" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.GENERO_ROPA" Width="1.5" PointX="3.375" PointY="4.125" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.METODO_PAGO" Width="1.5" PointX="3.25" PointY="0.5" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.METODO_PAGO" Width="1.5" PointX="3.5" PointY="0.5" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.PRODUCTO_ROPA" Width="2.25" PointX="0.5" PointY="5" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRENDA_GENERO" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.CARRITO" Width="1.5" PointX="5.625" PointY="4.375" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.CARRITO" Width="2" PointX="5.625" PointY="4.125" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.ORDEN_COMPRA" Width="1.5" PointX="6.625" PointY="1" />
-        <AssociationConnector Association="TIENDA_VIERNESModel.FK_METODOPAGO_CARRITO" />
-        <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRODUCTOS_CARRITO" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.USUARIO" Width="1.5" PointX="1" PointY="0.75" />
-        <AssociationConnector Association="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.USUARIO" Width="2" PointX="0.5" PointY="0.5" />
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" ManuallyRouted="false" >
+        </AssociationConnector>
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_USUARIO_TARJETA" />
-        <AssociationConnector Association="TIENDA_VIERNESModel.FK_ORDEN_COMPRA_USUARIO" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" Width="1.5" PointX="8.75" PointY="1" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" Width="2.125" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.ORDEN_COMPRA" Width="2" PointX="8.875" PointY="0.75" />
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_ORDEN_CARRITO" />
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_ORDEN_METODOPAGO" />
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_ORDEN_PRODUCTOS" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_ORDEN_USUARIO" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.DINERO_PAGO" Width="1.5" PointX="5.625" PointY="0.625" />
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_TARJETA_DINERO" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -15,12 +15,15 @@ namespace Tienda.CarritoCompras
 {
     public partial class CarritoCompras : System.Web.UI.Page
     {
+        int Validar = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 CargarCarrito();
                 LabelCarrito();
+                ValidarLabel();
             }
         }
 
@@ -52,6 +55,25 @@ namespace Tienda.CarritoCompras
                     GridViewCarrito.DataSource = dt;
                     GridViewCarrito.DataBind();
                     con.Close();
+
+                    Validar = 1;
+                }
+            }
+            catch(Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
+        }
+
+
+        void ValidarLabel()
+        {
+            try
+            {
+                if (Validar == 1)
+                {
+                    LblCarritoVacio.Visible = false;
                 }
                 else
                 {

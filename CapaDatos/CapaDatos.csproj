@@ -65,6 +65,9 @@
     <Compile Include="ClassCantidadProducto.cs" />
     <Compile Include="ClassGeneroRopa.cs" />
     <Compile Include="ClassTipoPrenda.cs" />
+    <Compile Include="DINERO_PAGO.cs">
+      <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
+    </Compile>
     <Compile Include="GENERO_ROPA.cs">
       <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
     </Compile>

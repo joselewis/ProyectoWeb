@@ -134,10 +134,13 @@
     <Content Include="Css\RegistroUsuario\JS_Registro_Usuario.js" />
     <Content Include="Css\RegistroUsuario\RegistrarUsuarioCss.css" />
     <Content Include="DB\BD_TIENDA_VIERNES.sql" />
+    <Content Include="DB\SQLQuery_INSERT_PRUEBA_ORDEN.sql" />
+    <Content Include="DB\SQLQuery_INTENTO_ORDEN_COMPRA.sql" />
     <Content Include="DB\SQLQuery_SP_CANTIDAD_CARRITO.sql" />
     <Content Include="DB\SQLQuery_SP_CANTIDAD_PRODUCTO.sql" />
     <Content Include="DB\SQLQuery_SP_CARRITO.sql" />
     <Content Include="DB\SQLQuery_SP_TIENDA_VIERNES.sql" />
+    <Content Include="Deposito\DepositoTarjeta.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login\Login.aspx" />
     <Content Include="Mantenimientos\MantenimientoAdmin.aspx" />
@@ -252,6 +255,13 @@
     </Compile>
     <Compile Include="CategoriaRopa\CategoriaZapatos.aspx.designer.cs">
       <DependentUpon>CategoriaZapatos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Deposito\DepositoTarjeta.aspx.cs">
+      <DependentUpon>DepositoTarjeta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Deposito\DepositoTarjeta.aspx.designer.cs">
+      <DependentUpon>DepositoTarjeta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

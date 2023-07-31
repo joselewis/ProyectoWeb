@@ -14,8 +14,6 @@ namespace Tienda
 {
     public partial class PáginaPrincipal : System.Web.UI.MasterPage
     {
-        int Contador = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             MenuPrincipal();
@@ -61,7 +59,7 @@ namespace Tienda
                                               "</a>" +
                                               "</li>"
                                               ;
-                        break;
+                                              break;
 
                     case "Administrador":
                         LinksMenuPrincipal +=
@@ -82,9 +80,13 @@ namespace Tienda
                                               "<a class='nav-link dropdown-toggle' id='navbarDropdown' href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Registrar</a>" +
                                               "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>" +
                                               "<li><a class='dropdown-item' href='../Productos/RegistroProducto.aspx'>Registrar Producto</a></ li >" +
-                                              "</ul></li></ul></div>";
+                                              "</ul></li></ul></div>" +
 
-                        break;
+                                              "<a class='nav-link' href='../Deposito/DepositoTarjeta.aspx'>" +
+                                              "Depositar" +
+                                              "</a>" +
+                                              "</li>";
+                                              break;
                 }
 
                 Titulo_Admin.InnerHtml += LinksMenuPrincipal;

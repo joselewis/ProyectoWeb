@@ -9,6 +9,12 @@
     <div style="margin-left: 50px; margin-right: 50px;">
     <asp:GridView ID="GridViewCarrito" runat="server" AutoGenerateColumns="False" class="table" OnRowDeleting="GridViewCarrito_RowDeleting" DataKeyNames="ID_CARRITO">
         <Columns >
+            <%--<asp:TemplateField HeaderText="Imagen">
+                <ItemTemplate>
+                    <asp:Image ID="ImagenCarritoTipoPrenda" runat="server" Text='<%# Eval("IMAGEN") %>'></asp:Image>
+                </ItemTemplate>
+            </asp:TemplateField>--%>
+
             <asp:TemplateField HeaderText="Nombre">
                 <ItemTemplate>
                     <asp:Label ID="LabelTipoPrenda" runat="server" Text='<%# Eval("TIPO_PRENDA") %>'></asp:Label>
