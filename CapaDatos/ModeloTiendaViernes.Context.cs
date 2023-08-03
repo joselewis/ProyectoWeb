@@ -29,10 +29,10 @@ namespace CapaDatos
         public virtual DbSet<GENERO_ROPA> GENERO_ROPA { get; set; }
         public virtual DbSet<METODO_PAGO> METODO_PAGO { get; set; }
         public virtual DbSet<PRODUCTO_ROPA> PRODUCTO_ROPA { get; set; }
-        public virtual DbSet<CARRITO> CARRITOes { get; set; }
         public virtual DbSet<USUARIO> USUARIOS { get; set; }
         public virtual DbSet<ADMINISTRADORE> ADMINISTRADORES { get; set; }
         public virtual DbSet<ORDEN_COMPRA> ORDEN_COMPRA { get; set; }
         public virtual DbSet<DINERO_PAGO> DINERO_PAGO { get; set; }
+        public virtual DbSet<CARRITO> CARRITOes { get; set; }
     }
 }

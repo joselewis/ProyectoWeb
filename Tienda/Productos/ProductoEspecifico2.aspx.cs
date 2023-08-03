@@ -22,7 +22,8 @@ namespace Tienda.Productos.ProductoEspecifico
             {
                 MostrarImagen();
                 CargarInfoProducto();
-                CargarCantidaProducto();   
+                //CargarCantidaProducto();
+                DesplegarCuentaDDL();
             }
         }
 
@@ -113,48 +114,84 @@ namespace Tienda.Productos.ProductoEspecifico
             }
         }
 
-        void CargarCantidaProducto()
+        //void CargarCantidaProducto()
+        //{
+        //    SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+        //    id = Convert.ToInt32(Request.QueryString["id"].ToString());
+
+        //    try
+        //    {
+        //        using (con)
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand("SP_SACAR_CANTIDAD", con))
+        //            {
+        //                cmd.CommandType = CommandType.StoredProcedure;
+
+        //                SqlParameter paramId = new SqlParameter()
+        //                {
+        //                    ParameterName = "@ID",
+        //                    Value = Request.QueryString["ID"],
+        //                };
+
+        //                cmd.Parameters.Add(paramId);
+
+        //                con.Open();
+
+        //                using (SqlDataReader dr = cmd.ExecuteReader())
+        //                {
+        //                    PRODUCTO_ROPA oProducto = new PRODUCTO_ROPA();
+
+        //                    if (dr.HasRows)
+        //                    {
+        //                        DropDownCantidadProducto.DataSource = dr;
+        //                        DropDownCantidadProducto.DataValueField = "NUMERO_CANTIDAD_PRODUCTO";
+        //                        DropDownCantidadProducto.DataTextField = "CANTIDAD_PRODUCTO";
+
+        //                        DropDownCantidadProducto.DataBind();
+        //                        DropDownCantidadProducto.Items.Insert(0, new ListItem("-Select-", "0"));
+        //                    }
+        //                }
+        //                con.Close();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblError.Visible = true;
+        //        lblError.Text = ex.Message;
+        //    }
+        //}
+
+        void DesplegarCuentaDDL()
         {
-            SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
             id = Convert.ToInt32(Request.QueryString["id"].ToString());
 
             try
             {
-                using(con)
+                string cs = @"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                string Command = "SELECT CANTIDAD_PRODUCTO FROM PRODUCTO_ROPA WHERE CODIGO_PRODUCTO = '" + id + "'";
+
+                SqlCommand SqlCommand = new SqlCommand(Command, con);
+
+                con.Open();
+
+                SqlDataAdapter Adapter = new SqlDataAdapter(SqlCommand);
+
+                SqlDataReader dr = SqlCommand.ExecuteReader();
+
+                if (dr.Read())
                 {
-                    using (SqlCommand cmd = new SqlCommand("SP_SACAR_CANTIDAD", con))
+                    int Cantidad = Convert.ToInt32(dr["CANTIDAD_PRODUCTO"].ToString());
+
+                    for (int i = 1; i <= Cantidad; i++)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        SqlParameter paramId = new SqlParameter()
-                        {
-                            ParameterName = "@ID",
-                            Value = Request.QueryString["ID"],
-                        };
-
-                        cmd.Parameters.Add(paramId);
-
-                        con.Open();
-
-                        using (SqlDataReader dr = cmd.ExecuteReader())
-                        {
-                            PRODUCTO_ROPA oProducto = new PRODUCTO_ROPA();
-
-                            if (dr.HasRows)
-                            {
-                                DropDownCantidadProducto.DataSource = dr;
-                                DropDownCantidadProducto.DataValueField = "NUMERO_CANTIDAD_PRODUCTO";
-                                DropDownCantidadProducto.DataTextField = "CANTIDAD_PRODUCTO";
-                                
-                                DropDownCantidadProducto.DataBind();
-                                DropDownCantidadProducto.Items.Insert(0, new ListItem("-Select-","0"));
-                            }
-                        }
-                        con.Close();
+                        DropDownCantidadProducto.Items.Add(new ListItem(i.ToString(), i.ToString()));
                     }
                 }
+                con.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblError.Visible = true;
                 lblError.Text = ex.Message;
@@ -177,6 +214,7 @@ namespace Tienda.Productos.ProductoEspecifico
                     oCarrito.CODIGO_PRODUCTO = id;
                     oCarrito.CARRITO_ACTIVO = true;
                     oCarrito.NUMERO_CANTIDAD = Convert.ToInt32(DropDownCantidadProducto.SelectedValue);
+                    oCarrito.NUMERO_CANTIDAD_ANNADIDA = Convert.ToInt32(DropDownCantidadProducto.SelectedItem.Text);
 
                     ContextoDB.CARRITOes.Add(oCarrito);
                     ContextoDB.SaveChanges();

@@ -21,9 +21,9 @@ namespace CapaDatos
         public int CODIGO_PRODUCTO { get; set; }
         public int ID_CARRITO { get; set; }
     
-        public virtual CARRITO CARRITO { get; set; }
         public virtual METODO_PAGO METODO_PAGO { get; set; }
         public virtual PRODUCTO_ROPA PRODUCTO_ROPA { get; set; }
         public virtual USUARIO USUARIO { get; set; }
+        public virtual CARRITO CARRITO { get; set; }
     }
 }

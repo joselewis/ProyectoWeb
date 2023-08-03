@@ -12,7 +12,6 @@ namespace Tienda.CategoriaRopa
 {
     public partial class CategoriaProductoEspecifico : System.Web.UI.Page
     {
-
         int AumentarCantidadProducto = 0;
         int Cantidad = 0;
 

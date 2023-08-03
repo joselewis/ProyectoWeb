@@ -29,6 +29,7 @@
           <Property Name="CODIGO_PRODUCTO" Type="int" Nullable="false" />
           <Property Name="NUMERO_CANTIDAD" Type="int" Nullable="false" />
           <Property Name="CARRITO_ACTIVO" Type="bit" Nullable="false" />
+          <Property Name="NUMERO_CANTIDAD_ANNADIDA" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CLASIFICAR_ROPA">
           <Key>
@@ -298,26 +299,13 @@
             <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
             <End Role="GENERO_ROPA" EntitySet="GENERO_ROPA" />
           </AssociationSet>
-          <EntitySet Name="CARRITOes" EntityType="TIENDA_VIERNESModel.CARRITO" />
-          <AssociationSet Name="FK_PRODUCTO_CARRITO" Association="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO">
-            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
-            <End Role="CARRITO" EntitySet="CARRITOes" />
-          </AssociationSet>
           <EntitySet Name="USUARIOS" EntityType="TIENDA_VIERNESModel.USUARIO" />
-          <AssociationSet Name="FK_CARRITO_USUARIO" Association="TIENDA_VIERNESModel.FK_CARRITO_USUARIO">
-            <End Role="USUARIO" EntitySet="USUARIOS" />
-            <End Role="CARRITO" EntitySet="CARRITOes" />
-          </AssociationSet>
           <AssociationSet Name="FK_USUARIO_TARJETA" Association="TIENDA_VIERNESModel.FK_USUARIO_TARJETA">
             <End Role="USUARIO" EntitySet="USUARIOS" />
             <End Role="METODO_PAGO" EntitySet="METODO_PAGO" />
           </AssociationSet>
           <EntitySet Name="ADMINISTRADORES" EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" />
           <EntitySet Name="ORDEN_COMPRA" EntityType="TIENDA_VIERNESModel.ORDEN_COMPRA" />
-          <AssociationSet Name="FK_ORDEN_CARRITO" Association="TIENDA_VIERNESModel.FK_ORDEN_CARRITO">
-            <End Role="CARRITO" EntitySet="CARRITOes" />
-            <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
-          </AssociationSet>
           <AssociationSet Name="FK_ORDEN_METODOPAGO" Association="TIENDA_VIERNESModel.FK_ORDEN_METODOPAGO">
             <End Role="METODO_PAGO" EntitySet="METODO_PAGO" />
             <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
@@ -334,6 +322,19 @@
           <AssociationSet Name="FK_TARJETA_DINERO" Association="TIENDA_VIERNESModel.FK_TARJETA_DINERO">
             <End Role="METODO_PAGO" EntitySet="METODO_PAGO" />
             <End Role="DINERO_PAGO" EntitySet="DINERO_PAGO" />
+          </AssociationSet>
+          <EntitySet Name="CARRITOes" EntityType="TIENDA_VIERNESModel.CARRITO" />
+          <AssociationSet Name="FK_CARRITO_USUARIO" Association="TIENDA_VIERNESModel.FK_CARRITO_USUARIO">
+            <End Role="USUARIO" EntitySet="USUARIOS" />
+            <End Role="CARRITO" EntitySet="CARRITOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_CARRITO" Association="TIENDA_VIERNESModel.FK_ORDEN_CARRITO">
+            <End Role="CARRITO" EntitySet="CARRITOes" />
+            <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_CARRITO" Association="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO">
+            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
+            <End Role="CARRITO" EntitySet="CARRITOes" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="CLASIFICAR_ROPA">
@@ -387,8 +388,8 @@
           <Property Name="PRODUCTO_ACTIVO" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CLASIFICAR_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION" FromRole="PRODUCTO_ROPA" ToRole="CLASIFICAR_ROPA" />
           <NavigationProperty Name="GENERO_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRENDA_GENERO" FromRole="PRODUCTO_ROPA" ToRole="GENERO_ROPA" />
-          <NavigationProperty Name="CARRITOes" Relationship="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" FromRole="PRODUCTO_ROPA" ToRole="CARRITO" />
           <NavigationProperty Name="ORDEN_COMPRA" Relationship="TIENDA_VIERNESModel.FK_ORDEN_PRODUCTOS" FromRole="PRODUCTO_ROPA" ToRole="ORDEN_COMPRA" />
+          <NavigationProperty Name="CARRITOes" Relationship="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" FromRole="PRODUCTO_ROPA" ToRole="CARRITO" />
         </EntityType>
         <Association Name="FK_PRENDA_CLASIFICAION">
           <End Type="TIENDA_VIERNESModel.PRODUCTO_ROPA" Role="PRODUCTO_ROPA" Multiplicity="1" />
@@ -414,31 +415,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="CARRITO">
-          <Key>
-            <PropertyRef Name="ID_CARRITO" />
-          </Key>
-          <Property Name="ID_CARRITO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CORREO_ELECTRONICO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
-          <Property Name="NUMERO_CANTIDAD" Type="Int32" Nullable="false" />
-          <Property Name="CARRITO_ACTIVO" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" FromRole="CARRITO" ToRole="PRODUCTO_ROPA" />
-          <NavigationProperty Name="USUARIO" Relationship="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" FromRole="CARRITO" ToRole="USUARIO" />
-          <NavigationProperty Name="ORDEN_COMPRA" Relationship="TIENDA_VIERNESModel.FK_ORDEN_CARRITO" FromRole="CARRITO" ToRole="ORDEN_COMPRA" />
-        </EntityType>
-        <Association Name="FK_PRODUCTO_CARRITO">
-          <End Type="TIENDA_VIERNESModel.PRODUCTO_ROPA" Role="PRODUCTO_ROPA" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.CARRITO" Role="CARRITO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCTO_ROPA">
-              <PropertyRef Name="CODIGO_PRODUCTO" />
-            </Principal>
-            <Dependent Role="CARRITO">
-              <PropertyRef Name="CODIGO_PRODUCTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="USUARIO">
           <Key>
             <PropertyRef Name="CORREO_ELECTRONICO" />
@@ -454,22 +430,10 @@
           <Property Name="TIPO_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IMAGEN_USUARIO" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="CUENTA_ACTIVA" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CARRITOes" Relationship="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" FromRole="USUARIO" ToRole="CARRITO" />
           <NavigationProperty Name="METODO_PAGO" Relationship="TIENDA_VIERNESModel.FK_USUARIO_TARJETA" FromRole="USUARIO" ToRole="METODO_PAGO" />
           <NavigationProperty Name="ORDEN_COMPRA" Relationship="TIENDA_VIERNESModel.FK_ORDEN_USUARIO" FromRole="USUARIO" ToRole="ORDEN_COMPRA" />
+          <NavigationProperty Name="CARRITOes" Relationship="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" FromRole="USUARIO" ToRole="CARRITO" />
         </EntityType>
-        <Association Name="FK_CARRITO_USUARIO">
-          <End Type="TIENDA_VIERNESModel.USUARIO" Role="USUARIO" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.CARRITO" Role="CARRITO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USUARIO">
-              <PropertyRef Name="CORREO_ELECTRONICO" />
-            </Principal>
-            <Dependent Role="CARRITO">
-              <PropertyRef Name="CORREO_ELECTRONICO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_USUARIO_TARJETA">
           <End Type="TIENDA_VIERNESModel.USUARIO" Role="USUARIO" Multiplicity="1" />
           <End Type="TIENDA_VIERNESModel.METODO_PAGO" Role="METODO_PAGO" Multiplicity="*" />
@@ -507,23 +471,11 @@
           <Property Name="COMPRA_TOTAL" Type="Int32" Nullable="false" />
           <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
           <Property Name="ID_CARRITO" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CARRITO" Relationship="TIENDA_VIERNESModel.FK_ORDEN_CARRITO" FromRole="ORDEN_COMPRA" ToRole="CARRITO" />
           <NavigationProperty Name="METODO_PAGO" Relationship="TIENDA_VIERNESModel.FK_ORDEN_METODOPAGO" FromRole="ORDEN_COMPRA" ToRole="METODO_PAGO" />
           <NavigationProperty Name="PRODUCTO_ROPA" Relationship="TIENDA_VIERNESModel.FK_ORDEN_PRODUCTOS" FromRole="ORDEN_COMPRA" ToRole="PRODUCTO_ROPA" />
           <NavigationProperty Name="USUARIO" Relationship="TIENDA_VIERNESModel.FK_ORDEN_USUARIO" FromRole="ORDEN_COMPRA" ToRole="USUARIO" />
+          <NavigationProperty Name="CARRITO" Relationship="TIENDA_VIERNESModel.FK_ORDEN_CARRITO" FromRole="ORDEN_COMPRA" ToRole="CARRITO" />
         </EntityType>
-        <Association Name="FK_ORDEN_CARRITO">
-          <End Type="TIENDA_VIERNESModel.CARRITO" Role="CARRITO" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.ORDEN_COMPRA" Role="ORDEN_COMPRA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CARRITO">
-              <PropertyRef Name="ID_CARRITO" />
-            </Principal>
-            <Dependent Role="ORDEN_COMPRA">
-              <PropertyRef Name="ID_CARRITO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ORDEN_METODOPAGO">
           <End Type="TIENDA_VIERNESModel.METODO_PAGO" Role="METODO_PAGO" Multiplicity="1" />
           <End Type="TIENDA_VIERNESModel.ORDEN_COMPRA" Role="ORDEN_COMPRA" Multiplicity="*" />
@@ -578,6 +530,56 @@
             </Principal>
             <Dependent Role="DINERO_PAGO">
               <PropertyRef Name="NUMERO_TARJETA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CARRITO">
+          <Key>
+            <PropertyRef Name="ID_CARRITO" />
+          </Key>
+          <Property Name="ID_CARRITO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CORREO_ELECTRONICO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="NUMERO_CANTIDAD" Type="Int32" Nullable="false" />
+          <Property Name="CARRITO_ACTIVO" Type="Boolean" Nullable="false" />
+          <Property Name="NUMERO_CANTIDAD_ANNADIDA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" FromRole="CARRITO" ToRole="USUARIO" />
+          <NavigationProperty Name="ORDEN_COMPRA" Relationship="TIENDA_VIERNESModel.FK_ORDEN_CARRITO" FromRole="CARRITO" ToRole="ORDEN_COMPRA" />
+          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" FromRole="CARRITO" ToRole="PRODUCTO_ROPA" />
+        </EntityType>
+        <Association Name="FK_CARRITO_USUARIO">
+          <End Type="TIENDA_VIERNESModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <End Type="TIENDA_VIERNESModel.CARRITO" Role="CARRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="CORREO_ELECTRONICO" />
+            </Principal>
+            <Dependent Role="CARRITO">
+              <PropertyRef Name="CORREO_ELECTRONICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_CARRITO">
+          <End Type="TIENDA_VIERNESModel.CARRITO" Role="CARRITO" Multiplicity="1" />
+          <End Type="TIENDA_VIERNESModel.ORDEN_COMPRA" Role="ORDEN_COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARRITO">
+              <PropertyRef Name="ID_CARRITO" />
+            </Principal>
+            <Dependent Role="ORDEN_COMPRA">
+              <PropertyRef Name="ID_CARRITO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_CARRITO">
+          <End Type="TIENDA_VIERNESModel.PRODUCTO_ROPA" Role="PRODUCTO_ROPA" Multiplicity="1" />
+          <End Type="TIENDA_VIERNESModel.CARRITO" Role="CARRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Principal>
+            <Dependent Role="CARRITO">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -636,17 +638,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CARRITOes">
-            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.CARRITO">
-              <MappingFragment StoreEntitySet="CARRITO">
-                <ScalarProperty Name="CARRITO_ACTIVO" ColumnName="CARRITO_ACTIVO" />
-                <ScalarProperty Name="NUMERO_CANTIDAD" ColumnName="NUMERO_CANTIDAD" />
-                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
-                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
-                <ScalarProperty Name="ID_CARRITO" ColumnName="ID_CARRITO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="USUARIOS">
             <EntityTypeMapping TypeName="TIENDA_VIERNESModel.USUARIO">
               <MappingFragment StoreEntitySet="USUARIOS">
@@ -698,6 +689,18 @@
                 <ScalarProperty Name="NUMERO_TARJETA" ColumnName="NUMERO_TARJETA" />
                 <ScalarProperty Name="CANTIDAD_DISPONIBLE" ColumnName="CANTIDAD_DISPONIBLE" />
                 <ScalarProperty Name="ID_DINERO" ColumnName="ID_DINERO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CARRITOes">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.CARRITO">
+              <MappingFragment StoreEntitySet="CARRITO">
+                <ScalarProperty Name="NUMERO_CANTIDAD_ANNADIDA" ColumnName="NUMERO_CANTIDAD_ANNADIDA" />
+                <ScalarProperty Name="CARRITO_ACTIVO" ColumnName="CARRITO_ACTIVO" />
+                <ScalarProperty Name="NUMERO_CANTIDAD" ColumnName="NUMERO_CANTIDAD" />
+                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
+                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
+                <ScalarProperty Name="ID_CARRITO" ColumnName="ID_CARRITO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

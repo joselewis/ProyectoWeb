@@ -29,7 +29,7 @@
             
             <asp:TemplateField HeaderText="Cantidad">
                 <ItemTemplate>
-                    <asp:Label ID="LabelCantidaProducto" runat="server" Text='<%# Eval("CANTIDAD_PRODUCTO") %>'></asp:Label>
+                    <asp:Label ID="LabelCantidaProducto" runat="server" Text='<%# Eval("NUMERO_CANTIDAD") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
 

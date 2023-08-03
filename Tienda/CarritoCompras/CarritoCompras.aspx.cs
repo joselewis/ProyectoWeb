@@ -15,15 +15,13 @@ namespace Tienda.CarritoCompras
 {
     public partial class CarritoCompras : System.Web.UI.Page
     {
-        int Validar = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 CargarCarrito();
                 LabelCarrito();
-                ValidarLabel();
+                LabelAdmin();
             }
         }
 
@@ -55,30 +53,6 @@ namespace Tienda.CarritoCompras
                     GridViewCarrito.DataSource = dt;
                     GridViewCarrito.DataBind();
                     con.Close();
-
-                    Validar = 1;
-                }
-            }
-            catch(Exception ex)
-            {
-                LblError.Visible = true;
-                LblError.Text = ex.Message;
-            }
-        }
-
-
-        void ValidarLabel()
-        {
-            try
-            {
-                if (Validar == 1)
-                {
-                    LblCarritoVacio.Visible = false;
-                }
-                else
-                {
-                    LblCarritoVacio.Visible = true;
-                    LblCarritoVacio.Text = "Un administrador no puede utilizar el carrito de compras";
                 }
             }
             catch(Exception ex)
@@ -94,18 +68,41 @@ namespace Tienda.CarritoCompras
             {
                 String Rol = Session["TIPO_USUARIO"].ToString();
 
-                if (GridViewCarrito.Rows.Count <= 0 && Rol == "Normal")
+                if (GridViewCarrito.Rows.Count == 0 && Rol == "Normal")
                 {
                     LblCarritoVacio.Visible = true;
                     LblCarritoVacio.Text = "No hay productos añadidos al carrito";
                 }
                 else
                 {
-                    LblCarritoVacio.Visible = true;
+                    LblCarritoVacio.Visible = false;
                     LblCarritoVacio.Text = "Un administrador no puede utilizar el carrito de compras";
                 }
             }
             catch(Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
+        }
+
+        void LabelAdmin()
+        {
+            try
+            {
+                String Rol = Session["TIPO_USUARIO"].ToString();
+
+                if (Rol == "Administrador")
+                {
+                    LblCarritoVacio.Visible = true;
+                    LblCarritoVacio.Text = "Un administrador no puede utilizar el carrito de compras";
+                }
+                else
+                {
+                    LblCarritoVacio.Visible = false;
+                }
+            }
+            catch (Exception ex)
             {
                 LblError.Visible = true;
                 LblError.Text = ex.Message;
@@ -119,11 +116,14 @@ namespace Tienda.CarritoCompras
                 using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
                 {
                     int CarritoId = Convert.ToInt32(GridViewCarrito.DataKeys[e.RowIndex].Value);
+                    //int OrdenId = Convert.ToInt32(GridViewCarrito.DataKeys[e.RowIndex].Value);
 
                     CARRITO objCarrito = ContextoDB.CARRITOes.First(x => x.ID_CARRITO == CarritoId);
+                    //ORDEN_COMPRA objOrdenCompra = ContextoDB.ORDEN_COMPRA.First(x => x.ID_ORDEN_COMPRA == OrdenId);
+
                     ContextoDB.CARRITOes.Remove(objCarrito);
+                    //ContextoDB.ORDEN_COMPRA.Remove(objOrdenCompra);
                     ContextoDB.SaveChanges();
-                    LblCarritoVacio.Visible = false;
                     CargarCarrito();
 
                     Response.Redirect("../CarritoCompras/CarritoCompras.aspx");
