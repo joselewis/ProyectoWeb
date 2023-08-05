@@ -24,6 +24,7 @@ namespace Tienda.Productos.ProductoEspecifico
                 CargarInfoProducto();
                 //CargarCantidaProducto();
                 DesplegarCuentaDDL();
+                MostrarBoton();
             }
         }
 
@@ -183,6 +184,8 @@ namespace Tienda.Productos.ProductoEspecifico
                 if (dr.Read())
                 {
                     int Cantidad = Convert.ToInt32(dr["CANTIDAD_PRODUCTO"].ToString());
+                    
+                    //DropDownCantidadProducto.Items.Insert(0, new ListItem("-Cantidad-", "0"));
 
                     for (int i = 1; i <= Cantidad; i++)
                     {
@@ -224,6 +227,21 @@ namespace Tienda.Productos.ProductoEspecifico
             {
                 lblError.Visible = true;
                 lblError.Text = ex.Message;
+            }
+        }
+
+        void MostrarBoton()
+        {
+            ADMINISTRADORE oAdministrador = new ADMINISTRADORE();
+            String Rol = Session["TIPO_USUARIO"].ToString();
+
+            if (Rol == "Administrador")
+            {
+                BotonAnnadirCarrito.Visible = false;
+            }
+            else
+            {
+                BotonAnnadirCarrito.Visible = true;
             }
         }
 

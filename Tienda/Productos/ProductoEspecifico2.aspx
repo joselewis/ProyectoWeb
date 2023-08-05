@@ -33,7 +33,7 @@
                 <asp:DropDownList runat="server" ID="DropDownCantidadProducto"></asp:DropDownList>
             </span>
         </div>
-        <asp:Button runat="server" ID="BotonAnnadirCarrito" OnClick="BotonAnnadirCarrito_Click1" Text="Añadir Al Carrito" class="button"/>
+        <asp:Button runat="server" ID="BotonAnnadirCarrito" OnClick="BotonAnnadirCarrito_Click1" Text="Añadir Al Carrito" class="button" Visible="false"/>
       </div>
     </div>
 </section>		

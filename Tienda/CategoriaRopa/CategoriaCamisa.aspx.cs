@@ -24,7 +24,7 @@ namespace Tienda.CategoriaRopa
 
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = " ";
+            cmd.CommandText = "SELECT * FROM PRODUCTO_ROPA INNER JOIN CLASIFICAR_ROPA ON PRODUCTO_ROPA.CODIGO_PRODUCTO = CLASIFICAR_ROPA.CODIGO_PRODUCTO WHERE CATEGORIA_PRENDA = 'Camisa'";
             cmd.ExecuteNonQuery();
 
             DataTable dt = new DataTable();
