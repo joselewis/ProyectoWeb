@@ -30,8 +30,8 @@ namespace Tienda.Productos.ProductoEspecifico
 
         void MostrarImagen()
         {
-            string cs = @"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-            SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+            string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+            SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
             try
             {
@@ -69,8 +69,8 @@ namespace Tienda.Productos.ProductoEspecifico
         {
             try
             {
-                string cs = @"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-                SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
                 using (SqlConnection connection = new SqlConnection(cs))
                 {
@@ -115,62 +115,14 @@ namespace Tienda.Productos.ProductoEspecifico
             }
         }
 
-        //void CargarCantidaProducto()
-        //{
-        //    SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
-        //    id = Convert.ToInt32(Request.QueryString["id"].ToString());
-
-        //    try
-        //    {
-        //        using (con)
-        //        {
-        //            using (SqlCommand cmd = new SqlCommand("SP_SACAR_CANTIDAD", con))
-        //            {
-        //                cmd.CommandType = CommandType.StoredProcedure;
-
-        //                SqlParameter paramId = new SqlParameter()
-        //                {
-        //                    ParameterName = "@ID",
-        //                    Value = Request.QueryString["ID"],
-        //                };
-
-        //                cmd.Parameters.Add(paramId);
-
-        //                con.Open();
-
-        //                using (SqlDataReader dr = cmd.ExecuteReader())
-        //                {
-        //                    PRODUCTO_ROPA oProducto = new PRODUCTO_ROPA();
-
-        //                    if (dr.HasRows)
-        //                    {
-        //                        DropDownCantidadProducto.DataSource = dr;
-        //                        DropDownCantidadProducto.DataValueField = "NUMERO_CANTIDAD_PRODUCTO";
-        //                        DropDownCantidadProducto.DataTextField = "CANTIDAD_PRODUCTO";
-
-        //                        DropDownCantidadProducto.DataBind();
-        //                        DropDownCantidadProducto.Items.Insert(0, new ListItem("-Select-", "0"));
-        //                    }
-        //                }
-        //                con.Close();
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblError.Visible = true;
-        //        lblError.Text = ex.Message;
-        //    }
-        //}
-
         void DesplegarCuentaDDL()
         {
             id = Convert.ToInt32(Request.QueryString["id"].ToString());
 
             try
             {
-                string cs = @"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-                SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
                 string Command = "SELECT CANTIDAD_PRODUCTO FROM PRODUCTO_ROPA WHERE CODIGO_PRODUCTO = '" + id + "'";
 
                 SqlCommand SqlCommand = new SqlCommand(Command, con);
@@ -205,7 +157,7 @@ namespace Tienda.Productos.ProductoEspecifico
         {
             try
             {
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     CARRITO oCarrito = new CARRITO();
 

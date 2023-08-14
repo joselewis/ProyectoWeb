@@ -42,7 +42,7 @@ namespace Tienda.Productos.RegistroProducto
         {
             try 
             {
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     PRODUCTO_ROPA oProductoRopa = new PRODUCTO_ROPA();
                     CLASIFICAR_ROPA oClasificar = new CLASIFICAR_ROPA();

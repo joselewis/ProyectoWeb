@@ -20,8 +20,9 @@ namespace Tienda.CarritoCompras
             if (!Page.IsPostBack)
             {
                 CargarCarrito();
-                LabelCarrito();
-                LabelAdmin();
+                LabelUsuarioCarrito();
+                SumarPrecio();
+                CargarBoton();
             }
         }
 
@@ -35,8 +36,8 @@ namespace Tienda.CarritoCompras
                 {
                     String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                    string cs = @"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-                    SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                    string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                    SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
                     string Command = "SELECT TIPO_PRENDA, PRECIO_PRODUCTO, CANTIDAD_PRODUCTO, TALLA_PRENDA, MARCA, NUMERO_CANTIDAD, ID_CARRITO  FROM PRODUCTO_ROPA " +
                                         "INNER JOIN CARRITO ON CARRITO.CODIGO_PRODUCTO = PRODUCTO_ROPA.CODIGO_PRODUCTO " +
                                         "INNER JOIN USUARIOS ON USUARIOS.CORREO_ELECTRONICO = CARRITO.CORREO_ELECTRONICO WHERE USUARIOS.CORREO_ELECTRONICO ='" + CorreoUsuario + "'";
@@ -62,13 +63,13 @@ namespace Tienda.CarritoCompras
             }
         }
 
-        void LabelCarrito()
+        void LabelUsuarioCarrito()
         {
             try
             {
                 String Rol = Session["TIPO_USUARIO"].ToString();
 
-                if (GridViewCarrito.Rows.Count == 0 && Rol == "Normal")
+                if (GridViewCarrito.Rows.Count < 1 && Rol == "Normal")
                 {
                     LblCarritoVacio.Visible = true;
                     LblCarritoVacio.Text = "No hay productos añadidos al carrito";
@@ -86,20 +87,21 @@ namespace Tienda.CarritoCompras
             }
         }
 
-        void LabelAdmin()
+        protected void GridViewCarrito_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
-                String Rol = Session["TIPO_USUARIO"].ToString();
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
+                {
+                    int CarritoId = Convert.ToInt32(GridViewCarrito.DataKeys[e.RowIndex].Value);
 
-                if (Rol == "Administrador")
-                {
-                    LblCarritoVacio.Visible = true;
-                    LblCarritoVacio.Text = "Un administrador no puede utilizar el carrito de compras";
-                }
-                else
-                {
-                    LblCarritoVacio.Visible = false;
+                    CARRITO objCarrito = ContextoDB.CARRITOes.First(x => x.ID_CARRITO == CarritoId);
+
+                    ContextoDB.CARRITOes.Remove(objCarrito);
+                    ContextoDB.SaveChanges();
+                    CargarCarrito();
+
+                    Response.Redirect("../CarritoCompras/CarritoCompras.aspx");
                 }
             }
             catch (Exception ex)
@@ -109,27 +111,79 @@ namespace Tienda.CarritoCompras
             }
         }
 
-        protected void GridViewCarrito_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        void SumarPrecio()
+        {
+            String Rol = Session["TIPO_USUARIO"].ToString();
+
+            try
+            {
+                if (Rol == "Normal")
+                {
+                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+
+                    string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                    SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+
+                    string Command = "SELECT SUM(PRECIO_PRODUCTO * NUMERO_CANTIDAD) AS TOTAL FROM PRODUCTO_ROPA INNER JOIN CARRITO ON CARRITO.CODIGO_PRODUCTO = PRODUCTO_ROPA.CODIGO_PRODUCTO " +
+                                     "INNER JOIN USUARIOS ON USUARIOS.CORREO_ELECTRONICO = CARRITO.CORREO_ELECTRONICO WHERE USUARIOS.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+
+                    SqlConnection SqlServer = new SqlConnection(cs);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(Command, con);
+
+                    if (GridViewCarrito.Rows.Count >= 1)
+                    {
+                        LblTotal.Visible = true;
+                        LblTotal.Text = "Total: ";
+                        LblPrecioTotal.Visible = true;
+                        LblPrecioTotal.Text = Convert.ToString(cmd.ExecuteScalar());
+                    }
+                    else
+                    {
+                        LblTotal.Visible = true;
+                        LblTotal.Text = "Total: 0";
+                    }
+
+
+                    con.Close();
+                }
+            }
+            catch(Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
+        }
+
+        void CargarBoton()
         {
             try
             {
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                String Rol = Session["TIPO_USUARIO"].ToString();
+
+                if (GridViewCarrito.Rows.Count >= 1 && Rol == "Normal")
                 {
-                    int CarritoId = Convert.ToInt32(GridViewCarrito.DataKeys[e.RowIndex].Value);
-                    //int OrdenId = Convert.ToInt32(GridViewCarrito.DataKeys[e.RowIndex].Value);
-
-                    CARRITO objCarrito = ContextoDB.CARRITOes.First(x => x.ID_CARRITO == CarritoId);
-                    //ORDEN_COMPRA objOrdenCompra = ContextoDB.ORDEN_COMPRA.First(x => x.ID_ORDEN_COMPRA == OrdenId);
-
-                    ContextoDB.CARRITOes.Remove(objCarrito);
-                    //ContextoDB.ORDEN_COMPRA.Remove(objOrdenCompra);
-                    ContextoDB.SaveChanges();
-                    CargarCarrito();
-
-                    Response.Redirect("../CarritoCompras/CarritoCompras.aspx");
+                    ButtonPagar.Visible = true;
+                }
+                else
+                {
+                    ButtonPagar.Visible = false;
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
+        }
+
+        protected void ButtonPagar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("../OrdenCompra/OrdenCompra.aspx");
+            }
+            catch(Exception ex)
             {
                 LblError.Visible = true;
                 LblError.Text = ex.Message;

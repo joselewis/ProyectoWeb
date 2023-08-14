@@ -152,6 +152,7 @@
     <Content Include="MetodoPago\MetodoPago.aspx" />
     <Content Include="MetodoPago\MetodoPago2.aspx" />
     <Content Include="PaginaPrincipal\PaginaPrincipal.aspx" />
+    <Content Include="OrdenCompra\OrdenCompra.aspx" />
     <Content Include="Perfil\PerfilCambioFoto.aspx" />
     <Content Include="Perfil\PerfilUsuario.aspx" />
     <Content Include="ProductosPrueba.aspx" />
@@ -314,6 +315,13 @@
     </Compile>
     <Compile Include="PaginaPrincipal\PaginaPrincipal.aspx.designer.cs">
       <DependentUpon>PaginaPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenCompra\OrdenCompra.aspx.cs">
+      <DependentUpon>OrdenCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrdenCompra\OrdenCompra.aspx.designer.cs">
+      <DependentUpon>OrdenCompra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Perfil\PerfilCambioFoto.aspx.cs">
       <DependentUpon>PerfilCambioFoto.aspx</DependentUpon>

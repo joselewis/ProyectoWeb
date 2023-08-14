@@ -26,7 +26,7 @@ namespace Tienda.Perfil
             {
                 String SessionUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
                 con.Open();
 
                 SqlCommand cmd = con.CreateCommand();
@@ -47,7 +47,7 @@ namespace Tienda.Perfil
         {
             try
             {
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     String Usuario = Session["CORREO_ELECTRONICO"].ToString();
 

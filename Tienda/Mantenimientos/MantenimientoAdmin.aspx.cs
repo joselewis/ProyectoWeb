@@ -25,7 +25,7 @@ namespace Tienda.Mantenimientos
 
         void CargarAdministradores()
         {
-            using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+            using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
             {
                 var ListadoAdministradores = ContextoDB.ADMINISTRADORES.Where(s => s.TIPO_USUARIO == "Administrador").ToList();
 
@@ -85,7 +85,7 @@ namespace Tienda.Mantenimientos
             //Permite eliminar el administrador por su correo electrónico
             String AdministradorId = Convert.ToString(GridAdministrador.DataKeys[e.RowIndex].Value);
 
-            using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+            using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
             {
                 ADMINISTRADORE obj = ContextoDB.ADMINISTRADORES.First(x => x.CORREO_ELECTRONICO_ADMIN == AdministradorId);
                 ContextoDB.ADMINISTRADORES.Remove(obj);
@@ -113,7 +113,7 @@ namespace Tienda.Mantenimientos
                 objAdministrador.TELEFONO_ADMIN = (GridAdministrador.FooterRow.FindControl("txt_footer_Telefono_Admin") as TextBox).Text.Trim();
                 objAdministrador.TIPO_USUARIO = "Administrador";
 
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     ContextoDB.ADMINISTRADORES.Add(objAdministrador);
                     ContextoDB.SaveChanges();
@@ -156,7 +156,7 @@ namespace Tienda.Mantenimientos
                txtCorreoAdmin != null &&
                txtTipoAdmin != null)
             {
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     String IdAdmin = Convert.ToString(GridAdministrador.DataKeys[e.RowIndex].Value);
 

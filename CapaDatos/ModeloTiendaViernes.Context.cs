@@ -13,10 +13,10 @@ namespace CapaDatos
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TIENDA_VIERNESEntities : DbContext
+    public partial class TIENDA_VIERNESEntities1 : DbContext
     {
-        public TIENDA_VIERNESEntities()
-            : base("name=TIENDA_VIERNESEntities")
+        public TIENDA_VIERNESEntities1()
+            : base("name=TIENDA_VIERNESEntities1")
         {
         }
     
@@ -25,14 +25,14 @@ namespace CapaDatos
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ADMINISTRADORE> ADMINISTRADORES { get; set; }
+        public virtual DbSet<CARRITO> CARRITOes { get; set; }
         public virtual DbSet<CLASIFICAR_ROPA> CLASIFICAR_ROPA { get; set; }
+        public virtual DbSet<DINERO_PAGO> DINERO_PAGO { get; set; }
         public virtual DbSet<GENERO_ROPA> GENERO_ROPA { get; set; }
         public virtual DbSet<METODO_PAGO> METODO_PAGO { get; set; }
+        public virtual DbSet<ORDEN_COMPRA> ORDEN_COMPRA { get; set; }
         public virtual DbSet<PRODUCTO_ROPA> PRODUCTO_ROPA { get; set; }
         public virtual DbSet<USUARIO> USUARIOS { get; set; }
-        public virtual DbSet<ADMINISTRADORE> ADMINISTRADORES { get; set; }
-        public virtual DbSet<ORDEN_COMPRA> ORDEN_COMPRA { get; set; }
-        public virtual DbSet<DINERO_PAGO> DINERO_PAGO { get; set; }
-        public virtual DbSet<CARRITO> CARRITOes { get; set; }
     }
 }

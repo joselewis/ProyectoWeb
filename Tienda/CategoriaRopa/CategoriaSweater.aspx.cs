@@ -21,7 +21,7 @@ namespace Tienda.CategoriaRopa
 
         void CargarCategoriaRopa()
         {
-            SqlConnection con = new SqlConnection(@"DATA SOURCE = LAPTOP-VEC1I0DC; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+            SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
             con.Open();
 
             SqlCommand cmd = con.CreateCommand();
@@ -41,7 +41,7 @@ namespace Tienda.CategoriaRopa
         {
             try
             {
-                using(TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities()) 
+                using(TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1()) 
                 {
                     var ListadoProductos = ContextoDB.CLASIFICAR_ROPA.Where(s => s.CATEGORIA_PRENDA == "Sweater").ToList();
 

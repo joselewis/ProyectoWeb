@@ -87,13 +87,13 @@
           <Property Name="CODIGO_PRODUCTO" Type="int" Nullable="false" />
           <Property Name="TIPO_PRENDA" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="PRECIO_PRODUCTO" Type="int" Nullable="false" />
-          <Property Name="NUMERO_CANTIDAD_PRODUCTO" Type="int" Nullable="false" />
           <Property Name="CANTIDAD_PRODUCTO" Type="int" Nullable="false" />
           <Property Name="DESCRIPCION_PRODUCTO" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="TALLA_PRENDA" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="IMAGEN" Type="varbinary(max)" Nullable="false" />
           <Property Name="MARCA" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PRODUCTO_ACTIVO" Type="bit" Nullable="false" />
+          <Property Name="NUMERO_CANTIDAD_PRODUCTO" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="USUARIOS">
           <Key>
@@ -233,14 +233,14 @@
         </Association>
         <EntityContainer Name="TIENDA_VIERNESModelStoreContainer">
           <EntitySet Name="ADMINISTRADORES" EntityType="Self.ADMINISTRADORES" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CARRITO" EntityType="Self.CARRITO" Schema="JoseLewis10" store:Type="Tables" />
-          <EntitySet Name="CLASIFICAR_ROPA" EntityType="Self.CLASIFICAR_ROPA" Schema="JoseLewis10" store:Type="Tables" />
-          <EntitySet Name="DINERO_PAGO" EntityType="Self.DINERO_PAGO" Schema="JoseLewis10" store:Type="Tables" />
-          <EntitySet Name="GENERO_ROPA" EntityType="Self.GENERO_ROPA" Schema="JoseLewis10" store:Type="Tables" />
-          <EntitySet Name="METODO_PAGO" EntityType="Self.METODO_PAGO" Schema="JoseLewis10" store:Type="Tables" />
-          <EntitySet Name="ORDEN_COMPRA" EntityType="Self.ORDEN_COMPRA" Schema="JoseLewis10" store:Type="Tables" />
-          <EntitySet Name="PRODUCTO_ROPA" EntityType="Self.PRODUCTO_ROPA" Schema="JoseLewis10" store:Type="Tables" />
-          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="JoseLewis10" store:Type="Tables" />
+          <EntitySet Name="CARRITO" EntityType="Self.CARRITO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLASIFICAR_ROPA" EntityType="Self.CLASIFICAR_ROPA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DINERO_PAGO" EntityType="Self.DINERO_PAGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GENERO_ROPA" EntityType="Self.GENERO_ROPA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="METODO_PAGO" EntityType="Self.METODO_PAGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORDEN_COMPRA" EntityType="Self.ORDEN_COMPRA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO_ROPA" EntityType="Self.PRODUCTO_ROPA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CARRITO_USUARIO" Association="Self.FK_CARRITO_USUARIO">
             <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="CARRITO" EntitySet="CARRITO" />
@@ -286,232 +286,45 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TIENDA_VIERNESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="TIENDA_VIERNESEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CLASIFICAR_ROPA" EntityType="TIENDA_VIERNESModel.CLASIFICAR_ROPA" />
-          <EntitySet Name="GENERO_ROPA" EntityType="TIENDA_VIERNESModel.GENERO_ROPA" />
-          <EntitySet Name="METODO_PAGO" EntityType="TIENDA_VIERNESModel.METODO_PAGO" />
-          <EntitySet Name="PRODUCTO_ROPA" EntityType="TIENDA_VIERNESModel.PRODUCTO_ROPA" />
-          <AssociationSet Name="FK_PRENDA_CLASIFICAION" Association="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION">
-            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
-            <End Role="CLASIFICAR_ROPA" EntitySet="CLASIFICAR_ROPA" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRENDA_GENERO" Association="TIENDA_VIERNESModel.FK_PRENDA_GENERO">
-            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
-            <End Role="GENERO_ROPA" EntitySet="GENERO_ROPA" />
-          </AssociationSet>
-          <EntitySet Name="USUARIOS" EntityType="TIENDA_VIERNESModel.USUARIO" />
-          <AssociationSet Name="FK_USUARIO_TARJETA" Association="TIENDA_VIERNESModel.FK_USUARIO_TARJETA">
-            <End Role="USUARIO" EntitySet="USUARIOS" />
-            <End Role="METODO_PAGO" EntitySet="METODO_PAGO" />
-          </AssociationSet>
-          <EntitySet Name="ADMINISTRADORES" EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" />
-          <EntitySet Name="ORDEN_COMPRA" EntityType="TIENDA_VIERNESModel.ORDEN_COMPRA" />
-          <AssociationSet Name="FK_ORDEN_METODOPAGO" Association="TIENDA_VIERNESModel.FK_ORDEN_METODOPAGO">
-            <End Role="METODO_PAGO" EntitySet="METODO_PAGO" />
-            <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ORDEN_PRODUCTOS" Association="TIENDA_VIERNESModel.FK_ORDEN_PRODUCTOS">
-            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
-            <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ORDEN_USUARIO" Association="TIENDA_VIERNESModel.FK_ORDEN_USUARIO">
-            <End Role="USUARIO" EntitySet="USUARIOS" />
-            <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
-          </AssociationSet>
-          <EntitySet Name="DINERO_PAGO" EntityType="TIENDA_VIERNESModel.DINERO_PAGO" />
-          <AssociationSet Name="FK_TARJETA_DINERO" Association="TIENDA_VIERNESModel.FK_TARJETA_DINERO">
-            <End Role="METODO_PAGO" EntitySet="METODO_PAGO" />
-            <End Role="DINERO_PAGO" EntitySet="DINERO_PAGO" />
-          </AssociationSet>
-          <EntitySet Name="CARRITOes" EntityType="TIENDA_VIERNESModel.CARRITO" />
-          <AssociationSet Name="FK_CARRITO_USUARIO" Association="TIENDA_VIERNESModel.FK_CARRITO_USUARIO">
-            <End Role="USUARIO" EntitySet="USUARIOS" />
-            <End Role="CARRITO" EntitySet="CARRITOes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ORDEN_CARRITO" Association="TIENDA_VIERNESModel.FK_ORDEN_CARRITO">
-            <End Role="CARRITO" EntitySet="CARRITOes" />
-            <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTO_CARRITO" Association="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO">
-            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
-            <End Role="CARRITO" EntitySet="CARRITOes" />
-          </AssociationSet>
-          </EntityContainer>
+        <EntityType Name="ADMINISTRADORE">
+          <Key>
+            <PropertyRef Name="CORREO_ELECTRONICO_ADMIN" />
+          </Key>
+          <Property Name="ID_USUARIO_ADMIN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CORREO_ELECTRONICO_ADMIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_USUARIO_ADMIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_ADMIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APELLIDO_1_ADMIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APELLIDO_2_ADMIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO_ADMIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTRASENNA_ADMIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CUENTA_ACTIVA" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CARRITO">
+          <Key>
+            <PropertyRef Name="ID_CARRITO" />
+          </Key>
+          <Property Name="ID_CARRITO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="NUMERO_CANTIDAD" Type="Int32" Nullable="false" />
+          <Property Name="CARRITO_ACTIVO" Type="Boolean" Nullable="false" />
+          <Property Name="NUMERO_CANTIDAD_ANNADIDA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK_CARRITO_USUARIO" FromRole="CARRITO" ToRole="USUARIOS" />
+          <NavigationProperty Name="ORDEN_COMPRA" Relationship="Self.FK_ORDEN_CARRITO" FromRole="CARRITO" ToRole="ORDEN_COMPRA" />
+          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="Self.FK_PRODUCTO_CARRITO" FromRole="CARRITO" ToRole="PRODUCTO_ROPA" />
+        </EntityType>
         <EntityType Name="CLASIFICAR_ROPA">
           <Key>
             <PropertyRef Name="ID_CLASIFICACION" />
           </Key>
           <Property Name="ID_CLASIFICACION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CATEGORIA_NUMERO" Type="Int32" Nullable="false" />
-          <Property Name="CATEGORIA_PRENDA" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORIA_PRENDA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION" FromRole="CLASIFICAR_ROPA" ToRole="PRODUCTO_ROPA" />
+          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="Self.FK_PRENDA_CLASIFICAION" FromRole="CLASIFICAR_ROPA" ToRole="PRODUCTO_ROPA" />
         </EntityType>
-        <EntityType Name="GENERO_ROPA">
-          <Key>
-            <PropertyRef Name="ID_GENERO" />
-          </Key>
-          <Property Name="ID_GENERO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GENERO_PRENDA" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="NUMERO_GENERO" Type="Int32" Nullable="false" />
-          <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRENDA_GENERO" FromRole="GENERO_ROPA" ToRole="PRODUCTO_ROPA" />
-        </EntityType>
-        <EntityType Name="METODO_PAGO">
-          <Key>
-            <PropertyRef Name="NUMERO_TARJETA" />
-          </Key>
-          <Property Name="NUMERO_TARJETA" Type="Int64" Nullable="false" />
-          <Property Name="NUMERO_EXPIRA_1" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
-          <Property Name="NUMERO_EXPIRA_2" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
-          <Property Name="CODIGO_TARJETA" Type="Decimal" Nullable="false" Precision="3" Scale="0" />
-          <Property Name="CORREO_ELECTRONICO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TARJETA_ACTICA" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="USUARIO" Relationship="TIENDA_VIERNESModel.FK_USUARIO_TARJETA" FromRole="METODO_PAGO" ToRole="USUARIO" />
-          <NavigationProperty Name="ORDEN_COMPRA" Relationship="TIENDA_VIERNESModel.FK_ORDEN_METODOPAGO" FromRole="METODO_PAGO" ToRole="ORDEN_COMPRA" />
-          <NavigationProperty Name="DINERO_PAGO" Relationship="TIENDA_VIERNESModel.FK_TARJETA_DINERO" FromRole="METODO_PAGO" ToRole="DINERO_PAGO" />
-        </EntityType>
-        <EntityType Name="PRODUCTO_ROPA">
-          <Key>
-            <PropertyRef Name="CODIGO_PRODUCTO" />
-          </Key>
-          <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
-          <Property Name="TIPO_PRENDA" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="PRECIO_PRODUCTO" Type="Int32" Nullable="false" />
-          <Property Name="NUMERO_CANTIDAD_PRODUCTO" Type="Int32" Nullable="false" />
-          <Property Name="CANTIDAD_PRODUCTO" Type="Int32" Nullable="false" />
-          <Property Name="DESCRIPCION_PRODUCTO" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="TALLA_PRENDA" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="IMAGEN" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="MARCA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PRODUCTO_ACTIVO" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CLASIFICAR_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION" FromRole="PRODUCTO_ROPA" ToRole="CLASIFICAR_ROPA" />
-          <NavigationProperty Name="GENERO_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRENDA_GENERO" FromRole="PRODUCTO_ROPA" ToRole="GENERO_ROPA" />
-          <NavigationProperty Name="ORDEN_COMPRA" Relationship="TIENDA_VIERNESModel.FK_ORDEN_PRODUCTOS" FromRole="PRODUCTO_ROPA" ToRole="ORDEN_COMPRA" />
-          <NavigationProperty Name="CARRITOes" Relationship="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" FromRole="PRODUCTO_ROPA" ToRole="CARRITO" />
-        </EntityType>
-        <Association Name="FK_PRENDA_CLASIFICAION">
-          <End Type="TIENDA_VIERNESModel.PRODUCTO_ROPA" Role="PRODUCTO_ROPA" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.CLASIFICAR_ROPA" Role="CLASIFICAR_ROPA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCTO_ROPA">
-              <PropertyRef Name="CODIGO_PRODUCTO" />
-            </Principal>
-            <Dependent Role="CLASIFICAR_ROPA">
-              <PropertyRef Name="CODIGO_PRODUCTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PRENDA_GENERO">
-          <End Type="TIENDA_VIERNESModel.PRODUCTO_ROPA" Role="PRODUCTO_ROPA" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.GENERO_ROPA" Role="GENERO_ROPA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCTO_ROPA">
-              <PropertyRef Name="CODIGO_PRODUCTO" />
-            </Principal>
-            <Dependent Role="GENERO_ROPA">
-              <PropertyRef Name="CODIGO_PRODUCTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="USUARIO">
-          <Key>
-            <PropertyRef Name="CORREO_ELECTRONICO" />
-          </Key>
-          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CORREO_ELECTRONICO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NOMBRE_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="APELLIDO_1_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="APELLIDO_2_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TELEFONO_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CONTRASENNA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TIPO_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="IMAGEN_USUARIO" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="CUENTA_ACTIVA" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="METODO_PAGO" Relationship="TIENDA_VIERNESModel.FK_USUARIO_TARJETA" FromRole="USUARIO" ToRole="METODO_PAGO" />
-          <NavigationProperty Name="ORDEN_COMPRA" Relationship="TIENDA_VIERNESModel.FK_ORDEN_USUARIO" FromRole="USUARIO" ToRole="ORDEN_COMPRA" />
-          <NavigationProperty Name="CARRITOes" Relationship="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" FromRole="USUARIO" ToRole="CARRITO" />
-        </EntityType>
-        <Association Name="FK_USUARIO_TARJETA">
-          <End Type="TIENDA_VIERNESModel.USUARIO" Role="USUARIO" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.METODO_PAGO" Role="METODO_PAGO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USUARIO">
-              <PropertyRef Name="CORREO_ELECTRONICO" />
-            </Principal>
-            <Dependent Role="METODO_PAGO">
-              <PropertyRef Name="CORREO_ELECTRONICO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="ADMINISTRADORE">
-          <Key>
-            <PropertyRef Name="CORREO_ELECTRONICO_ADMIN" />
-          </Key>
-          <Property Name="ID_USUARIO_ADMIN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CORREO_ELECTRONICO_ADMIN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NOMBRE_USUARIO_ADMIN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="NOMBRE_ADMIN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="APELLIDO_1_ADMIN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="APELLIDO_2_ADMIN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TELEFONO_ADMIN" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CONTRASENNA_ADMIN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TIPO_USUARIO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CUENTA_ACTIVA" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ORDEN_COMPRA">
-          <Key>
-            <PropertyRef Name="ID_ORDEN_COMPRA" />
-          </Key>
-          <Property Name="ID_ORDEN_COMPRA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CORREO_ELECTRONICO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NUMERO_TARJETA" Type="Int64" Nullable="false" />
-          <Property Name="COMPRA_TOTAL" Type="Int32" Nullable="false" />
-          <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
-          <Property Name="ID_CARRITO" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="METODO_PAGO" Relationship="TIENDA_VIERNESModel.FK_ORDEN_METODOPAGO" FromRole="ORDEN_COMPRA" ToRole="METODO_PAGO" />
-          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="TIENDA_VIERNESModel.FK_ORDEN_PRODUCTOS" FromRole="ORDEN_COMPRA" ToRole="PRODUCTO_ROPA" />
-          <NavigationProperty Name="USUARIO" Relationship="TIENDA_VIERNESModel.FK_ORDEN_USUARIO" FromRole="ORDEN_COMPRA" ToRole="USUARIO" />
-          <NavigationProperty Name="CARRITO" Relationship="TIENDA_VIERNESModel.FK_ORDEN_CARRITO" FromRole="ORDEN_COMPRA" ToRole="CARRITO" />
-        </EntityType>
-        <Association Name="FK_ORDEN_METODOPAGO">
-          <End Type="TIENDA_VIERNESModel.METODO_PAGO" Role="METODO_PAGO" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.ORDEN_COMPRA" Role="ORDEN_COMPRA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="METODO_PAGO">
-              <PropertyRef Name="NUMERO_TARJETA" />
-            </Principal>
-            <Dependent Role="ORDEN_COMPRA">
-              <PropertyRef Name="NUMERO_TARJETA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ORDEN_PRODUCTOS">
-          <End Type="TIENDA_VIERNESModel.PRODUCTO_ROPA" Role="PRODUCTO_ROPA" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.ORDEN_COMPRA" Role="ORDEN_COMPRA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCTO_ROPA">
-              <PropertyRef Name="CODIGO_PRODUCTO" />
-            </Principal>
-            <Dependent Role="ORDEN_COMPRA">
-              <PropertyRef Name="CODIGO_PRODUCTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ORDEN_USUARIO">
-          <End Type="TIENDA_VIERNESModel.USUARIO" Role="USUARIO" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.ORDEN_COMPRA" Role="ORDEN_COMPRA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USUARIO">
-              <PropertyRef Name="CORREO_ELECTRONICO" />
-            </Principal>
-            <Dependent Role="ORDEN_COMPRA">
-              <PropertyRef Name="CORREO_ELECTRONICO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="DINERO_PAGO">
           <Key>
             <PropertyRef Name="ID_DINERO" />
@@ -519,39 +332,91 @@
           <Property Name="ID_DINERO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CANTIDAD_DISPONIBLE" Type="Int32" Nullable="false" />
           <Property Name="NUMERO_TARJETA" Type="Int64" />
-          <NavigationProperty Name="METODO_PAGO" Relationship="TIENDA_VIERNESModel.FK_TARJETA_DINERO" FromRole="DINERO_PAGO" ToRole="METODO_PAGO" />
+          <NavigationProperty Name="METODO_PAGO" Relationship="Self.FK_TARJETA_DINERO" FromRole="DINERO_PAGO" ToRole="METODO_PAGO" />
         </EntityType>
-        <Association Name="FK_TARJETA_DINERO">
-          <End Type="TIENDA_VIERNESModel.METODO_PAGO" Role="METODO_PAGO" Multiplicity="0..1" />
-          <End Type="TIENDA_VIERNESModel.DINERO_PAGO" Role="DINERO_PAGO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="METODO_PAGO">
-              <PropertyRef Name="NUMERO_TARJETA" />
-            </Principal>
-            <Dependent Role="DINERO_PAGO">
-              <PropertyRef Name="NUMERO_TARJETA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CARRITO">
+        <EntityType Name="GENERO_ROPA">
           <Key>
-            <PropertyRef Name="ID_CARRITO" />
+            <PropertyRef Name="ID_GENERO" />
           </Key>
-          <Property Name="ID_CARRITO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CORREO_ELECTRONICO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_GENERO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GENERO_PRENDA" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUMERO_GENERO" Type="Int32" Nullable="false" />
           <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
-          <Property Name="NUMERO_CANTIDAD" Type="Int32" Nullable="false" />
-          <Property Name="CARRITO_ACTIVO" Type="Boolean" Nullable="false" />
-          <Property Name="NUMERO_CANTIDAD_ANNADIDA" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="USUARIO" Relationship="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" FromRole="CARRITO" ToRole="USUARIO" />
-          <NavigationProperty Name="ORDEN_COMPRA" Relationship="TIENDA_VIERNESModel.FK_ORDEN_CARRITO" FromRole="CARRITO" ToRole="ORDEN_COMPRA" />
-          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" FromRole="CARRITO" ToRole="PRODUCTO_ROPA" />
+          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="Self.FK_PRENDA_GENERO" FromRole="GENERO_ROPA" ToRole="PRODUCTO_ROPA" />
+        </EntityType>
+        <EntityType Name="METODO_PAGO">
+          <Key>
+            <PropertyRef Name="NUMERO_TARJETA" />
+          </Key>
+          <Property Name="NUMERO_TARJETA" Type="Int64" Nullable="false" />
+          <Property Name="NUMERO_EXPIRA_1" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="NUMERO_EXPIRA_2" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+          <Property Name="CODIGO_TARJETA" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TARJETA_ACTICA" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DINERO_PAGO" Relationship="Self.FK_TARJETA_DINERO" FromRole="METODO_PAGO" ToRole="DINERO_PAGO" />
+          <NavigationProperty Name="ORDEN_COMPRA" Relationship="Self.FK_ORDEN_METODOPAGO" FromRole="METODO_PAGO" ToRole="ORDEN_COMPRA" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIO_TARJETA" FromRole="METODO_PAGO" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="ORDEN_COMPRA">
+          <Key>
+            <PropertyRef Name="ID_ORDEN_COMPRA" />
+          </Key>
+          <Property Name="ID_ORDEN_COMPRA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUMERO_TARJETA" Type="Int64" Nullable="false" />
+          <Property Name="COMPRA_TOTAL" Type="Int32" Nullable="false" />
+          <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="ID_CARRITO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CARRITO" Relationship="Self.FK_ORDEN_CARRITO" FromRole="ORDEN_COMPRA" ToRole="CARRITO" />
+          <NavigationProperty Name="METODO_PAGO" Relationship="Self.FK_ORDEN_METODOPAGO" FromRole="ORDEN_COMPRA" ToRole="METODO_PAGO" />
+          <NavigationProperty Name="PRODUCTO_ROPA" Relationship="Self.FK_ORDEN_PRODUCTOS" FromRole="ORDEN_COMPRA" ToRole="PRODUCTO_ROPA" />
+          <NavigationProperty Name="USUARIO" Relationship="Self.FK_ORDEN_USUARIO" FromRole="ORDEN_COMPRA" ToRole="USUARIOS" />
+        </EntityType>
+        <EntityType Name="PRODUCTO_ROPA">
+          <Key>
+            <PropertyRef Name="CODIGO_PRODUCTO" />
+          </Key>
+          <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODIGO_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="TIPO_PRENDA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRECIO_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD_PRODUCTO" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPCION_PRODUCTO" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TALLA_PRENDA" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGEN" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="MARCA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRODUCTO_ACTIVO" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CARRITOes" Relationship="Self.FK_PRODUCTO_CARRITO" FromRole="PRODUCTO_ROPA" ToRole="CARRITO" />
+          <NavigationProperty Name="CLASIFICAR_ROPA" Relationship="Self.FK_PRENDA_CLASIFICAION" FromRole="PRODUCTO_ROPA" ToRole="CLASIFICAR_ROPA" />
+          <NavigationProperty Name="GENERO_ROPA" Relationship="Self.FK_PRENDA_GENERO" FromRole="PRODUCTO_ROPA" ToRole="GENERO_ROPA" />
+          <NavigationProperty Name="ORDEN_COMPRA" Relationship="Self.FK_ORDEN_PRODUCTOS" FromRole="PRODUCTO_ROPA" ToRole="ORDEN_COMPRA" />
+          <Property Name="NUMERO_CANTIDAD_PRODUCTO" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="CORREO_ELECTRONICO" />
+          </Key>
+          <Property Name="ID_USUARIO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CORREO_ELECTRONICO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APELLIDO_1_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APELLIDO_2_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEFONO_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CONTRASENNA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TIPO_USUARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IMAGEN_USUARIO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CUENTA_ACTIVA" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CARRITOes" Relationship="Self.FK_CARRITO_USUARIO" FromRole="USUARIOS" ToRole="CARRITO" />
+          <NavigationProperty Name="METODO_PAGO" Relationship="Self.FK_USUARIO_TARJETA" FromRole="USUARIOS" ToRole="METODO_PAGO" />
+          <NavigationProperty Name="ORDEN_COMPRA" Relationship="Self.FK_ORDEN_USUARIO" FromRole="USUARIOS" ToRole="ORDEN_COMPRA" />
         </EntityType>
         <Association Name="FK_CARRITO_USUARIO">
-          <End Type="TIENDA_VIERNESModel.USUARIO" Role="USUARIO" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.CARRITO" Role="CARRITO" Multiplicity="*" />
+          <End Role="USUARIOS" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="USUARIO">
+            <Principal Role="USUARIOS">
               <PropertyRef Name="CORREO_ELECTRONICO" />
             </Principal>
             <Dependent Role="CARRITO">
@@ -560,8 +425,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ORDEN_CARRITO">
-          <End Type="TIENDA_VIERNESModel.CARRITO" Role="CARRITO" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.ORDEN_COMPRA" Role="ORDEN_COMPRA" Multiplicity="*" />
+          <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="1" />
+          <End Role="ORDEN_COMPRA" Type="Self.ORDEN_COMPRA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CARRITO">
               <PropertyRef Name="ID_CARRITO" />
@@ -572,8 +437,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PRODUCTO_CARRITO">
-          <End Type="TIENDA_VIERNESModel.PRODUCTO_ROPA" Role="PRODUCTO_ROPA" Multiplicity="1" />
-          <End Type="TIENDA_VIERNESModel.CARRITO" Role="CARRITO" Multiplicity="*" />
+          <End Role="PRODUCTO_ROPA" Type="Self.PRODUCTO_ROPA" Multiplicity="1" />
+          <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PRODUCTO_ROPA">
               <PropertyRef Name="CODIGO_PRODUCTO" />
@@ -583,124 +448,259 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <Association Name="FK_PRENDA_CLASIFICAION">
+          <End Role="PRODUCTO_ROPA" Type="Self.PRODUCTO_ROPA" Multiplicity="1" />
+          <End Role="CLASIFICAR_ROPA" Type="Self.CLASIFICAR_ROPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Principal>
+            <Dependent Role="CLASIFICAR_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TARJETA_DINERO">
+          <End Role="METODO_PAGO" Type="Self.METODO_PAGO" Multiplicity="0..1" />
+          <End Role="DINERO_PAGO" Type="Self.DINERO_PAGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="METODO_PAGO">
+              <PropertyRef Name="NUMERO_TARJETA" />
+            </Principal>
+            <Dependent Role="DINERO_PAGO">
+              <PropertyRef Name="NUMERO_TARJETA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRENDA_GENERO">
+          <End Role="PRODUCTO_ROPA" Type="Self.PRODUCTO_ROPA" Multiplicity="1" />
+          <End Role="GENERO_ROPA" Type="Self.GENERO_ROPA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Principal>
+            <Dependent Role="GENERO_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_METODOPAGO">
+          <End Role="METODO_PAGO" Type="Self.METODO_PAGO" Multiplicity="1" />
+          <End Role="ORDEN_COMPRA" Type="Self.ORDEN_COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="METODO_PAGO">
+              <PropertyRef Name="NUMERO_TARJETA" />
+            </Principal>
+            <Dependent Role="ORDEN_COMPRA">
+              <PropertyRef Name="NUMERO_TARJETA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIO_TARJETA">
+          <End Role="USUARIOS" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="METODO_PAGO" Type="Self.METODO_PAGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="CORREO_ELECTRONICO" />
+            </Principal>
+            <Dependent Role="METODO_PAGO">
+              <PropertyRef Name="CORREO_ELECTRONICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_PRODUCTOS">
+          <End Role="PRODUCTO_ROPA" Type="Self.PRODUCTO_ROPA" Multiplicity="1" />
+          <End Role="ORDEN_COMPRA" Type="Self.ORDEN_COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTO_ROPA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Principal>
+            <Dependent Role="ORDEN_COMPRA">
+              <PropertyRef Name="CODIGO_PRODUCTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ORDEN_USUARIO">
+          <End Role="USUARIOS" Type="Self.USUARIO" Multiplicity="1" />
+          <End Role="ORDEN_COMPRA" Type="Self.ORDEN_COMPRA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="CORREO_ELECTRONICO" />
+            </Principal>
+            <Dependent Role="ORDEN_COMPRA">
+              <PropertyRef Name="CORREO_ELECTRONICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TIENDA_VIERNESEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMINISTRADORES" EntityType="Self.ADMINISTRADORE" />
+          <EntitySet Name="CARRITOes" EntityType="Self.CARRITO" />
+          <EntitySet Name="CLASIFICAR_ROPA" EntityType="Self.CLASIFICAR_ROPA" />
+          <EntitySet Name="DINERO_PAGO" EntityType="Self.DINERO_PAGO" />
+          <EntitySet Name="GENERO_ROPA" EntityType="Self.GENERO_ROPA" />
+          <EntitySet Name="METODO_PAGO" EntityType="Self.METODO_PAGO" />
+          <EntitySet Name="ORDEN_COMPRA" EntityType="Self.ORDEN_COMPRA" />
+          <EntitySet Name="PRODUCTO_ROPA" EntityType="Self.PRODUCTO_ROPA" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIO" />
+          <AssociationSet Name="FK_CARRITO_USUARIO" Association="Self.FK_CARRITO_USUARIO">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="CARRITO" EntitySet="CARRITOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_CARRITO" Association="Self.FK_ORDEN_CARRITO">
+            <End Role="CARRITO" EntitySet="CARRITOes" />
+            <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_CARRITO" Association="Self.FK_PRODUCTO_CARRITO">
+            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
+            <End Role="CARRITO" EntitySet="CARRITOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRENDA_CLASIFICAION" Association="Self.FK_PRENDA_CLASIFICAION">
+            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
+            <End Role="CLASIFICAR_ROPA" EntitySet="CLASIFICAR_ROPA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TARJETA_DINERO" Association="Self.FK_TARJETA_DINERO">
+            <End Role="METODO_PAGO" EntitySet="METODO_PAGO" />
+            <End Role="DINERO_PAGO" EntitySet="DINERO_PAGO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRENDA_GENERO" Association="Self.FK_PRENDA_GENERO">
+            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
+            <End Role="GENERO_ROPA" EntitySet="GENERO_ROPA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_METODOPAGO" Association="Self.FK_ORDEN_METODOPAGO">
+            <End Role="METODO_PAGO" EntitySet="METODO_PAGO" />
+            <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIO_TARJETA" Association="Self.FK_USUARIO_TARJETA">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="METODO_PAGO" EntitySet="METODO_PAGO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_PRODUCTOS" Association="Self.FK_ORDEN_PRODUCTOS">
+            <End Role="PRODUCTO_ROPA" EntitySet="PRODUCTO_ROPA" />
+            <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ORDEN_USUARIO" Association="Self.FK_ORDEN_USUARIO">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TIENDA_VIERNESModelStoreContainer" CdmEntityContainer="TIENDA_VIERNESEntities">
-          <EntitySetMapping Name="CLASIFICAR_ROPA">
-            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.CLASIFICAR_ROPA">
-              <MappingFragment StoreEntitySet="CLASIFICAR_ROPA">
-                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
-                <ScalarProperty Name="CATEGORIA_PRENDA" ColumnName="CATEGORIA_PRENDA" />
-                <ScalarProperty Name="CATEGORIA_NUMERO" ColumnName="CATEGORIA_NUMERO" />
-                <ScalarProperty Name="ID_CLASIFICACION" ColumnName="ID_CLASIFICACION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GENERO_ROPA">
-            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.GENERO_ROPA">
-              <MappingFragment StoreEntitySet="GENERO_ROPA">
-                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
-                <ScalarProperty Name="NUMERO_GENERO" ColumnName="NUMERO_GENERO" />
-                <ScalarProperty Name="GENERO_PRENDA" ColumnName="GENERO_PRENDA" />
-                <ScalarProperty Name="ID_GENERO" ColumnName="ID_GENERO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="METODO_PAGO">
-            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.METODO_PAGO">
-              <MappingFragment StoreEntitySet="METODO_PAGO">
-                <ScalarProperty Name="TARJETA_ACTICA" ColumnName="TARJETA_ACTICA" />
-                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
-                <ScalarProperty Name="CODIGO_TARJETA" ColumnName="CODIGO_TARJETA" />
-                <ScalarProperty Name="NUMERO_EXPIRA_2" ColumnName="NUMERO_EXPIRA_2" />
-                <ScalarProperty Name="NUMERO_EXPIRA_1" ColumnName="NUMERO_EXPIRA_1" />
-                <ScalarProperty Name="NUMERO_TARJETA" ColumnName="NUMERO_TARJETA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PRODUCTO_ROPA">
-            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.PRODUCTO_ROPA">
-              <MappingFragment StoreEntitySet="PRODUCTO_ROPA">
-                <ScalarProperty Name="PRODUCTO_ACTIVO" ColumnName="PRODUCTO_ACTIVO" />
-                <ScalarProperty Name="MARCA" ColumnName="MARCA" />
-                <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
-                <ScalarProperty Name="TALLA_PRENDA" ColumnName="TALLA_PRENDA" />
-                <ScalarProperty Name="DESCRIPCION_PRODUCTO" ColumnName="DESCRIPCION_PRODUCTO" />
-                <ScalarProperty Name="CANTIDAD_PRODUCTO" ColumnName="CANTIDAD_PRODUCTO" />
-                <ScalarProperty Name="NUMERO_CANTIDAD_PRODUCTO" ColumnName="NUMERO_CANTIDAD_PRODUCTO" />
-                <ScalarProperty Name="PRECIO_PRODUCTO" ColumnName="PRECIO_PRODUCTO" />
-                <ScalarProperty Name="TIPO_PRENDA" ColumnName="TIPO_PRENDA" />
-                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
-                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="USUARIOS">
-            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.USUARIO">
-              <MappingFragment StoreEntitySet="USUARIOS">
-                <ScalarProperty Name="CUENTA_ACTIVA" ColumnName="CUENTA_ACTIVA" />
-                <ScalarProperty Name="IMAGEN_USUARIO" ColumnName="IMAGEN_USUARIO" />
-                <ScalarProperty Name="TIPO_USUARIO" ColumnName="TIPO_USUARIO" />
-                <ScalarProperty Name="CONTRASENNA" ColumnName="CONTRASENNA" />
-                <ScalarProperty Name="TELEFONO_USUARIO" ColumnName="TELEFONO_USUARIO" />
-                <ScalarProperty Name="APELLIDO_2_USUARIO" ColumnName="APELLIDO_2_USUARIO" />
-                <ScalarProperty Name="APELLIDO_1_USUARIO" ColumnName="APELLIDO_1_USUARIO" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
-                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
-                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="TIENDA_VIERNESModelStoreContainer" CdmEntityContainer="TIENDA_VIERNESEntities1">
           <EntitySetMapping Name="ADMINISTRADORES">
             <EntityTypeMapping TypeName="TIENDA_VIERNESModel.ADMINISTRADORE">
               <MappingFragment StoreEntitySet="ADMINISTRADORES">
-                <ScalarProperty Name="CUENTA_ACTIVA" ColumnName="CUENTA_ACTIVA" />
-                <ScalarProperty Name="TIPO_USUARIO" ColumnName="TIPO_USUARIO" />
-                <ScalarProperty Name="CONTRASENNA_ADMIN" ColumnName="CONTRASENNA_ADMIN" />
-                <ScalarProperty Name="TELEFONO_ADMIN" ColumnName="TELEFONO_ADMIN" />
-                <ScalarProperty Name="APELLIDO_2_ADMIN" ColumnName="APELLIDO_2_ADMIN" />
-                <ScalarProperty Name="APELLIDO_1_ADMIN" ColumnName="APELLIDO_1_ADMIN" />
-                <ScalarProperty Name="NOMBRE_ADMIN" ColumnName="NOMBRE_ADMIN" />
-                <ScalarProperty Name="NOMBRE_USUARIO_ADMIN" ColumnName="NOMBRE_USUARIO_ADMIN" />
-                <ScalarProperty Name="CORREO_ELECTRONICO_ADMIN" ColumnName="CORREO_ELECTRONICO_ADMIN" />
                 <ScalarProperty Name="ID_USUARIO_ADMIN" ColumnName="ID_USUARIO_ADMIN" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ORDEN_COMPRA">
-            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.ORDEN_COMPRA">
-              <MappingFragment StoreEntitySet="ORDEN_COMPRA">
-                <ScalarProperty Name="ID_CARRITO" ColumnName="ID_CARRITO" />
-                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
-                <ScalarProperty Name="COMPRA_TOTAL" ColumnName="COMPRA_TOTAL" />
-                <ScalarProperty Name="NUMERO_TARJETA" ColumnName="NUMERO_TARJETA" />
-                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
-                <ScalarProperty Name="ID_ORDEN_COMPRA" ColumnName="ID_ORDEN_COMPRA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DINERO_PAGO">
-            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.DINERO_PAGO">
-              <MappingFragment StoreEntitySet="DINERO_PAGO">
-                <ScalarProperty Name="NUMERO_TARJETA" ColumnName="NUMERO_TARJETA" />
-                <ScalarProperty Name="CANTIDAD_DISPONIBLE" ColumnName="CANTIDAD_DISPONIBLE" />
-                <ScalarProperty Name="ID_DINERO" ColumnName="ID_DINERO" />
+                <ScalarProperty Name="CORREO_ELECTRONICO_ADMIN" ColumnName="CORREO_ELECTRONICO_ADMIN" />
+                <ScalarProperty Name="NOMBRE_USUARIO_ADMIN" ColumnName="NOMBRE_USUARIO_ADMIN" />
+                <ScalarProperty Name="NOMBRE_ADMIN" ColumnName="NOMBRE_ADMIN" />
+                <ScalarProperty Name="APELLIDO_1_ADMIN" ColumnName="APELLIDO_1_ADMIN" />
+                <ScalarProperty Name="APELLIDO_2_ADMIN" ColumnName="APELLIDO_2_ADMIN" />
+                <ScalarProperty Name="TELEFONO_ADMIN" ColumnName="TELEFONO_ADMIN" />
+                <ScalarProperty Name="CONTRASENNA_ADMIN" ColumnName="CONTRASENNA_ADMIN" />
+                <ScalarProperty Name="TIPO_USUARIO" ColumnName="TIPO_USUARIO" />
+                <ScalarProperty Name="CUENTA_ACTIVA" ColumnName="CUENTA_ACTIVA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CARRITOes">
             <EntityTypeMapping TypeName="TIENDA_VIERNESModel.CARRITO">
               <MappingFragment StoreEntitySet="CARRITO">
-                <ScalarProperty Name="NUMERO_CANTIDAD_ANNADIDA" ColumnName="NUMERO_CANTIDAD_ANNADIDA" />
-                <ScalarProperty Name="CARRITO_ACTIVO" ColumnName="CARRITO_ACTIVO" />
-                <ScalarProperty Name="NUMERO_CANTIDAD" ColumnName="NUMERO_CANTIDAD" />
-                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
-                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
                 <ScalarProperty Name="ID_CARRITO" ColumnName="ID_CARRITO" />
+                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
+                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
+                <ScalarProperty Name="NUMERO_CANTIDAD" ColumnName="NUMERO_CANTIDAD" />
+                <ScalarProperty Name="CARRITO_ACTIVO" ColumnName="CARRITO_ACTIVO" />
+                <ScalarProperty Name="NUMERO_CANTIDAD_ANNADIDA" ColumnName="NUMERO_CANTIDAD_ANNADIDA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLASIFICAR_ROPA">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.CLASIFICAR_ROPA">
+              <MappingFragment StoreEntitySet="CLASIFICAR_ROPA">
+                <ScalarProperty Name="ID_CLASIFICACION" ColumnName="ID_CLASIFICACION" />
+                <ScalarProperty Name="CATEGORIA_NUMERO" ColumnName="CATEGORIA_NUMERO" />
+                <ScalarProperty Name="CATEGORIA_PRENDA" ColumnName="CATEGORIA_PRENDA" />
+                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DINERO_PAGO">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.DINERO_PAGO">
+              <MappingFragment StoreEntitySet="DINERO_PAGO">
+                <ScalarProperty Name="ID_DINERO" ColumnName="ID_DINERO" />
+                <ScalarProperty Name="CANTIDAD_DISPONIBLE" ColumnName="CANTIDAD_DISPONIBLE" />
+                <ScalarProperty Name="NUMERO_TARJETA" ColumnName="NUMERO_TARJETA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GENERO_ROPA">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.GENERO_ROPA">
+              <MappingFragment StoreEntitySet="GENERO_ROPA">
+                <ScalarProperty Name="ID_GENERO" ColumnName="ID_GENERO" />
+                <ScalarProperty Name="GENERO_PRENDA" ColumnName="GENERO_PRENDA" />
+                <ScalarProperty Name="NUMERO_GENERO" ColumnName="NUMERO_GENERO" />
+                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="METODO_PAGO">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.METODO_PAGO">
+              <MappingFragment StoreEntitySet="METODO_PAGO">
+                <ScalarProperty Name="NUMERO_TARJETA" ColumnName="NUMERO_TARJETA" />
+                <ScalarProperty Name="NUMERO_EXPIRA_1" ColumnName="NUMERO_EXPIRA_1" />
+                <ScalarProperty Name="NUMERO_EXPIRA_2" ColumnName="NUMERO_EXPIRA_2" />
+                <ScalarProperty Name="CODIGO_TARJETA" ColumnName="CODIGO_TARJETA" />
+                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
+                <ScalarProperty Name="TARJETA_ACTICA" ColumnName="TARJETA_ACTICA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORDEN_COMPRA">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.ORDEN_COMPRA">
+              <MappingFragment StoreEntitySet="ORDEN_COMPRA">
+                <ScalarProperty Name="ID_ORDEN_COMPRA" ColumnName="ID_ORDEN_COMPRA" />
+                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
+                <ScalarProperty Name="NUMERO_TARJETA" ColumnName="NUMERO_TARJETA" />
+                <ScalarProperty Name="COMPRA_TOTAL" ColumnName="COMPRA_TOTAL" />
+                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
+                <ScalarProperty Name="ID_CARRITO" ColumnName="ID_CARRITO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTO_ROPA">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.PRODUCTO_ROPA">
+              <MappingFragment StoreEntitySet="PRODUCTO_ROPA">
+                <ScalarProperty Name="NUMERO_CANTIDAD_PRODUCTO" ColumnName="NUMERO_CANTIDAD_PRODUCTO" />
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="CODIGO_PRODUCTO" ColumnName="CODIGO_PRODUCTO" />
+                <ScalarProperty Name="TIPO_PRENDA" ColumnName="TIPO_PRENDA" />
+                <ScalarProperty Name="PRECIO_PRODUCTO" ColumnName="PRECIO_PRODUCTO" />
+                <ScalarProperty Name="CANTIDAD_PRODUCTO" ColumnName="CANTIDAD_PRODUCTO" />
+                <ScalarProperty Name="DESCRIPCION_PRODUCTO" ColumnName="DESCRIPCION_PRODUCTO" />
+                <ScalarProperty Name="TALLA_PRENDA" ColumnName="TALLA_PRENDA" />
+                <ScalarProperty Name="IMAGEN" ColumnName="IMAGEN" />
+                <ScalarProperty Name="MARCA" ColumnName="MARCA" />
+                <ScalarProperty Name="PRODUCTO_ACTIVO" ColumnName="PRODUCTO_ACTIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="TIENDA_VIERNESModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
+                <ScalarProperty Name="NOMBRE_USUARIO" ColumnName="NOMBRE_USUARIO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDO_1_USUARIO" ColumnName="APELLIDO_1_USUARIO" />
+                <ScalarProperty Name="APELLIDO_2_USUARIO" ColumnName="APELLIDO_2_USUARIO" />
+                <ScalarProperty Name="TELEFONO_USUARIO" ColumnName="TELEFONO_USUARIO" />
+                <ScalarProperty Name="CONTRASENNA" ColumnName="CONTRASENNA" />
+                <ScalarProperty Name="TIPO_USUARIO" ColumnName="TIPO_USUARIO" />
+                <ScalarProperty Name="IMAGEN_USUARIO" ColumnName="IMAGEN_USUARIO" />
+                <ScalarProperty Name="CUENTA_ACTIVA" ColumnName="CUENTA_ACTIVA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

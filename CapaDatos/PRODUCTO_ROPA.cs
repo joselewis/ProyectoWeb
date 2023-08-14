@@ -17,31 +17,31 @@ namespace CapaDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCTO_ROPA()
         {
+            this.CARRITOes = new HashSet<CARRITO>();
             this.CLASIFICAR_ROPA = new HashSet<CLASIFICAR_ROPA>();
             this.GENERO_ROPA = new HashSet<GENERO_ROPA>();
             this.ORDEN_COMPRA = new HashSet<ORDEN_COMPRA>();
-            this.CARRITOes = new HashSet<CARRITO>();
         }
     
         public int ID_PRODUCTO { get; set; }
         public int CODIGO_PRODUCTO { get; set; }
         public string TIPO_PRENDA { get; set; }
         public int PRECIO_PRODUCTO { get; set; }
-        public int NUMERO_CANTIDAD_PRODUCTO { get; set; }
         public int CANTIDAD_PRODUCTO { get; set; }
         public string DESCRIPCION_PRODUCTO { get; set; }
         public string TALLA_PRENDA { get; set; }
         public byte[] IMAGEN { get; set; }
         public string MARCA { get; set; }
         public bool PRODUCTO_ACTIVO { get; set; }
+        public int NUMERO_CANTIDAD_PRODUCTO { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CARRITO> CARRITOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLASIFICAR_ROPA> CLASIFICAR_ROPA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GENERO_ROPA> GENERO_ROPA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDEN_COMPRA> ORDEN_COMPRA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CARRITO> CARRITOes { get; set; }
     }
 }

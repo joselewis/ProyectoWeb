@@ -3,10 +3,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<br />
+
 <center>
-    <asp:Label ID="LblCarritoVacio" runat="server" ForeColor="Black" Visible="false"></asp:Label>
-    <div style="margin-left: 50px; margin-right: 50px;">
+    <h4>Carrito de Compras</h4>
+    <br />
+    <asp:Label runat="server" Visible="false" ForeColor="Black" ID="LblCarritoVacio"></asp:Label>
+</center>
+<div style="margin-left: 25px; margin-right: 25px;">
     <asp:GridView ID="GridViewCarrito" runat="server" AutoGenerateColumns="False" class="table" OnRowDeleting="GridViewCarrito_RowDeleting" DataKeyNames="ID_CARRITO">
         <Columns >
             <%--<asp:TemplateField HeaderText="Imagen">
@@ -58,11 +61,19 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    </div>
-</center>
+</div>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <br />
 <center>
-    <asp:Label ID="LblError" runat="server" ForeColor="red" Visible="false"></asp:Label><asp:Label ID="Label2" runat="server" ForeColor="red" Visible="false"></asp:Label><asp:Label ID="Label7" runat="server" ForeColor="red" Visible="false"></asp:Label><asp:Label ID="Label1" runat="server" ForeColor="red" Visible="false"></asp:Label>
+    <span>
+        <asp:Label runat="server" ID="LblTotal" Visible="false"></asp:Label>
+        <asp:Label runat="server" ID="LblPrecioTotal" Visible="false"></asp:Label>
+    </span>
+    <asp:Label ID="LblError" runat="server" ForeColor="red" Visible="false"></asp:Label>
 </center>
+<br />
+<center>
+    <asp:Button ID="ButtonPagar" class="btn btn-dark" runat="server" OnClick="ButtonPagar_Click" Text="Pagar" Width="150px" Visible="false"/>
+</center>
+<br />
 </asp:Content>

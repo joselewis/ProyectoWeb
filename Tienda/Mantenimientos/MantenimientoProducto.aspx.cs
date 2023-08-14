@@ -23,7 +23,7 @@ namespace Tienda.Mantenimientos
         {
             try
             {
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     var ListadoProductos = ContextoDB.PRODUCTO_ROPA.ToList();
                     ////var ListadoCategorias =  ContextoDB.CLASIFICAR_ROPA.ToList();
@@ -97,7 +97,7 @@ namespace Tienda.Mantenimientos
                 int CodigoProducto = Convert.ToInt32(GridProductos.DataKeys[e.RowIndex].Value);
                 int CodigoClasificarProducto = Convert.ToInt32(GridProductos.DataKeys[e.RowIndex].Value);
 
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     PRODUCTO_ROPA objProducto = ContextoDB.PRODUCTO_ROPA.First(x => x.CODIGO_PRODUCTO == CodigoProducto);
                     CLASIFICAR_ROPA objCategoriaProducto = ContextoDB.CLASIFICAR_ROPA.First(x => x.CODIGO_PRODUCTO == CodigoClasificarProducto);
@@ -154,7 +154,7 @@ namespace Tienda.Mantenimientos
                    txtProductoActivo != null
                    )
                 {
-                    using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                    using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                     {
                         int CodigoProducto = Convert.ToInt32(GridProductos.DataKeys[e.RowIndex].Value);
 

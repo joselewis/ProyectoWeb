@@ -24,7 +24,7 @@ namespace Tienda.MetodoPago
         {
             try
             {
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     String Usuario = Session["CORREO_ELECTRONICO"].ToString();
 
@@ -70,7 +70,7 @@ namespace Tienda.MetodoPago
         {
             try
             {
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     string CorreoUsuario = (string)Page.Session["CORREO_ELECTRONICO"];
 
@@ -122,7 +122,7 @@ namespace Tienda.MetodoPago
 
                 objPago.NUMERO_TARJETA = Int64.Parse((GridMetodoPago.DataKeys[e.RowIndex].Value.ToString()));
 
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     METODO_PAGO aux = ContextoDB.METODO_PAGO.Find(objPago.NUMERO_TARJETA);
 

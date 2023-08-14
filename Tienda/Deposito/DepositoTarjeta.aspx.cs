@@ -19,7 +19,7 @@ namespace Tienda.Deposito
         {
             try
             {
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     DINERO_PAGO oDinero = new DINERO_PAGO();
 

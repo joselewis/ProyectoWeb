@@ -24,7 +24,7 @@ namespace Tienda.Mantenimientos
         {
             try
             {
-                using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
                     var ListadoUsuarios = ContextoDB.USUARIOS.Where(s => s.TIPO_USUARIO == "Normal").ToList();
 
@@ -102,7 +102,7 @@ namespace Tienda.Mantenimientos
                     objUsuario.TELEFONO_USUARIO = (GridUsuarios.FooterRow.FindControl("txt_footer_Telefono_Usuario") as TextBox).Text.Trim();
                     objUsuario.CORREO_ELECTRONICO = (GridUsuarios.FooterRow.FindControl("txt_footer_Correo_Usuario") as TextBox).Text.Trim();
 
-                    using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                    using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                     {
                         ContextoDB.USUARIOS.Add(objUsuario);
                         ContextoDB.SaveChanges();
@@ -125,7 +125,7 @@ namespace Tienda.Mantenimientos
             {
                 String Usuario = Convert.ToString(GridUsuarios.DataKeys[e.RowIndex].Value);
 
-                using (TIENDA_VIERNESEntities ContextoBD = new TIENDA_VIERNESEntities())
+                using (TIENDA_VIERNESEntities1 ContextoBD = new TIENDA_VIERNESEntities1())
                 {
                     USUARIO obj = ContextoBD.USUARIOS.First(X => X.CORREO_ELECTRONICO == Usuario);
                     ContextoBD.USUARIOS.Remove(obj);
@@ -179,7 +179,7 @@ namespace Tienda.Mantenimientos
                     txtCorreo != null &&
                     txtCuentaActiva != null)
                 {
-                    using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+                    using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                     {
                         String IdUsuario = Convert.ToString(GridUsuarios.DataKeys[e.RowIndex].Value);
 

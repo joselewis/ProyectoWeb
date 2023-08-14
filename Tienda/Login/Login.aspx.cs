@@ -21,7 +21,7 @@ namespace Tienda.Login
         #region "Ingreso al sistemas para usuarios normales"
         void IngresarNormal()
         {
-            using (TIENDA_VIERNESEntities contextoDB = new TIENDA_VIERNESEntities())
+            using (TIENDA_VIERNESEntities1 contextoDB = new TIENDA_VIERNESEntities1())
             {
                 try
                 {
@@ -52,7 +52,7 @@ namespace Tienda.Login
         #region "Ingreso al sistemas para usuarios administradores"
         void IngresarAdministrador()
         {
-            using (TIENDA_VIERNESEntities ContextoDB = new TIENDA_VIERNESEntities())
+            using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
             {
                 try
                 {
@@ -100,10 +100,6 @@ namespace Tienda.Login
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "sr1", "Swal.fire('Credenciales Incorrectos, intente de nuevo.')", true);
             }
         }
-        #endregion
-
-        #region "Llamado a los métodos anteriores"
-
         #endregion
 
         protected void BotonInicioSesion_Click(object sender, EventArgs e)
