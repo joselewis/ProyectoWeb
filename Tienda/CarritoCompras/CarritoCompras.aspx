@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 <center>
+    <br />
     <h4>Carrito de Compras</h4>
     <br />
     <asp:Label runat="server" Visible="false" ForeColor="Black" ID="LblCarritoVacio"></asp:Label>

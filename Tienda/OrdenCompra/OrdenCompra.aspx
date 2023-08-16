@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <center>
     <div style="col">
-    <asp:Label ID="LblId" runat="server" Visible="true" Text="Id Orden Compra"></asp:Label>
+        <asp:Label ID="LblId" runat="server" Visible="true" Text="Id Orden Compra"></asp:Label>
     </div> 
     <div style="col">
         <asp:Label ID="LblCorreo" runat="server" Visible="true" Text="Correo"></asp:Label>
