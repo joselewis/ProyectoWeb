@@ -4,9 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">  
 <center>
-</br>
+<br/>
     <h4>Mantenimiento de Productos</h4>
-</br>
+<br/>
 <asp:GridView ID="GridProductos"
     runat="server" class="table"
     AutoGenerateColumns="False"
@@ -21,9 +21,6 @@
     Height="126px" HorizontalAlign="Center">
     <Columns >
         <asp:TemplateField HeaderText="Id">
-            <EditItemTemplate>
-                <asp:TextBox ID="Txt_IdProducto" runat="server" Text='<%# Eval("ID_PRODUCTO") %>'></asp:TextBox>
-            </EditItemTemplate>
             <ItemTemplate>
                 <asp:Label ID="LabelIdAdmin" runat="server" Text='<%# Eval("ID_PRODUCTO") %>'></asp:Label>
             </ItemTemplate>

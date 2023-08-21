@@ -24,40 +24,31 @@ namespace Tienda.PagoFinal
         protected global::System.Web.UI.WebControls.Label LblId;
 
         /// <summary>
-        /// Control LblCorreo.
+        /// Control PanelLbl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblCorreo;
+        protected global::System.Web.UI.WebControls.Panel PanelLbl;
 
         /// <summary>
-        /// Control LblCodigoProducto.
+        /// Control LblTipoPrenda.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblCodigoProducto;
+        protected global::System.Web.UI.WebControls.Label LblTipoPrenda;
 
         /// <summary>
-        /// Control LblIdCarrito.
+        /// Control DropDownMetPago.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblIdCarrito;
-
-        /// <summary>
-        /// Control LblMetodoPago.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblMetodoPago;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownMetPago;
 
         /// <summary>
         /// Control LblTotalPago.
@@ -67,5 +58,23 @@ namespace Tienda.PagoFinal
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblTotalPago;
+
+        /// <summary>
+        /// Control lblError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
+
+        /// <summary>
+        /// Control BtnPagar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnPagar;
     }
 }

@@ -16,7 +16,7 @@ namespace CapaDatos
     {
         public int ID_DINERO { get; set; }
         public int CANTIDAD_DISPONIBLE { get; set; }
-        public Nullable<long> NUMERO_TARJETA { get; set; }
+        public Nullable<decimal> NUMERO_TARJETA { get; set; }
     
         public virtual METODO_PAGO METODO_PAGO { get; set; }
     }

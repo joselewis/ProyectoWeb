@@ -74,7 +74,7 @@
 </center>
 <br />
 <center>
-    <asp:Button ID="ButtonPagar" class="btn btn-dark" runat="server" OnClick="ButtonPagar_Click" Text="Pagar" Width="150px" Visible="false"/>
+    <asp:Button ID="ButtonPagar" class="btn btn-dark" runat="server" OnClick="ButtonPagar_Click" Text="Proceder a Pagar" Width="150px" Visible="false"/>
 </center>
 <br />
 </asp:Content>

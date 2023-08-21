@@ -217,7 +217,7 @@ namespace Tienda.CategoriaRopa
                     oCarrito.NUMERO_CANTIDAD = Convert.ToInt32(DropDownCantidadProducto.SelectedValue);
                     oCarrito.NUMERO_CANTIDAD_ANNADIDA = Convert.ToInt32(DropDownCantidadProducto.SelectedItem.Text);
 
-                    ContextoDB.CARRITOes.Add(oCarrito);
+                    ContextoDB.CARRITO.Add(oCarrito);
                     ContextoDB.SaveChanges();
                 }
             }

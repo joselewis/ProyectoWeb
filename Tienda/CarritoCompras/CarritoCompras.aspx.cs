@@ -95,9 +95,9 @@ namespace Tienda.CarritoCompras
                 {
                     int CarritoId = Convert.ToInt32(GridViewCarrito.DataKeys[e.RowIndex].Value);
 
-                    CARRITO objCarrito = ContextoDB.CARRITOes.First(x => x.ID_CARRITO == CarritoId);
+                    CARRITO objCarrito = ContextoDB.CARRITO.First(x => x.ID_CARRITO == CarritoId);
 
-                    ContextoDB.CARRITOes.Remove(objCarrito);
+                    ContextoDB.CARRITO.Remove(objCarrito);
                     ContextoDB.SaveChanges();
                     CargarCarrito();
 

@@ -51,7 +51,7 @@ namespace Tienda.Perfil
                 {
                     String Usuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                    USUARIO oUsuario = ContextoDB.USUARIOS.First(x => x.CORREO_ELECTRONICO == Usuario);
+                    USUARIOS oUsuario = ContextoDB.USUARIOS.First(x => x.CORREO_ELECTRONICO == Usuario);
 
                     oUsuario.IMAGEN_USUARIO = CajaNuevaFoto.FileBytes;
 

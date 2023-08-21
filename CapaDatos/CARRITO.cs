@@ -27,9 +27,9 @@ namespace CapaDatos
         public bool CARRITO_ACTIVO { get; set; }
         public int NUMERO_CANTIDAD_ANNADIDA { get; set; }
     
-        public virtual USUARIO USUARIO { get; set; }
+        public virtual USUARIOS USUARIOS { get; set; }
+        public virtual PRODUCTO_ROPA PRODUCTO_ROPA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDEN_COMPRA> ORDEN_COMPRA { get; set; }
-        public virtual PRODUCTO_ROPA PRODUCTO_ROPA { get; set; }
     }
 }

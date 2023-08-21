@@ -23,7 +23,7 @@ namespace Tienda.Usuario
             {
                 using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
-                    USUARIO oUsuario = new USUARIO();
+                    USUARIOS oUsuario = new USUARIOS();
 
                     oUsuario.NOMBRE_USUARIO = ReCajaNomUsuario.Text;
                     oUsuario.NOMBRE = ReCajaNombre.Text;

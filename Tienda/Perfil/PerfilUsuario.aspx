@@ -14,7 +14,7 @@
         <asp:DataList ID="DataListFotoPerfil" runat="server" GroupItemCount="4" RepeatDirection="Horizontal" RepeatColumns="3">
             <ItemTemplate>
                 <div class="card-body text-center">
-                  <img src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"IMAGEN_USUARIO"))%>" class="rounded-circle img-fluid" style="width: 170px; height:170px;"/>
+                  <img src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[])DataBinder.Eval(Container.DataItem,"IMAGEN_USUARIO"))%>" class="rounded-circle img-fluid" style="width: 250px; height:250px;"/>
                   <br />
                   <br />
                 </div>
@@ -74,6 +74,12 @@
             </div>
                <hr>
             <div class="row"> 
+                <div class="col-sm-2">
+                  <p class="mb-0">Ordenes de compra:</p>
+                </div>
+                <div class="col-sm-9">
+                  <a href="../OrdenCompra/TodasOrdenesCompra.aspx">Ver ordenes de compra</a>
+                </div>
             </div>
           </div>
       </div>

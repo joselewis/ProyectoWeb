@@ -12,12 +12,12 @@ namespace CapaDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class USUARIO
+    public partial class USUARIOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public USUARIO()
+        public USUARIOS()
         {
-            this.CARRITOes = new HashSet<CARRITO>();
+            this.CARRITO = new HashSet<CARRITO>();
             this.METODO_PAGO = new HashSet<METODO_PAGO>();
             this.ORDEN_COMPRA = new HashSet<ORDEN_COMPRA>();
         }
@@ -35,7 +35,7 @@ namespace CapaDatos
         public bool CUENTA_ACTIVA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CARRITO> CARRITOes { get; set; }
+        public virtual ICollection<CARRITO> CARRITO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<METODO_PAGO> METODO_PAGO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
