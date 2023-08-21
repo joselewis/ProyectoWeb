@@ -60,11 +60,13 @@ namespace Tienda.PagoFinal
 
                             Label newLbl = new Label();
 
+                            int CantidadXProducto = Convert.ToInt32(dtRow["NUMERO_CANTIDAD_ANNADIDA"].ToString()) * Convert.ToInt32(dtRow["PRECIO_PRODUCTO"].ToString());
+
                             newLbl.ID = "Lbl" + dt;
 
                             newLbl.Text = "x" + dtRow["NUMERO_CANTIDAD_ANNADIDA"].ToString() + " " + 
                                                 dtRow["TIPO_PRENDA"].ToString() + " " + 
-                                                dtRow["PRECIO_PRODUCTO"].ToString() + 
+                                                CantidadXProducto.ToString() + 
                                                 "<br/>";
 
                             PanelLbl.Controls.Add(newLbl);
