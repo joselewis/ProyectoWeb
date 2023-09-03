@@ -159,19 +159,18 @@ namespace Tienda.Productos.ProductoEspecifico
             {
                 using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
                 {
-                    CARRITO oCarrito = new CARRITO();
+                    DETALLE_CARRITO oDetalleCarrito = new DETALLE_CARRITO();
 
                     string CorreoUsuario = (string)Page.Session["CORREO_ELECTRONICO"];
 
                     id = Convert.ToInt32(Request.QueryString["id"].ToString());
 
-                    oCarrito.CORREO_ELECTRONICO = CorreoUsuario;
-                    oCarrito.CODIGO_PRODUCTO = id;
-                    oCarrito.CARRITO_ACTIVO = true;
-                    oCarrito.NUMERO_CANTIDAD = Convert.ToInt32(DropDownCantidadProducto.SelectedValue);
-                    oCarrito.NUMERO_CANTIDAD_ANNADIDA = Convert.ToInt32(DropDownCantidadProducto.SelectedItem.Text);
+                    oDetalleCarrito.CORREO_ELECTRONICO = CorreoUsuario;
+                    oDetalleCarrito.CODIGO_PRODUCTO = id;
+                    oDetalleCarrito.NUMERO_CANTIDAD = Convert.ToInt32(DropDownCantidadProducto.SelectedValue);
+                    oDetalleCarrito.NUMERO_CANTIDAD_ANNADIDA = Convert.ToInt32(DropDownCantidadProducto.SelectedItem.Text);
 
-                    ContextoDB.CARRITO.Add(oCarrito);
+                    ContextoDB.DETALLE_CARRITO.Add(oDetalleCarrito);
                     ContextoDB.SaveChanges();
                 }
             }

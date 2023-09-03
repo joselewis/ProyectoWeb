@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Http;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CapaDatos;
@@ -19,13 +20,14 @@ namespace Tienda.PagoFinal
         protected void Page_Load(object sender, EventArgs e)
         {
             SacarOrdenCompra();
-            DesplegarMetodoPagoDDL();
-            SumarPrecio();
+            //DesplegarMetodoPagoDDL();
+            //SumarPrecio();
         }
 
         void SacarOrdenCompra()
         {
             String Rol = Session["TIPO_USUARIO"].ToString();
+            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
             try
             {
@@ -41,7 +43,7 @@ namespace Tienda.PagoFinal
                         SqlCommand cmd = new SqlCommand("SP_INFO_PRODUCTO_ORDEN_COMPRA", connection);
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("ID", "SP_INFO_PRODUCTO_ORDEN_COMPRA");
+                        cmd.Parameters.AddWithValue("@CORREO_ELECTRONICO", CorreoUsuario);
 
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
@@ -53,10 +55,9 @@ namespace Tienda.PagoFinal
                         foreach (DataRow dtRow in dt.Rows)
                         {
                             int Precio = Convert.ToInt32(dtRow["PRECIO_PRODUCTO"].ToString());
-                            string Prenda = Convert.ToString(dtRow["TIPO_PRENDA"].ToString()); 
+                            string Prenda = Convert.ToString(dtRow["TIPO_PRENDA"].ToString());
 
                             LblId.Text = "Id orden: " + dtRow["ID_ORDEN_COMPRA"].ToString();
-
 
                             Label newLbl = new Label();
 
@@ -64,13 +65,13 @@ namespace Tienda.PagoFinal
 
                             newLbl.ID = "Lbl" + dt;
 
-                            newLbl.Text = "x" + dtRow["NUMERO_CANTIDAD_ANNADIDA"].ToString() + " " + 
-                                                dtRow["TIPO_PRENDA"].ToString() + " " + 
-                                                CantidadXProducto.ToString() + 
+                            newLbl.Text = "x" + dtRow["NUMERO_CANTIDAD_ANNADIDA"].ToString() + " " +
+                                                dtRow["TIPO_PRENDA"].ToString() + " " +
+                                                CantidadXProducto.ToString() +
                                                 "<br/>";
 
                             PanelLbl.Controls.Add(newLbl);
-                        }                 
+                        }
                     }
                 }
             }

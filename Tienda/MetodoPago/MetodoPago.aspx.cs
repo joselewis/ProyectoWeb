@@ -114,7 +114,7 @@ namespace Tienda.MetodoPago
                 if (e.CommandName.Equals("AddNew"))
                 {
                     METODO_PAGO objPago = new METODO_PAGO();
-                    USUARIOS objUsuario = new USUARIOS();
+                    USUARIO objUsuario = new USUARIO();
 
                     String Usuario = Request.QueryString["CORREO_ELECTRONICO"];
                     String SessionUsuario = Session["CORREO_ELECTRONICO"].ToString();

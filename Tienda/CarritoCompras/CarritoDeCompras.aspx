@@ -1,17 +1,24 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PáginaPrincipal.Master" AutoEventWireup="true" CodeBehind="CarritoCompras.aspx.cs" Inherits="Tienda.CarritoCompras.CarritoCompras" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PáginaPrincipal.Master" AutoEventWireup="true" CodeBehind="CarritoDeCompras.aspx.cs" Inherits="Tienda.CarritoCompras.CarritoDeCompras" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
 <center>
     <br />
     <h4>Carrito de Compras</h4>
     <br />
     <asp:Label runat="server" Visible="false" ForeColor="Black" ID="LblCarritoVacio"></asp:Label>
+    <asp:Label runat="server" Visible="true" ForeColor="Black" ID="LblEstadoCarrito" Text="Estado"></asp:Label>
+    <asp:Label runat="server" Visible="true" ForeColor="Black" ID="LblIdCarrito"></asp:Label>
 </center>
 <div style="margin-left: 25px; margin-right: 25px;">
-    <asp:GridView ID="GridViewCarrito" runat="server" AutoGenerateColumns="False" class="table" OnRowDeleting="GridViewCarrito_RowDeleting" DataKeyNames="ID_CARRITO">
+    <asp:GridView ID="GridViewCarrito" 
+        runat="server" 
+        AutoGenerateColumns="False" 
+        class="table" 
+        OnRowDeleting="GridViewCarrito_RowDeleting" 
+        DataKeyNames="ID_DETALLE_CARRITO">
+
         <Columns >
             <%--<asp:TemplateField HeaderText="Imagen">
                 <ItemTemplate>
@@ -19,7 +26,13 @@
                 </ItemTemplate>
             </asp:TemplateField>--%>
 
-            <asp:TemplateField HeaderText="Nombre">
+            <asp:TemplateField HeaderText="Id" Visible="false">
+                <ItemTemplate>
+                    <asp:Label ID="LabelId" runat="server" Text='<%# Eval("ID_DETALLE_CARRITO") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Prenda">
                 <ItemTemplate>
                     <asp:Label ID="LabelTipoPrenda" runat="server" Text='<%# Eval("TIPO_PRENDA") %>'></asp:Label>
                 </ItemTemplate>
@@ -33,7 +46,7 @@
             
             <asp:TemplateField HeaderText="Cantidad">
                 <ItemTemplate>
-                    <asp:Label ID="LabelCantidaProducto" runat="server" Text='<%# Eval("NUMERO_CANTIDAD") %>'></asp:Label>
+                    <asp:Label ID="LabelCantidaProducto" runat="server" Text='<%# Eval("NUMERO_CANTIDAD_ANNADIDA") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
 
@@ -74,7 +87,7 @@
 </center>
 <br />
 <center>
-    <asp:Button ID="ButtonPagar" class="btn btn-dark" runat="server" OnClick="ButtonPagar_Click" Text="Proceder a Pagar" Width="150px" Visible="false"/>
+    <asp:Button ID="ButtonPagar" class="btn btn-dark" runat="server" OnClick="ButtonPagar_Click" Text="Proceder a Pagar" Width="150px" Visible="true"/>
 </center>
 <br />
 </asp:Content>

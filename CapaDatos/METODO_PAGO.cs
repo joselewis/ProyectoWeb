@@ -28,10 +28,10 @@ namespace CapaDatos
         public string CORREO_ELECTRONICO { get; set; }
         public bool TARJETA_ACTICA { get; set; }
     
-        public virtual USUARIOS USUARIOS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DINERO_PAGO> DINERO_PAGO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDEN_COMPRA> ORDEN_COMPRA { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

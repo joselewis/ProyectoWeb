@@ -35,7 +35,7 @@ namespace Tienda.Mantenimientos
                     }
                     else
                     {
-                        USUARIOS objUsuario = new USUARIOS();
+                        USUARIO objUsuario = new USUARIO();
                         ListadoUsuarios.Add(objUsuario);
                         GridUsuarios.DataSource = ListadoUsuarios;
                         GridUsuarios.DataBind();
@@ -93,7 +93,7 @@ namespace Tienda.Mantenimientos
 
                 if (e.CommandName.Equals("AddNew") && ValidarFooter == 1)
                 {
-                    USUARIOS objUsuario = new USUARIOS();
+                    USUARIO objUsuario = new USUARIO();
 
                     objUsuario.NOMBRE_USUARIO = (GridUsuarios.FooterRow.FindControl("txt_footer_Usuario") as TextBox).Text.Trim();
                     objUsuario.NOMBRE = (GridUsuarios.FooterRow.FindControl("txt_footer_Nombre_Usuario") as TextBox).Text.Trim();
@@ -127,7 +127,7 @@ namespace Tienda.Mantenimientos
 
                 using (TIENDA_VIERNESEntities1 ContextoBD = new TIENDA_VIERNESEntities1())
                 {
-                    USUARIOS obj = ContextoBD.USUARIOS.First(X => X.CORREO_ELECTRONICO == Usuario);
+                    USUARIO obj = ContextoBD.USUARIOS.First(X => X.CORREO_ELECTRONICO == Usuario);
                     ContextoBD.USUARIOS.Remove(obj);
                     ContextoBD.SaveChanges();
                     lblCamposNulos.Text = "Eliminado correctamente";
@@ -184,7 +184,7 @@ namespace Tienda.Mantenimientos
                         String IdUsuario = Convert.ToString(GridUsuarios.DataKeys[e.RowIndex].Value);
 
 
-                        USUARIOS obj = ContextoDB.USUARIOS.First(x => x.CORREO_ELECTRONICO == IdUsuario);
+                        USUARIO obj = ContextoDB.USUARIOS.First(x => x.CORREO_ELECTRONICO == IdUsuario);
 
                         obj.NOMBRE_USUARIO = txtIdUsuario.Text;
                         obj.CORREO_ELECTRONICO = txtCorreo.Text;

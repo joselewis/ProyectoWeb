@@ -51,7 +51,7 @@ namespace Tienda.Perfil
                 {
                     String Usuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                    USUARIOS oUsuario = ContextoDB.USUARIOS.First(x => x.CORREO_ELECTRONICO == Usuario);
+                    USUARIO oUsuario = ContextoDB.USUARIOS.First(x => x.CORREO_ELECTRONICO == Usuario);
 
                     oUsuario.IMAGEN_USUARIO = CajaNuevaFoto.FileBytes;
 
@@ -65,9 +65,6 @@ namespace Tienda.Perfil
                 lblCamposNulo.Visible = true;
                 lblCamposNulo.Text = ex.Message;
             }
-
-            //"UPDATE USUARIOS SET IMAGEN_USUARIO = NULL WHERE CORREO_ELECTRONICO = '
-            //"UPDATE USUARIOS SET IMAGEN_USUARIO ='" + NuevaImagenUsuario + "'" + "WHERE CORREO_ELECTRONICO ='" + SessionUsuario + "'";
         }
 
         void ValidarCambio()

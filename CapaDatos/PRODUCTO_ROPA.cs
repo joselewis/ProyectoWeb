@@ -17,10 +17,9 @@ namespace CapaDatos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PRODUCTO_ROPA()
         {
-            this.CARRITO = new HashSet<CARRITO>();
             this.CLASIFICAR_ROPA = new HashSet<CLASIFICAR_ROPA>();
+            this.DETALLE_CARRITO = new HashSet<DETALLE_CARRITO>();
             this.GENERO_ROPA = new HashSet<GENERO_ROPA>();
-            this.ORDEN_COMPRA = new HashSet<ORDEN_COMPRA>();
         }
     
         public int ID_PRODUCTO { get; set; }
@@ -36,12 +35,10 @@ namespace CapaDatos
         public int NUMERO_CANTIDAD_PRODUCTO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CARRITO> CARRITO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLASIFICAR_ROPA> CLASIFICAR_ROPA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GENERO_ROPA> GENERO_ROPA { get; set; }
+        public virtual ICollection<DETALLE_CARRITO> DETALLE_CARRITO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ORDEN_COMPRA> ORDEN_COMPRA { get; set; }
+        public virtual ICollection<GENERO_ROPA> GENERO_ROPA { get; set; }
     }
 }
