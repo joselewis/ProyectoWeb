@@ -5,10 +5,10 @@
 <br />
 <center>
     <h4>Orden de Compra</h4>
-    <div style="col">
+    <%--<div style="col">
         <br />
         <asp:Label ID="LblId" runat="server" Visible="true" Text="Id Orden Compra"></asp:Label>
-    </div> 
+    </div>--%> 
     <div style="col">
         <asp:Panel runat="server" ID="PanelLbl">
             <asp:Label ID="LblTipoPrenda" runat="server" Visible="true" Text="Prenda"></asp:Label>

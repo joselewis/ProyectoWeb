@@ -20,8 +20,8 @@ namespace Tienda.PagoFinal
         protected void Page_Load(object sender, EventArgs e)
         {
             SacarOrdenCompra();
-            //DesplegarMetodoPagoDDL();
-            //SumarPrecio();
+            DesplegarMetodoPagoDDL();
+            SumarPrecio();
         }
 
         void SacarOrdenCompra()
@@ -57,7 +57,7 @@ namespace Tienda.PagoFinal
                             int Precio = Convert.ToInt32(dtRow["PRECIO_PRODUCTO"].ToString());
                             string Prenda = Convert.ToString(dtRow["TIPO_PRENDA"].ToString());
 
-                            LblId.Text = "Id orden: " + dtRow["ID_ORDEN_COMPRA"].ToString();
+                            //LblId.Text = "Id orden: " + dtRow["ID_ORDEN_COMPRA"].ToString();
 
                             Label newLbl = new Label();
 
@@ -67,7 +67,7 @@ namespace Tienda.PagoFinal
 
                             newLbl.Text = "x" + dtRow["NUMERO_CANTIDAD_ANNADIDA"].ToString() + " " +
                                                 dtRow["TIPO_PRENDA"].ToString() + " " +
-                                                CantidadXProducto.ToString() +
+                                                "₡ " + CantidadXProducto.ToString() +
                                                 "<br/>";
 
                             PanelLbl.Controls.Add(newLbl);
@@ -103,9 +103,8 @@ namespace Tienda.PagoFinal
                 if (dr.Read())
                 {
                     string Tarjeta = Convert.ToString(dr["NUMERO_TARJETA"].ToString());
-                    
-                    DropDownMetPago.Items.Add(new ListItem(Tarjeta.ToString(), Tarjeta.ToString()));
 
+                    DropDownMetPago.Items.Add(new ListItem(Tarjeta.ToString(), Tarjeta.ToString()));  
                 }
                 con.Close();
             }
@@ -129,14 +128,15 @@ namespace Tienda.PagoFinal
                     string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
                     SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
-                    string Command = "SELECT SUM(PRECIO_PRODUCTO * NUMERO_CANTIDAD) AS TOTAL FROM PRODUCTO_ROPA INNER JOIN CARRITO ON CARRITO.CODIGO_PRODUCTO = PRODUCTO_ROPA.CODIGO_PRODUCTO " +
-                                     "INNER JOIN USUARIOS ON USUARIOS.CORREO_ELECTRONICO = CARRITO.CORREO_ELECTRONICO WHERE USUARIOS.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+                    string Command = "SELECT SUM(PRECIO_PRODUCTO * NUMERO_CANTIDAD_ANNADIDA) AS TOTAL FROM PRODUCTO_ROPA " +
+                                     "INNER JOIN DETALLE_CARRITO ON DETALLE_CARRITO.CODIGO_PRODUCTO = PRODUCTO_ROPA.CODIGO_PRODUCTO " +
+                                     "INNER JOIN USUARIOS ON USUARIOS.CORREO_ELECTRONICO = DETALLE_CARRITO.CORREO_ELECTRONICO WHERE USUARIOS.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
 
                     SqlConnection SqlServer = new SqlConnection(cs);
                     con.Open();
                     SqlCommand cmd = new SqlCommand(Command, con);
 
-                    LblTotalPago.Text = "Total: " + Convert.ToString(cmd.ExecuteScalar());
+                    LblTotalPago.Text = "Total: ₡ " + Convert.ToString(cmd.ExecuteScalar());
 
                     con.Close();
                 }
