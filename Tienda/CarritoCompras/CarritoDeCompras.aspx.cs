@@ -12,10 +12,6 @@ namespace Tienda.CarritoCompras
 {
     public partial class CarritoDeCompras : System.Web.UI.Page
     {
-        int id;
-        int ValidarCarrito = 0;
-        bool NumeroCreado = false;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -23,8 +19,9 @@ namespace Tienda.CarritoCompras
                 CargarCarrito();
                 LabelUsuarioCarrito();
                 SumarPrecio();
-                SacarIdCarrito();
-                ValidarCreacionCarrito();
+                //SacarIdCarrito();
+                //ValidarCreacionCarrito();
+                MostrarBoton();
             }
         }
 
@@ -66,6 +63,26 @@ namespace Tienda.CarritoCompras
                 }
             }
             catch (Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
+        }
+
+        void MostrarBoton()
+        {
+            try
+            {
+                if(GridViewCarrito.Rows.Count <= 0)
+                {
+                    ButtonPagar.Visible = false;
+                }
+                else
+                {
+                    ButtonPagar.Visible = true;
+                }
+            }
+            catch(Exception ex)
             {
                 LblError.Visible = true;
                 LblError.Text = ex.Message;
@@ -139,45 +156,45 @@ namespace Tienda.CarritoCompras
             }
         }
 
-        void SacarIdCarrito()
-        {
-            String Rol = Session["TIPO_USUARIO"].ToString();
+        //void SacarIdCarrito()
+        //{
+        //    String Rol = Session["TIPO_USUARIO"].ToString();
 
-            try
-            {
-                if (Rol == "Normal")
-                {
-                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+        //    try
+        //    {
+        //        if (Rol == "Normal")
+        //        {
+        //            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                    string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-                    SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+        //            string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+        //            SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
-                    string Command = "SELECT ID_DETALLE_CARRITO FROM DETALLE_CARRITO WHERE DETALLE_CARRITO.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+        //            string Command = "SELECT ID_DETALLE_CARRITO FROM DETALLE_CARRITO WHERE DETALLE_CARRITO.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
 
-                    SqlConnection SqlServer = new SqlConnection(cs);
-                    con.Open();
+        //            SqlConnection SqlServer = new SqlConnection(cs);
+        //            con.Open();
 
-                    SqlCommand cmd = new SqlCommand(Command, con);
+        //            SqlCommand cmd = new SqlCommand(Command, con);
 
-                    SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
+        //            SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
 
-                    SqlDataReader dr = cmd.ExecuteReader();
+        //            SqlDataReader dr = cmd.ExecuteReader();
 
-                    if (dr.Read())
-                    {
-                        int Id = Convert.ToInt32(dr["ID_DETALLE_CARRITO"]);
-                        LblIdCarrito.Text = Id.ToString();
-                    }
+        //            if (dr.Read())
+        //            {
+        //                int Id = Convert.ToInt32(dr["ID_DETALLE_CARRITO"]);
+        //                LblIdCarrito.Text = Id.ToString();
+        //            }
 
-                    con.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                LblError.Visible = true;
-                LblError.Text = ex.Message;
-            }
-        }
+        //            con.Close();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LblError.Visible = true;
+        //        LblError.Text = ex.Message;
+        //    }
+        //}
 
         protected void GridViewCarrito_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -203,95 +220,87 @@ namespace Tienda.CarritoCompras
             }
         }
 
-        void CrearCarrito()
-        {
-            try
-            {
-                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
-                {
-                    CARRITO oCarrito = new CARRITO();
+        //void CrearCarrito()
+        //{
+        //    try
+        //    {
+        //        using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
+        //        {
+        //            CARRITO oCarrito = new CARRITO();
 
-                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+        //            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                    oCarrito.CORREO_ELECTRONICO = CorreoUsuario;
-                    oCarrito.CARRITO_ACTIVO = true;
-                    oCarrito.ESTADO_CARRITO = "Procesando";
-                    oCarrito.CANTIDAD = Convert.ToInt32(LblPrecioTotal.Text);
+        //            oCarrito.CORREO_ELECTRONICO = CorreoUsuario;
+        //            oCarrito.CARRITO_ACTIVO = true;
+        //            oCarrito.ESTADO_CARRITO = "Procesando";
                     
-                    ContextoDB.CARRITOes.Add(oCarrito);
-                    ContextoDB.SaveChanges();
-                }
-            }
-            catch(Exception ex)
-            {
-                LblError.Visible = true;
-                LblError.Text = ex.Message;
-            }
-        }
+        //            ContextoDB.CARRITOes.Add(oCarrito);
+        //            ContextoDB.SaveChanges();
+        //        }
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        LblError.Visible = true;
+        //        LblError.Text = ex.Message;
+        //    }
+        //}
 
-        void ValidarCreacionCarrito()
-        {
-            String Rol = Session["TIPO_USUARIO"].ToString();
+        //void ValidarCreacionCarrito()
+        //{
+        //    String Rol = Session["TIPO_USUARIO"].ToString();
 
-            try
-            {
-                if (Rol == "Normal")
-                {
-                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+        //    try
+        //    {
+        //        if (Rol == "Normal")
+        //        {
+        //            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                    string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-                    SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+        //            string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+        //            SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
-                    string Command = "SELECT CARRITO_ACTIVO FROM CARRITO WHERE CARRITO.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+        //            string Command = "SELECT CARRITO_ACTIVO FROM CARRITO WHERE CARRITO.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
 
-                    SqlConnection SqlServer = new SqlConnection(cs);
-                    con.Open();
+        //            SqlConnection SqlServer = new SqlConnection(cs);
+        //            con.Open();
 
-                    SqlCommand cmd = new SqlCommand(Command, con);
+        //            SqlCommand cmd = new SqlCommand(Command, con);
 
-                    SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
+        //            SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
 
-                    SqlDataReader dr = cmd.ExecuteReader();
+        //            SqlDataReader dr = cmd.ExecuteReader();
 
-                    if (dr.HasRows == true)
-                    {
-                        dr.Read();
-                        LblEstadoCarrito.Text = dr["CARRITO_ACTIVO"].ToString();
+        //            if (dr.HasRows == true)
+        //            {
+        //                dr.Read();
+        //                LblEstadoCarrito.Text = dr["CARRITO_ACTIVO"].ToString();
 
-                        dr.Close();
-                    }
-                    else
-                    {
-                        if(GridViewCarrito.Rows.Count > 0)
-                        {
-                            CrearCarrito();
-                        }
-                        else
-                        {
-                            LblError.Visible = false;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                LblError.Visible = true;
-                LblError.Text = ex.Message;
-            }   
-        }
+        //                dr.Close();
+        //            }
+        //            else
+        //            {
+        //                if(GridViewCarrito.Rows.Count > 0)
+        //                {
+        //                    CrearCarrito();
+        //                }
+        //                else
+        //                {
+        //                    LblError.Visible = false;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LblError.Visible = true;
+        //        LblError.Text = ex.Message;
+        //    }   
+        //}
 
         protected void ButtonPagar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (LblEstadoCarrito.Text == "True")
-                {
-                    Response.Redirect("../OrdenCompra/OrdenCompra.aspx");
-                }
-                else
-                {
-                    LblError.Visible = false;
-                }
+                Response.Redirect("../OrdenCompra/OrdenCompra.aspx");
             }
             catch (Exception ex)
             {

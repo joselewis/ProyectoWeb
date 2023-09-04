@@ -14,12 +14,19 @@ namespace CapaDatos
     
     public partial class CARRITO
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CARRITO()
+        {
+            this.DETALLE_CARRITO = new HashSet<DETALLE_CARRITO>();
+        }
+    
         public int ID_CARRITO { get; set; }
         public string CORREO_ELECTRONICO { get; set; }
         public bool CARRITO_ACTIVO { get; set; }
         public string ESTADO_CARRITO { get; set; }
-        public int CANTIDAD { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DETALLE_CARRITO> DETALLE_CARRITO { get; set; }
         public virtual USUARIO USUARIO { get; set; }
     }
 }

@@ -3,6 +3,8 @@
     <link href="../Css/Productos/ProductoEspecifico/ProductoEspecificoCss.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Label runat="server" Visible="false" ForeColor="Black" ID="LblEstadoCarrito"></asp:Label>
+<asp:Label runat="server" Visible="true" ForeColor="Black" ID="LblIdCarrito"></asp:Label>
 <br />
 <section>
     <div class="container flex">

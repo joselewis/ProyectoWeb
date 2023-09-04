@@ -28,7 +28,6 @@
           <Property Name="CORREO_ELECTRONICO" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CARRITO_ACTIVO" Type="bit" Nullable="false" />
           <Property Name="ESTADO_CARRITO" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="CANTIDAD" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CLASIFICAR_ROPA">
           <Key>
@@ -47,6 +46,7 @@
           <Property Name="CODIGO_PRODUCTO" Type="int" Nullable="false" />
           <Property Name="NUMERO_CANTIDAD" Type="int" Nullable="false" />
           <Property Name="NUMERO_CANTIDAD_ANNADIDA" Type="int" Nullable="false" />
+          <Property Name="ID_CARRITO" Type="int" Nullable="false" />
           <Property Name="CORREO_ELECTRONICO" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="DINERO_PAGO">
@@ -118,6 +118,18 @@
           <Property Name="IMAGEN_USUARIO" Type="varbinary(max)" />
           <Property Name="CUENTA_ACTIVA" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_CARRITO_DETALLE">
+          <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="1" />
+          <End Role="DETALLE_CARRITO" Type="Self.DETALLE_CARRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARRITO">
+              <PropertyRef Name="ID_CARRITO" />
+            </Principal>
+            <Dependent Role="DETALLE_CARRITO">
+              <PropertyRef Name="ID_CARRITO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CARRITO_USUARIO">
           <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
           <End Role="CARRITO" Type="Self.CARRITO" Multiplicity="*" />
@@ -237,6 +249,10 @@
           <EntitySet Name="ORDEN_COMPRA" EntityType="Self.ORDEN_COMPRA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTO_ROPA" EntityType="Self.PRODUCTO_ROPA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CARRITO_DETALLE" Association="Self.FK_CARRITO_DETALLE">
+            <End Role="CARRITO" EntitySet="CARRITO" />
+            <End Role="DETALLE_CARRITO" EntitySet="DETALLE_CARRITO" />
+          </AssociationSet>
           <AssociationSet Name="FK_CARRITO_USUARIO" Association="Self.FK_CARRITO_USUARIO">
             <End Role="USUARIOS" EntitySet="USUARIOS" />
             <End Role="CARRITO" EntitySet="CARRITO" />
@@ -321,6 +337,10 @@
             <End Role="ORDEN_COMPRA" EntitySet="ORDEN_COMPRA" />
           </AssociationSet>
           <EntitySet Name="CARRITOes" EntityType="TIENDA_VIERNESModel.CARRITO" />
+          <AssociationSet Name="FK_CARRITO_DETALLE" Association="TIENDA_VIERNESModel.FK_CARRITO_DETALLE">
+            <End Role="CARRITO" EntitySet="CARRITOes" />
+            <End Role="DETALLE_CARRITO" EntitySet="DETALLE_CARRITO" />
+          </AssociationSet>
           <AssociationSet Name="FK_CARRITO_USUARIO" Association="TIENDA_VIERNESModel.FK_CARRITO_USUARIO">
             <End Role="USUARIO" EntitySet="USUARIOS" />
             <End Role="CARRITO" EntitySet="CARRITOes" />
@@ -362,6 +382,8 @@
           <Property Name="CORREO_ELECTRONICO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="USUARIO" Relationship="TIENDA_VIERNESModel.FK_DETALLE_CARRITO_USUARIO" FromRole="DETALLE_CARRITO" ToRole="USUARIO" />
           <NavigationProperty Name="PRODUCTO_ROPA" Relationship="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" FromRole="DETALLE_CARRITO" ToRole="PRODUCTO_ROPA" />
+          <Property Name="ID_CARRITO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CARRITO" Relationship="TIENDA_VIERNESModel.FK_CARRITO_DETALLE" FromRole="DETALLE_CARRITO" ToRole="CARRITO" />
         </EntityType>
         <EntityType Name="DINERO_PAGO">
           <Key>
@@ -550,9 +572,21 @@
           <Property Name="CORREO_ELECTRONICO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CARRITO_ACTIVO" Type="Boolean" Nullable="false" />
           <Property Name="ESTADO_CARRITO" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="CANTIDAD" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DETALLE_CARRITO" Relationship="TIENDA_VIERNESModel.FK_CARRITO_DETALLE" FromRole="CARRITO" ToRole="DETALLE_CARRITO" />
           <NavigationProperty Name="USUARIO" Relationship="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" FromRole="CARRITO" ToRole="USUARIO" />
         </EntityType>
+        <Association Name="FK_CARRITO_DETALLE">
+          <End Type="TIENDA_VIERNESModel.CARRITO" Role="CARRITO" Multiplicity="1" />
+          <End Type="TIENDA_VIERNESModel.DETALLE_CARRITO" Role="DETALLE_CARRITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CARRITO">
+              <PropertyRef Name="ID_CARRITO" />
+            </Principal>
+            <Dependent Role="DETALLE_CARRITO">
+              <PropertyRef Name="ID_CARRITO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CARRITO_USUARIO">
           <End Type="TIENDA_VIERNESModel.USUARIO" Role="USUARIO" Multiplicity="1" />
           <End Type="TIENDA_VIERNESModel.CARRITO" Role="CARRITO" Multiplicity="*" />
@@ -600,6 +634,7 @@
           <EntitySetMapping Name="DETALLE_CARRITO">
             <EntityTypeMapping TypeName="TIENDA_VIERNESModel.DETALLE_CARRITO">
               <MappingFragment StoreEntitySet="DETALLE_CARRITO">
+                <ScalarProperty Name="ID_CARRITO" ColumnName="ID_CARRITO" />
                 <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />
                 <ScalarProperty Name="NUMERO_CANTIDAD_ANNADIDA" ColumnName="NUMERO_CANTIDAD_ANNADIDA" />
                 <ScalarProperty Name="NUMERO_CANTIDAD" ColumnName="NUMERO_CANTIDAD" />
@@ -686,7 +721,6 @@
           <EntitySetMapping Name="CARRITOes">
             <EntityTypeMapping TypeName="TIENDA_VIERNESModel.CARRITO">
               <MappingFragment StoreEntitySet="CARRITO">
-                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
                 <ScalarProperty Name="ESTADO_CARRITO" ColumnName="ESTADO_CARRITO" />
                 <ScalarProperty Name="CARRITO_ACTIVO" ColumnName="CARRITO_ACTIVO" />
                 <ScalarProperty Name="CORREO_ELECTRONICO" ColumnName="CORREO_ELECTRONICO" />

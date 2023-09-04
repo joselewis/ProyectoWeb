@@ -22,6 +22,7 @@ namespace Tienda.Productos.ProductoEspecifico
             {
                 MostrarImagen();
                 CargarInfoProducto();
+                SacarIdCarrito();
                 //CargarCantidaProducto();
                 DesplegarCuentaDDL();
                 MostrarBoton();
@@ -153,6 +154,46 @@ namespace Tienda.Productos.ProductoEspecifico
             }
         }
 
+        void SacarIdCarrito()
+        {
+            String Rol = Session["TIPO_USUARIO"].ToString();
+
+            try
+            {
+                if (Rol == "Normal")
+                {
+                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+
+                    string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                    SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+
+                    string Command = "SELECT ID_CARRITO FROM CARRITO WHERE CARRITO.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+
+                    SqlConnection SqlServer = new SqlConnection(cs);
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand(Command, con);
+
+                    SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        int Id = Convert.ToInt32(dr["ID_CARRITO"]);
+                        LblIdCarrito.Text = Id.ToString();
+                    }
+
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }
+
         void AnnadirAlCarrito()
         {
             try
@@ -169,6 +210,7 @@ namespace Tienda.Productos.ProductoEspecifico
                     oDetalleCarrito.CODIGO_PRODUCTO = id;
                     oDetalleCarrito.NUMERO_CANTIDAD = Convert.ToInt32(DropDownCantidadProducto.SelectedValue);
                     oDetalleCarrito.NUMERO_CANTIDAD_ANNADIDA = Convert.ToInt32(DropDownCantidadProducto.SelectedItem.Text);
+                    oDetalleCarrito.ID_CARRITO = Convert.ToInt32(LblIdCarrito.Text);
 
                     ContextoDB.DETALLE_CARRITO.Add(oDetalleCarrito);
                     ContextoDB.SaveChanges();
@@ -196,15 +238,93 @@ namespace Tienda.Productos.ProductoEspecifico
             }
         }
 
+        void CrearCarrito()
+        {
+            try
+            {
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
+                {
+                    CARRITO oCarrito = new CARRITO();
+
+                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+
+                    oCarrito.CORREO_ELECTRONICO = CorreoUsuario;
+                    oCarrito.CARRITO_ACTIVO = true;
+                    oCarrito.ESTADO_CARRITO = "Iniciando";
+
+                    ContextoDB.CARRITOes.Add(oCarrito);
+                    ContextoDB.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }
+
+        void ValidarCreacionCarrito()
+        {
+            String Rol = Session["TIPO_USUARIO"].ToString();
+            id = Convert.ToInt32(Request.QueryString["id"].ToString());
+
+            try
+            {
+                if (Rol == "Normal")
+                {
+                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+
+                    string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                    SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+
+                    string Command = "SELECT CARRITO_ACTIVO FROM CARRITO WHERE CARRITO.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+
+                    SqlConnection SqlServer = new SqlConnection(cs);
+                    con.Open();
+
+                    SqlCommand cmd = new SqlCommand(Command, con);
+
+                    SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows == true)
+                    {
+                        dr.Read();
+                        LblEstadoCarrito.Text = dr["CARRITO_ACTIVO"].ToString();
+
+                        AnnadirAlCarrito();
+                        Response.Redirect("../Productos/ProductoEspecifico2.aspx?id=" + id);
+
+                        dr.Close();
+                    }
+                    else
+                    {
+                        if (LblEstadoCarrito.Text != "True")
+                        {
+                            CrearCarrito();
+                            AnnadirAlCarrito();
+                        }
+                        else
+                        {
+                            lblError.Visible = true;
+                            lblError.Text = "Ha ocurrido un error al agregar este producto";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }
+
         protected void BotonAnnadirCarrito_Click1(object sender, EventArgs e)
         {
             try
             {
-                AnnadirAlCarrito();
-
-                id = Convert.ToInt32(Request.QueryString["id"].ToString());
-
-                Response.Redirect("../Productos/ProductoEspecifico2.aspx?id=" + id);
+                ValidarCreacionCarrito();
             }
             catch (Exception ex)
             {
