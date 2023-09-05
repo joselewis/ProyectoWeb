@@ -20,8 +20,9 @@ namespace Tienda.PagoFinal
         protected void Page_Load(object sender, EventArgs e)
         {
             SacarOrdenCompra();
-            DesplegarMetodoPagoDDL();
+            //DesplegarMetodoPagoDDL();
             SumarPrecio();
+            DesplegarMetodoPagoDDL();
         }
 
         void SacarOrdenCompra()
@@ -82,6 +83,39 @@ namespace Tienda.PagoFinal
             }
         }
 
+        //void DesplegarMetodoPagoDDL()
+        //{
+        //    String Usuario = Session["CORREO_ELECTRONICO"].ToString();
+
+        //    try
+        //    {
+        //        string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+        //        SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+        //        string Command = "SELECT NUMERO_TARJETA FROM METODO_PAGO WHERE CORREO_ELECTRONICO = '" + Usuario + "'";
+
+        //        SqlCommand SqlCommand = new SqlCommand(Command, con);
+
+        //        con.Open();
+
+        //        SqlDataAdapter Adapter = new SqlDataAdapter(SqlCommand);
+
+        //        SqlDataReader dr = SqlCommand.ExecuteReader();
+
+        //        if (dr.Read())
+        //        {
+        //            string Tarjeta = Convert.ToString(dr["NUMERO_TARJETA"].ToString());
+                    
+        //            DropDownMetPago.Items.Add(new ListItem(Tarjeta.ToString(), Tarjeta.ToString()));
+        //        }
+        //        con.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        lblError.Visible = true;
+        //        lblError.Text = ex.Message;
+        //    }
+        //}
+
         void DesplegarMetodoPagoDDL()
         {
             String Usuario = Session["CORREO_ELECTRONICO"].ToString();
@@ -96,16 +130,17 @@ namespace Tienda.PagoFinal
 
                 con.Open();
 
-                SqlDataAdapter Adapter = new SqlDataAdapter(SqlCommand);
+                SqlDataAdapter adapter = new SqlDataAdapter(Command, con);
 
-                SqlDataReader dr = SqlCommand.ExecuteReader();
+                DataTable dt = new DataTable();
 
-                if (dr.Read())
-                {
-                    string Tarjeta = Convert.ToString(dr["NUMERO_TARJETA"].ToString());
+                adapter.Fill(dt);
 
-                    DropDownMetPago.Items.Add(new ListItem(Tarjeta.ToString(), Tarjeta.ToString()));  
-                }
+                DropDownMetPago.DataSource = dt;
+                DropDownMetPago.DataValueField = "NUMERO_TARJETA";
+                DropDownMetPago.DataTextField = "NUMERO_TARJETA";
+                DropDownMetPago.DataBind();
+
                 con.Close();
             }
             catch (Exception ex)
