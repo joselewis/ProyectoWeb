@@ -22,10 +22,10 @@ namespace Tienda.Productos.ProductoEspecifico
             {
                 MostrarImagen();
                 CargarInfoProducto();
-                SacarIdCarrito();
                 //CargarCantidaProducto();
                 DesplegarCuentaDDL();
                 MostrarBoton();
+                SacarIdCarrito();
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -134,12 +135,20 @@ namespace Tienda.PagoFinal
 
                 DataTable dt = new DataTable();
 
-                adapter.Fill(dt);
-
-                DropDownMetPago.DataSource = dt;
-                DropDownMetPago.DataValueField = "NUMERO_TARJETA";
-                DropDownMetPago.DataTextField = "NUMERO_TARJETA";
-                DropDownMetPago.DataBind();
+                if (adapter.Fill(dt) != 0)
+                {
+                    DropDownMetPago.DataSource = dt;
+                    DropDownMetPago.DataValueField = "NUMERO_TARJETA";
+                    DropDownMetPago.DataTextField = "NUMERO_TARJETA";
+                    DropDownMetPago.DataBind();
+                }
+                else
+                {
+                    DropDownMetPago.Visible = false;
+                    lblNoMetPago.Visible = true;
+                    lblNoMetPago.Text = "Tiene que ingresar un método de pago";
+                    BtnPagar.Visible = false;
+                }
 
                 con.Close();
             }
@@ -183,9 +192,33 @@ namespace Tienda.PagoFinal
             }
         }
 
+        void ActualizarStock()
+        {
+            try
+            {
+                String Rol = Session["TIPO_USUARIO"].ToString();
+                String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+
+                
+            }
+            catch (Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }
+
         protected void BtnPagar_Click(object sender, EventArgs e)
         {
-
-        }
+            try
+            {
+                ActualizarStock();
+            }
+            catch (Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }   
     }
 }
