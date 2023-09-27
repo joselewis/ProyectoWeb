@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -16,12 +17,12 @@ namespace Tienda.PagoFinal
 {
     public partial class OrdenCompra : System.Web.UI.Page
     {
-        string id;
+        int id;
+        int Cantidad = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             SacarOrdenCompra();
-            //DesplegarMetodoPagoDDL();
             SumarPrecio();
             DesplegarMetodoPagoDDL();
         }
@@ -65,6 +66,9 @@ namespace Tienda.PagoFinal
 
                             int CantidadXProducto = Convert.ToInt32(dtRow["NUMERO_CANTIDAD_ANNADIDA"].ToString()) * Convert.ToInt32(dtRow["PRECIO_PRODUCTO"].ToString());
 
+                            Cantidad = Convert.ToInt32(dtRow["NUMERO_CANTIDAD_ANNADIDA"].ToString());
+                            id = Convert.ToInt32(dtRow["ID_PRODUCTO"].ToString());
+                            
                             newLbl.ID = "Lbl" + dt;
 
                             newLbl.Text = "x" + dtRow["NUMERO_CANTIDAD_ANNADIDA"].ToString() + " " +
@@ -73,7 +77,9 @@ namespace Tienda.PagoFinal
                                                 "<br/>";
 
                             PanelLbl.Controls.Add(newLbl);
-                        }
+
+                            
+                        }   
                     }
                 }
             }
@@ -84,38 +90,71 @@ namespace Tienda.PagoFinal
             }
         }
 
-        //void DesplegarMetodoPagoDDL()
-        //{
-        //    String Usuario = Session["CORREO_ELECTRONICO"].ToString();
+        void UpdateStock()
+        {
+            String Rol = Session["TIPO_USUARIO"].ToString();
+            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-        //    try
-        //    {
-        //        string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-        //        SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
-        //        string Command = "SELECT NUMERO_TARJETA FROM METODO_PAGO WHERE CORREO_ELECTRONICO = '" + Usuario + "'";
+            string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+            SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
-        //        SqlCommand SqlCommand = new SqlCommand(Command, con);
+            try
+            {
+                if (Rol == "Normal")
+                {
+                    using (SqlConnection connection = new SqlConnection(cs))
+                    {
+                        DataSet ds = new DataSet();
 
-        //        con.Open();
+                        SqlCommand cmd = new SqlCommand("SP_INFO_PRODUCTO_ORDEN_COMPRA", connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-        //        SqlDataAdapter Adapter = new SqlDataAdapter(SqlCommand);
+                        cmd.Parameters.AddWithValue("@CORREO_ELECTRONICO", CorreoUsuario);
 
-        //        SqlDataReader dr = SqlCommand.ExecuteReader();
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
-        //        if (dr.Read())
-        //        {
-        //            string Tarjeta = Convert.ToString(dr["NUMERO_TARJETA"].ToString());
-                    
-        //            DropDownMetPago.Items.Add(new ListItem(Tarjeta.ToString(), Tarjeta.ToString()));
-        //        }
-        //        con.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblError.Visible = true;
-        //        lblError.Text = ex.Message;
-        //    }
-        //}
+                        adapter.Fill(ds);
+                        adapter.SelectCommand = cmd;
+
+                        var dt = ds.Tables[0];
+
+                        foreach (DataRow dtRow in dt.Rows)
+                        {
+                            Cantidad = Convert.ToInt32(dtRow["NUMERO_CANTIDAD_ANNADIDA"].ToString());
+                            id = Convert.ToInt32(dtRow["ID_PRODUCTO"].ToString());
+
+                            List<int> Cantidades = new List<int>();
+                            List<int> Identificadores = new List<int>();
+
+                            for (int i = 0; i < Cantidades.Count; i++)
+                            {
+                                Cantidades.Add(Cantidad);
+
+                                for (int j = 0; j < Identificadores.Count; j++)
+                                {
+                                    Identificadores.Add(id);   
+                                }
+                            }
+
+                            SqlConnection conn = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                            conn.Open();
+
+                            SqlCommand Command = conn.CreateCommand();
+                            Command.CommandType = System.Data.CommandType.Text;
+                            Command.CommandText = "UPDATE PRODUCTO_ROPA SET CANTIDAD_PRODUCTO = CANTIDAD_PRODUCTO - '" + Cantidad + "'" + "WHERE ID_PRODUCTO = '" + id + "'";
+                            Command.ExecuteNonQuery();
+
+                            conn.Close();
+                        }    
+                    }    
+                }
+            }
+            catch(Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }
 
         void DesplegarMetodoPagoDDL()
         {
@@ -180,7 +219,7 @@ namespace Tienda.PagoFinal
                     con.Open();
                     SqlCommand cmd = new SqlCommand(Command, con);
 
-                    LblTotalPago.Text = "Total: ₡ " + Convert.ToString(cmd.ExecuteScalar());
+                    LblTotalPago.Text = Convert.ToString(cmd.ExecuteScalar());
 
                     con.Close();
                 }
@@ -192,14 +231,23 @@ namespace Tienda.PagoFinal
             }
         }
 
-        void ActualizarStock()
+        void CrearOrdenCompra()
         {
             try
             {
-                String Rol = Session["TIPO_USUARIO"].ToString();
-                String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
+                {
+                    String Usuario = Session["CORREO_ELECTRONICO"].ToString();
 
-                
+                    ORDEN_COMPRA oOrdenCompra = new ORDEN_COMPRA();
+
+                    oOrdenCompra.CORREO_ELECTRONICO = Usuario;
+                    oOrdenCompra.TOTAL = Convert.ToInt32(LblTotalPago.Text);
+                    oOrdenCompra.NUMERO_TARJETA = Convert.ToInt64(DropDownMetPago.SelectedValue);
+
+                    ContextoDB.ORDEN_COMPRA.Add(oOrdenCompra);
+                    ContextoDB.SaveChanges();
+                }
             }
             catch (Exception ex)
             {
@@ -212,13 +260,14 @@ namespace Tienda.PagoFinal
         {
             try
             {
-                ActualizarStock();
+                CrearOrdenCompra();
+                UpdateStock();
             }
             catch (Exception ex)
             {
                 lblError.Visible = true;
                 lblError.Text = ex.Message;
             }
-        }   
+        }    
     }
 }

@@ -21,6 +21,11 @@
     </div> 
     <br />
     <div style="col">
+        
+        <span>
+            <asp:Label ID="Label1" runat="server" Visible="true" Text="Total: ₡"></asp:Label>
+
+        </span>
         <asp:Label ID="LblTotalPago" runat="server" Visible="true" Text="Total a Pagar"></asp:Label>
     </div>
 </center>

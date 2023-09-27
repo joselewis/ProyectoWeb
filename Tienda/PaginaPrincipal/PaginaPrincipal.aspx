@@ -52,10 +52,9 @@
 
                 <div class="col-3">
                     <div class="section-heading">
-                        <h3>ARQUITECTURA</h3>
-                        <h2 class="section-title">How We Help You To Sell Your Product</h2>
-                        <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam!</p>
+                        <h3>Proyecto Personal</h3>
+                        <h2 class="section-title">E-Commerce</h2>
+                        <p class="section-subtitle">Sistema de venta de productos en línea.</p>
                     </div>
 
                 </div>
@@ -71,8 +70,7 @@
                         <!--Icon Block Description-->
                         <div class="icon-block-description">
                             <h4>HTML5 &amp; CSS3</h4>
-                            <p>Has ne tritani atomorum conclusionemque, in dolorum volumus cotidieque eum. At vis choro
-                                neglegentur iudico</p>
+                            <p>Construcción frontend utilizando HTML y CSS con ayuda de una template para la página principal.</p>
                         </div>
                     </div>
                     <!--End of Icon Block-->
@@ -85,9 +83,8 @@
                         </div>
                         <!--Icon Block Description-->
                         <div class="icon-block-description">
-                            <h4>Easy to Use</h4>
-                            <p>Cu vero ipsum vim, doctus facilisi sea in. Eam ex falli honestatis repudiandae, sit
-                                detracto mediocrem disputationi</p>
+                            <h4>Arquitectura</h4>
+                            <p>Arquitectura de tres capas para seccionar cada parte importante del proyecto</p>
                         </div>
                     </div>
                     <!--End of Icon Block-->
@@ -100,9 +97,8 @@
                         </div>
                         <!--Icon Block Description-->
                         <div class="icon-block-description">
-                            <h4>Fully Responsive</h4>
-                            <p>Id porro tritani recusabo usu, eum intellegam consequuntur et. Fugit debet ea sit, an pro
-                                nemore vivendum</p>
+                            <h4>Stack Overflow</h4>
+                            <p>Ayuda y solución para varios errores presentes durante el desarrollo de este proyecto.</p>
                         </div>
                     </div>
                     <!--End of Icon Block-->
@@ -115,9 +111,8 @@
                         </div>
                         <!--Icon Block Description-->
                         <div class="icon-block-description">
-                            <h4>Parallax Effect</h4>
-                            <p>Id porro tritani recusabo usu, eum intellegam consequuntur et. Fugit debet ea sit, an pro
-                                nemore vivendum</p>
+                            <h4>C# ASP.Net</h4>
+                            <p>Contrucción del backend utilizando ASP.Net.</p>
                         </div>
                     </div>
                     <!--End of Icon Block-->
@@ -177,7 +172,7 @@
                     <div class="section-heading">
                         <h3>MICHIS</h3>
                         <h2 class="section-title">¿Por qué la tieda se llama Michi's?</h2>
-                        <p class="section-subtitle">Porque me gustan los michis, ¿Tiene algun problema con eso?.</p>
+                        <p class="section-subtitle">Porque me gustan los michis, ¿Tiene algún problema con eso?.</p>
                     </div>
                     <p>Según estudios recientes, los michis son beneficiosos para la salud emocional, 
                         y mejor aún, juntarlo con una tienda de ropa para que sea su nombre y logo.

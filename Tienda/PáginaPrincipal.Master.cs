@@ -121,21 +121,24 @@ namespace Tienda
 
                     string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
                     SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
-                    string Command = "SELECT COUNT(*) FROM PRODUCTO_ROPA " +
-                                        "INNER JOIN DETALLE_CARRITO ON DETALLE_CARRITO.CODIGO_PRODUCTO = PRODUCTO_ROPA.CODIGO_PRODUCTO " +
-                                        "INNER JOIN USUARIOS ON USUARIOS.CORREO_ELECTRONICO = DETALLE_CARRITO.CORREO_ELECTRONICO WHERE USUARIOS.CORREO_ELECTRONICO ='" + CorreoUsuario + "'";
+                    string Command = "SELECT SUM(NUMERO_CANTIDAD_ANNADIDA) FROM PRODUCTO_ROPA " +
+                                        " INNER JOIN DETALLE_CARRITO ON DETALLE_CARRITO.CODIGO_PRODUCTO = PRODUCTO_ROPA.CODIGO_PRODUCTO " +
+                                        " INNER JOIN USUARIOS ON USUARIOS.CORREO_ELECTRONICO = DETALLE_CARRITO.CORREO_ELECTRONICO WHERE USUARIOS.CORREO_ELECTRONICO ='" + CorreoUsuario + "'";
 
                     SqlConnection SqlServer = new SqlConnection(cs);
                     con.Open();
                     SqlCommand cmd = new SqlCommand(Command, con);
 
                     ContadorCarrito.Text = Convert.ToString(cmd.ExecuteScalar());
+
                     con.Close();
                 }
                 else
                 {
-                    ContadorCarrito.Visible = false;
+                    lblError.Visible = true;
+                    lblError.Text = "Ha ocurrido un error";
                 }
+                
             }
             catch(Exception ex)
             {

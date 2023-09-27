@@ -99,6 +99,7 @@ namespace Tienda.CarritoCompras
                 {
                     LblCarritoVacio.Visible = true;
                     LblCarritoVacio.Text = "No hay productos añadidos al carrito";
+                    LblEstadoCarrito.Visible = false;
                 }
                 else
                 {
