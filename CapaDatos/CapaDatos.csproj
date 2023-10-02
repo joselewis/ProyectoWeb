@@ -62,7 +62,6 @@
     <Compile Include="CLASIFICAR_ROPA.cs">
       <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
     </Compile>
-    <Compile Include="ClassCantidadProducto.cs" />
     <Compile Include="ClassGeneroRopa.cs" />
     <Compile Include="ClassTipoPrenda.cs" />
     <Compile Include="DETALLE_CARRITO.cs">

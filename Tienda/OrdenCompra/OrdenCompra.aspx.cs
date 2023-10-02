@@ -6,6 +6,7 @@ using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Http;
@@ -19,12 +20,19 @@ namespace Tienda.PagoFinal
     {
         int id;
         int Cantidad = 0;
+        long Tarjeta;
+        int Validar = 0;
+        long TotalPago;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             SacarOrdenCompra();
             SumarPrecio();
-            DesplegarMetodoPagoDDL();
+
+            if (!IsPostBack)
+            {
+                DesplegarMetodoPagoDDL();
+            }
         }
 
         void SacarOrdenCompra()
@@ -76,9 +84,7 @@ namespace Tienda.PagoFinal
                                                 "₡ " + CantidadXProducto.ToString() +
                                                 "<br/>";
 
-                            PanelLbl.Controls.Add(newLbl);
-
-                            
+                            PanelLbl.Controls.Add(newLbl);    
                         }   
                     }
                 }
@@ -148,8 +154,44 @@ namespace Tienda.PagoFinal
                         }    
                     }    
                 }
+
+                Validar = 3;
             }
             catch(Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }
+
+        void UpdateEstadoCarrtio()
+        {
+            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+
+            try
+            {
+
+                SqlConnection conn = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                conn.Open();
+
+                SqlCommand Command = conn.CreateCommand();
+                Command.CommandType = System.Data.CommandType.Text;
+                Command.CommandText = "UPDATE CARRITO SET ESTADO_CARRITO = '" + "Pagado" + "'" + "WHERE CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+                Command.ExecuteNonQuery();
+
+                conn.Close();
+
+                SqlConnection conn2 = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                conn.Open();
+
+                SqlCommand Command2 = conn.CreateCommand();
+                Command2.CommandType = System.Data.CommandType.Text;
+                Command2.CommandText = "UPDATE CARRITO SET CARRITO_ACTIVO = '" + "False" + "'" + "WHERE CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+                Command2.ExecuteNonQuery();
+
+                conn2.Close();
+            }
+            catch (Exception ex)
             {
                 lblError.Visible = true;
                 lblError.Text = ex.Message;
@@ -164,7 +206,7 @@ namespace Tienda.PagoFinal
             {
                 string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
                 SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
-                string Command = "SELECT NUMERO_TARJETA FROM METODO_PAGO WHERE CORREO_ELECTRONICO = '" + Usuario + "'";
+                string Command = "SELECT NUMERO_TARJETA , NUMERADOR_TARJETA FROM METODO_PAGO WHERE CORREO_ELECTRONICO = '" + Usuario + "'";
 
                 SqlCommand SqlCommand = new SqlCommand(Command, con);
 
@@ -177,7 +219,7 @@ namespace Tienda.PagoFinal
                 if (adapter.Fill(dt) != 0)
                 {
                     DropDownMetPago.DataSource = dt;
-                    DropDownMetPago.DataValueField = "NUMERO_TARJETA";
+                    DropDownMetPago.DataValueField = "NUMERADOR_TARJETA";
                     DropDownMetPago.DataTextField = "NUMERO_TARJETA";
                     DropDownMetPago.DataBind();
                 }
@@ -221,6 +263,8 @@ namespace Tienda.PagoFinal
 
                     LblTotalPago.Text = Convert.ToString(cmd.ExecuteScalar());
 
+                    TotalPago = Convert.ToInt32(cmd.ExecuteScalar());
+
                     con.Close();
                 }
             }
@@ -242,12 +286,43 @@ namespace Tienda.PagoFinal
                     ORDEN_COMPRA oOrdenCompra = new ORDEN_COMPRA();
 
                     oOrdenCompra.CORREO_ELECTRONICO = Usuario;
-                    oOrdenCompra.TOTAL = Convert.ToInt32(LblTotalPago.Text);
+                    oOrdenCompra.TOTAL = Convert.ToInt32(TotalPago);
+                    oOrdenCompra.FECHA_ORDEN = DateTime.Now;
+                    oOrdenCompra.NUMERADOR_TARJETA_ORDEN = Convert.ToInt64(DropDownMetPago.SelectedValue);
                     oOrdenCompra.NUMERO_TARJETA = Convert.ToInt64(DropDownMetPago.SelectedValue);
+                    
+                    //RebajarDinero();
 
                     ContextoDB.ORDEN_COMPRA.Add(oOrdenCompra);
                     ContextoDB.SaveChanges();
+
+                    Validar = 1;
                 }
+            }
+            catch (Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }
+
+        void RebajarDinero()
+        {
+            try
+            {
+                Tarjeta = Convert.ToInt64(DropDownMetPago.SelectedValue);
+
+                SqlConnection conn = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                conn.Open();
+
+                SqlCommand Command = conn.CreateCommand();
+                Command.CommandType = System.Data.CommandType.Text;
+                Command.CommandText = "UPDATE DINERO_PAGO SET CANTIDAD_DISPONIBLE = CANTIDAD_DISPONIBLE - '" + TotalPago + "'" + "WHERE NUMERO_TARJETA = '" + Tarjeta + "'";
+                Command.ExecuteNonQuery();
+
+                conn.Close();
+
+                Validar = 2;
             }
             catch (Exception ex)
             {
@@ -261,7 +336,19 @@ namespace Tienda.PagoFinal
             try
             {
                 CrearOrdenCompra();
+                RebajarDinero();
                 UpdateStock();
+                UpdateEstadoCarrtio();
+
+                if (Validar == 3)
+                {
+                    Response.Redirect("../OrdenCompra/TodasOrdenesCompra.aspx");
+                }
+                else
+                {
+                    lblError.Visible = true;
+                    lblError.Text = "Ha ocurrido un error";
+                }
             }
             catch (Exception ex)
             {

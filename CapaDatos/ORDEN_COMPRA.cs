@@ -18,6 +18,8 @@ namespace CapaDatos
         public string CORREO_ELECTRONICO { get; set; }
         public int TOTAL { get; set; }
         public decimal NUMERO_TARJETA { get; set; }
+        public decimal NUMERADOR_TARJETA_ORDEN { get; set; }
+        public System.DateTime FECHA_ORDEN { get; set; }
     
         public virtual METODO_PAGO METODO_PAGO { get; set; }
         public virtual USUARIO USUARIO { get; set; }

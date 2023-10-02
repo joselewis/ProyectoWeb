@@ -135,8 +135,8 @@ namespace Tienda
                 }
                 else
                 {
-                    lblError.Visible = true;
-                    lblError.Text = "Ha ocurrido un error";
+                    lblError.Visible = false;
+                    //lblError.Text = "Ha ocurrido un error";
                 }
                 
             }

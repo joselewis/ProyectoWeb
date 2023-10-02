@@ -199,7 +199,6 @@
     <Content Include="Productos\ProductoEspecifico2.aspx" />
     <Content Include="Productos\Productos.aspx" />
     <Content Include="Productos\RegistroProducto.aspx" />
-    <Content Include="Programador\Programador.aspx" />
     <Content Include="Usuario\AgregarUsuario.aspx" />
     <Content Include="Usuario\PaginaPrincipalUsuario.aspx" />
     <Content Include="Web.config" />
@@ -418,13 +417,6 @@
     </Compile>
     <Compile Include="Productos\RegistroProducto.aspx.designer.cs">
       <DependentUpon>RegistroProducto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Programador\Programador.aspx.cs">
-      <DependentUpon>Programador.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Programador\Programador.aspx.designer.cs">
-      <DependentUpon>Programador.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PáginaPrincipal.Master.cs">

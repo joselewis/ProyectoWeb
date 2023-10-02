@@ -31,6 +31,7 @@ namespace Tienda.MetodoPago
                     METODO_PAGO oPago = new METODO_PAGO();
 
                     oPago.NUMERO_TARJETA = Convert.ToInt64(CajaNumeroTarjeta.Text);
+                    oPago.NUMERADOR_TARJETA = Convert.ToInt64(CajaNumeroTarjeta.Text);
                     oPago.NUMERO_EXPIRA_1 = Convert.ToInt32(CajaMesTarjeta.Text);
                     oPago.NUMERO_EXPIRA_2 = Convert.ToInt32(CajaAnnoTarjeta.Text);
                     oPago.CODIGO_TARJETA = Convert.ToInt32(CajaCódigoTarjeta.Text);

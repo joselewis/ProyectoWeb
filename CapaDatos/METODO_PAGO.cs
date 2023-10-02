@@ -22,16 +22,17 @@ namespace CapaDatos
         }
     
         public decimal NUMERO_TARJETA { get; set; }
+        public decimal NUMERADOR_TARJETA { get; set; }
         public decimal NUMERO_EXPIRA_1 { get; set; }
         public decimal NUMERO_EXPIRA_2 { get; set; }
         public decimal CODIGO_TARJETA { get; set; }
         public string CORREO_ELECTRONICO { get; set; }
         public bool TARJETA_ACTICA { get; set; }
     
+        public virtual USUARIO USUARIO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DINERO_PAGO> DINERO_PAGO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDEN_COMPRA> ORDEN_COMPRA { get; set; }
-        public virtual USUARIO USUARIO { get; set; }
     }
 }

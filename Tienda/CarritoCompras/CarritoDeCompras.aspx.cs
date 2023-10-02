@@ -12,6 +12,9 @@ namespace Tienda.CarritoCompras
 {
     public partial class CarritoDeCompras : System.Web.UI.Page
     {
+        string EstadoCarrito;
+        bool CarritoActivo;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -19,8 +22,8 @@ namespace Tienda.CarritoCompras
                 CargarCarrito();
                 LabelUsuarioCarrito();
                 SumarPrecio();
-                //SacarIdCarrito();
-                //ValidarCreacionCarrito();
+                SacarIdCarrito();
+                ValidarCreacionCarrito();
                 MostrarBoton();
             }
         }
@@ -157,45 +160,45 @@ namespace Tienda.CarritoCompras
             }
         }
 
-        //void SacarIdCarrito()
-        //{
-        //    String Rol = Session["TIPO_USUARIO"].ToString();
+        void SacarIdCarrito()
+        {
+            String Rol = Session["TIPO_USUARIO"].ToString();
 
-        //    try
-        //    {
-        //        if (Rol == "Normal")
-        //        {
-        //            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+            try
+            {
+                if (Rol == "Normal")
+                {
+                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-        //            string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-        //            SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                    string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                    SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
-        //            string Command = "SELECT ID_DETALLE_CARRITO FROM DETALLE_CARRITO WHERE DETALLE_CARRITO.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+                    string Command = "SELECT ID_DETALLE_CARRITO FROM DETALLE_CARRITO WHERE DETALLE_CARRITO.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
 
-        //            SqlConnection SqlServer = new SqlConnection(cs);
-        //            con.Open();
+                    SqlConnection SqlServer = new SqlConnection(cs);
+                    con.Open();
 
-        //            SqlCommand cmd = new SqlCommand(Command, con);
+                    SqlCommand cmd = new SqlCommand(Command, con);
 
-        //            SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
+                    SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
 
-        //            SqlDataReader dr = cmd.ExecuteReader();
+                    SqlDataReader dr = cmd.ExecuteReader();
 
-        //            if (dr.Read())
-        //            {
-        //                int Id = Convert.ToInt32(dr["ID_DETALLE_CARRITO"]);
-        //                LblIdCarrito.Text = Id.ToString();
-        //            }
+                    if (dr.Read())
+                    {
+                        int Id = Convert.ToInt32(dr["ID_DETALLE_CARRITO"]);
+                        LblIdCarrito.Text = Id.ToString();
+                    }
 
-        //            con.Close();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        LblError.Visible = true;
-        //        LblError.Text = ex.Message;
-        //    }
-        //}
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
+        }
 
         protected void GridViewCarrito_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -221,81 +224,84 @@ namespace Tienda.CarritoCompras
             }
         }
 
-        //void CrearCarrito()
-        //{
-        //    try
-        //    {
-        //        using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
-        //        {
-        //            CARRITO oCarrito = new CARRITO();
+        void CrearCarrito()
+        {
+            try
+            {
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
+                {
+                    CARRITO oCarrito = new CARRITO();
 
-        //            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-        //            oCarrito.CORREO_ELECTRONICO = CorreoUsuario;
-        //            oCarrito.CARRITO_ACTIVO = true;
-        //            oCarrito.ESTADO_CARRITO = "Procesando";
-                    
-        //            ContextoDB.CARRITOes.Add(oCarrito);
-        //            ContextoDB.SaveChanges();
-        //        }
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        LblError.Visible = true;
-        //        LblError.Text = ex.Message;
-        //    }
-        //}
+                    oCarrito.CORREO_ELECTRONICO = CorreoUsuario;
+                    oCarrito.CARRITO_ACTIVO = true;
+                    oCarrito.ESTADO_CARRITO = "Procesando";
 
-        //void ValidarCreacionCarrito()
-        //{
-        //    String Rol = Session["TIPO_USUARIO"].ToString();
+                    ContextoDB.CARRITOes.Add(oCarrito);
+                    ContextoDB.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
+        }
 
-        //    try
-        //    {
-        //        if (Rol == "Normal")
-        //        {
-        //            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+        void ValidarCreacionCarrito()
+        {
+            String Rol = Session["TIPO_USUARIO"].ToString();
 
-        //            string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-        //            SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+            try
+            {
+                if (Rol == "Normal")
+                {
+                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-        //            string Command = "SELECT CARRITO_ACTIVO FROM CARRITO WHERE CARRITO.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+                    string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                    SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
-        //            SqlConnection SqlServer = new SqlConnection(cs);
-        //            con.Open();
+                    string Command = "SELECT CARRITO_ACTIVO, ESTADO_CARRITO FROM CARRITO WHERE CARRITO.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
 
-        //            SqlCommand cmd = new SqlCommand(Command, con);
+                    SqlConnection SqlServer = new SqlConnection(cs);
+                    con.Open();
 
-        //            SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
+                    SqlCommand cmd = new SqlCommand(Command, con);
 
-        //            SqlDataReader dr = cmd.ExecuteReader();
+                    SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
 
-        //            if (dr.HasRows == true)
-        //            {
-        //                dr.Read();
-        //                LblEstadoCarrito.Text = dr["CARRITO_ACTIVO"].ToString();
+                    SqlDataReader dr = cmd.ExecuteReader();
 
-        //                dr.Close();
-        //            }
-        //            else
-        //            {
-        //                if(GridViewCarrito.Rows.Count > 0)
-        //                {
-        //                    CrearCarrito();
-        //                }
-        //                else
-        //                {
-        //                    LblError.Visible = false;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        LblError.Visible = true;
-        //        LblError.Text = ex.Message;
-        //    }   
-        //}
+                    if (dr.HasRows == true)
+                    {
+                        dr.Read();
+                        LblEstadoCarrito.Text = dr["CARRITO_ACTIVO"].ToString();
+                        EstadoCarrito = dr["ESTADO_CARRITO"].ToString();
+                        CarritoActivo = Convert.ToBoolean(LblEstadoCarrito.Text);
+
+
+                        dr.Close();
+                    }
+                    else
+                    {
+                        if (GridViewCarrito.Rows.Count > 0 && CarritoActivo == false)
+                        {
+                            CrearCarrito();
+                        }
+                        else
+                        {
+                            LblError.Visible = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
+        }
 
         protected void ButtonPagar_Click(object sender, EventArgs e)
         {
