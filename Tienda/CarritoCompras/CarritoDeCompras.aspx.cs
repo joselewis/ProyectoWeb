@@ -224,6 +224,47 @@ namespace Tienda.CarritoCompras
             }
         }
 
+        void CrearNuevoCarrito()
+        {
+            try
+            {
+                String Rol = Session["TIPO_USUARIO"].ToString();
+
+                if (Rol == "Normal")
+                {
+                    String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+
+                    string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+                    SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+
+                    string Command = "SELECT ID_CARRITO, ESTADO_CARRITO FROM CARRITO WHERE CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+
+                    SqlCommand SqlCommand = new SqlCommand(Command, con);
+
+                    con.Open();
+
+                    SqlDataAdapter Adapter = new SqlDataAdapter(SqlCommand);
+
+                    DataTable dt = new DataTable();
+
+                    Adapter.Fill(dt);
+                    GridViewCarrito.DataSource = dt;
+                    GridViewCarrito.DataBind();
+                    con.Close();
+                }
+                else
+                {
+                    LblError.Visible = true;
+                    LblError.Text = "Ha ocurrido un error";
+                }
+            }
+            catch (Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
+        }
+
         void CrearCarrito()
         {
             try

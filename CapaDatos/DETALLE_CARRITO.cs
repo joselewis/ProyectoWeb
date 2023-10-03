@@ -18,11 +18,12 @@ namespace CapaDatos
         public int CODIGO_PRODUCTO { get; set; }
         public int NUMERO_CANTIDAD { get; set; }
         public int NUMERO_CANTIDAD_ANNADIDA { get; set; }
-        public string CORREO_ELECTRONICO { get; set; }
         public int ID_CARRITO { get; set; }
+        public string CORREO_ELECTRONICO { get; set; }
+        public string ESTADO_PRODUCTO { get; set; }
     
+        public virtual CARRITO CARRITO { get; set; }
         public virtual USUARIO USUARIO { get; set; }
         public virtual PRODUCTO_ROPA PRODUCTO_ROPA { get; set; }
-        public virtual CARRITO CARRITO { get; set; }
     }
 }

@@ -7,16 +7,12 @@
       <Diagram DiagramId="9f72b280bdf84298a86146b3d3de7df1" Name="Diagram1" ZoomLevel="97">
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" Width="2.375" PointX="8.875" PointY="5.5" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.CLASIFICAR_ROPA" Width="1.75" PointX="9" PointY="2.75" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.DETALLE_CARRITO" Width="2.5" PointX="0.75" PointY="0.5" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.GENERO_ROPA" Width="1.75" PointX="9" PointY="0.5" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.PRODUCTO_ROPA" Width="2" PointX="6.25" PointY="0.5" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.USUARIO" Width="1.875" PointX="0.75" PointY="3.625" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.USUARIO" Width="1.875" PointX="0.75" PointY="4" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRENDA_CLASIFICAION" />
-        <AssociationConnector Association="TIENDA_VIERNESModel.FK_DETALLE_CARRITO_USUARIO" />
-        <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRENDA_GENERO" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.CARRITO" Width="1.5" PointX="3.75" PointY="3.25" />
-        <AssociationConnector Association="TIENDA_VIERNESModel.FK_CARRITO_DETALLE" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.CARRITO" Width="1.5" PointX="3.75" PointY="3" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.METODO_PAGO" Width="1.875" PointX="3.625" PointY="6.625" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_USUARIO_TARJETA" />
@@ -25,6 +21,10 @@
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.ORDEN_COMPRA" Width="2.375" PointX="6" PointY="4.5" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_ORDEN_METODO_PAGO" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_ORDEN_USUARIO" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.DETALLE_CARRITO" Width="2.5" PointX="0.5" PointY="0.5" />
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_CARRITO_DETALLE" />
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_DETALLE_CARRITO_USUARIO" />
+        <AssociationConnector Association="TIENDA_VIERNESModel.FK_PRODUCTO_CARRITO" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

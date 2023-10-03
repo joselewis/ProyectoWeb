@@ -15,17 +15,18 @@ namespace Tienda.Productos.ProductoEspecifico
     public partial class ProductoEspecifico : System.Web.UI.Page
     {
         int id;
+        int IdCarrito;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                SacarIdCarrito();
                 MostrarImagen();
                 CargarInfoProducto();
                 //CargarCantidaProducto();
                 DesplegarCuentaDDL();
-                MostrarBoton();
-                SacarIdCarrito();
+                MostrarBoton();   
             }
         }
 
@@ -181,7 +182,7 @@ namespace Tienda.Productos.ProductoEspecifico
                     if (dr.Read())
                     {
                         int Id = Convert.ToInt32(dr["ID_CARRITO"]);
-                        LblIdCarrito.Text = Id.ToString();
+                        IdCarrito = Convert.ToInt32(Id.ToString());
                     }
 
                     con.Close();
@@ -210,7 +211,8 @@ namespace Tienda.Productos.ProductoEspecifico
                     oDetalleCarrito.CODIGO_PRODUCTO = id;
                     oDetalleCarrito.NUMERO_CANTIDAD = Convert.ToInt32(DropDownCantidadProducto.SelectedValue);
                     oDetalleCarrito.NUMERO_CANTIDAD_ANNADIDA = Convert.ToInt32(DropDownCantidadProducto.SelectedItem.Text);
-                    oDetalleCarrito.ID_CARRITO = Convert.ToInt32(LblIdCarrito.Text);
+                    oDetalleCarrito.ID_CARRITO = Convert.ToInt32(IdCarrito);
+                    oDetalleCarrito.ESTADO_PRODUCTO = "EsperaDePago";
 
                     ContextoDB.DETALLE_CARRITO.Add(oDetalleCarrito);
                     ContextoDB.SaveChanges();
@@ -303,10 +305,13 @@ namespace Tienda.Productos.ProductoEspecifico
                         if (LblEstadoCarrito.Text != "True")
                         {
                             CrearCarrito();
+                            SacarIdCarrito();
                             AnnadirAlCarrito();
+                            Response.Redirect("../Productos/ProductoEspecifico2.aspx?id=" + id);
                         }
                         else
                         {
+                            
                             lblError.Visible = true;
                             lblError.Text = "Ha ocurrido un error al agregar este producto";
                         }
