@@ -52,12 +52,12 @@ namespace Tienda
                                              "<a class='nav-link' href='../Perfil/PerfilUsuario.aspx'>" +
                                               "Perfil" +
                                               "</a>" +
-                                              "</li>" +
+                                              "</li>" //+
 
-                                              "<a class='nav-link' href='../Programador/Programador.aspx'>" +
-                                              "Información" +
-                                              "</a>" +
-                                              "</li>"
+                                              //"<a class='nav-link' href='../Programador/Programador.aspx'>" +
+                                              //"Información" +
+                                              //"</a>" +
+                                              //"</li>"
                                               ;
                                               break;
 

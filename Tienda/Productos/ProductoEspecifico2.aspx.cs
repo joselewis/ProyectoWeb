@@ -295,6 +295,7 @@ namespace Tienda.Productos.ProductoEspecifico
                         dr.Read();
                         LblEstadoCarrito.Text = dr["CARRITO_ACTIVO"].ToString();
 
+                        SacarIdCarrito();
                         AnnadirAlCarrito();
                         Response.Redirect("../Productos/ProductoEspecifico2.aspx?id=" + id);
 

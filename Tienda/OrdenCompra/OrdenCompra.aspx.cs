@@ -176,20 +176,20 @@ namespace Tienda.PagoFinal
 
                 SqlCommand Command = conn.CreateCommand();
                 Command.CommandType = System.Data.CommandType.Text;
-                Command.CommandText = "UPDATE CARRITO SET ESTADO_CARRITO = '" + "Pagado" + "'" + "WHERE CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+                Command.CommandText = "UPDATE DETALLE_CARRITO SET ESTADO_PRODUCTO = '" + "Pagado" + "'" + "WHERE CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
                 Command.ExecuteNonQuery();
 
                 conn.Close();
 
-                SqlConnection conn2 = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
-                conn.Open();
+                //SqlConnection conn2 = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                //conn.Open();
 
-                SqlCommand Command2 = conn.CreateCommand();
-                Command2.CommandType = System.Data.CommandType.Text;
-                Command2.CommandText = "UPDATE CARRITO SET CARRITO_ACTIVO = '" + "False" + "'" + "WHERE CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
-                Command2.ExecuteNonQuery();
+                //SqlCommand Command2 = conn.CreateCommand();
+                //Command2.CommandType = System.Data.CommandType.Text;
+                //Command2.CommandText = "UPDATE CARRITO SET CARRITO_ACTIVO = '" + "False" + "'" + "WHERE CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+                //Command2.ExecuteNonQuery();
 
-                conn2.Close();
+                //conn2.Close();
             }
             catch (Exception ex)
             {
@@ -331,6 +331,50 @@ namespace Tienda.PagoFinal
             }
         }
 
+        void GuardarHistorialCompra()
+        {
+            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+
+            try
+            {
+                SqlConnection conn = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                conn.Open();
+
+                SqlCommand Command = conn.CreateCommand();
+                Command.CommandType = System.Data.CommandType.Text;
+                Command.CommandText = "INSERT INTO HISTORIAL_COMPRAS SELECT * FROM DETALLE_CARRITO WHERE CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+                Command.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }
+
+        void BorrarCarrito()
+        {
+            try
+            {
+                String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
+
+                SqlConnection conn = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
+                conn.Open();
+
+                SqlCommand Command = conn.CreateCommand();
+                Command.CommandType = System.Data.CommandType.Text;
+                Command.CommandText = "DELETE FROM DETALLE_CARRITO WHERE CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
+                Command.ExecuteNonQuery();
+
+                conn.Close();
+            }
+            catch(Exception ex) 
+            {
+                lblError.Visible = true;
+                lblError.Text = ex.Message;
+            }
+        }
+
         protected void BtnPagar_Click(object sender, EventArgs e)
         {
             try
@@ -342,6 +386,8 @@ namespace Tienda.PagoFinal
 
                 if (Validar == 3)
                 {
+                    GuardarHistorialCompra();
+                    BorrarCarrito();
                     Response.Redirect("../OrdenCompra/TodasOrdenesCompra.aspx");
                 }
                 else

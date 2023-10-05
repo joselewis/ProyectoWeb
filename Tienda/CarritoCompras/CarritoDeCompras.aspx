@@ -8,7 +8,7 @@
     <h4>Carrito de Compras</h4>
     <br />
     <asp:Label runat="server" Visible="false" ForeColor="Black" ID="LblCarritoVacio"></asp:Label>
-    <asp:Label runat="server" Visible="true" ForeColor="Black" ID="LblEstadoCarrito" Text="Estado"></asp:Label>
+    <asp:Label runat="server" Visible="false" ForeColor="Black" ID="LblEstadoCarrito" Text="Estado"></asp:Label>
     <asp:Label runat="server" Visible="true" ForeColor="Black" ID="LblIdCarrito"></asp:Label>
 </center>
 <div style="margin-left: 25px; margin-right: 25px;">

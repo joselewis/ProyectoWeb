@@ -15,6 +15,15 @@ namespace Tienda.Deposito
     {
 
         /// <summary>
+        /// Control LblNumeroTarjeta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblNumeroTarjeta;
+
+        /// <summary>
         /// Control CajaTarjetaDeposito.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Tienda.Deposito
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox CajaTarjetaDeposito;
+
+        /// <summary>
+        /// Control LblCantidadDepositada.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblCantidadDepositada;
 
         /// <summary>
         /// Control CajaDepositoDinero.
