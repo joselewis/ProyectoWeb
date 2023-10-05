@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9f72b280bdf84298a86146b3d3de7df1" Name="Diagram1" ZoomLevel="97">
+      <Diagram DiagramId="9f72b280bdf84298a86146b3d3de7df1" Name="Diagram1" ZoomLevel="84">
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.ADMINISTRADORE" Width="2.375" PointX="8.875" PointY="5.5" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.CLASIFICAR_ROPA" Width="1.75" PointX="9" PointY="2.75" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.GENERO_ROPA" Width="1.75" PointX="9" PointY="0.5" />
@@ -16,7 +16,7 @@
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_CARRITO_USUARIO" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.METODO_PAGO" Width="1.875" PointX="3.625" PointY="6.625" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_USUARIO_TARJETA" />
-        <EntityTypeShape EntityType="TIENDA_VIERNESModel.DINERO_PAGO" Width="1.5" PointX="6.125" PointY="7.375" />
+        <EntityTypeShape EntityType="TIENDA_VIERNESModel.DINERO_PAGO" Width="1.5" PointX="6.25" PointY="7.375" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_TARJETA_DINERO" />
         <EntityTypeShape EntityType="TIENDA_VIERNESModel.ORDEN_COMPRA" Width="2.375" PointX="6" PointY="4.5" />
         <AssociationConnector Association="TIENDA_VIERNESModel.FK_ORDEN_METODO_PAGO" />
