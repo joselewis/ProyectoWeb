@@ -76,6 +76,7 @@ namespace Tienda.CarritoCompras
                 if(GridViewCarrito.Rows.Count <= 0)
                 {
                     ButtonPagar.Visible = false;
+                    ButtonIrMetPago.Visible = true;
                 }
                 else
                 {
@@ -221,90 +222,24 @@ namespace Tienda.CarritoCompras
             }
         }
 
-        //void CrearCarrito()
-        //{
-        //    try
-        //    {
-        //        using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
-        //        {
-        //            CARRITO oCarrito = new CARRITO();
-
-        //            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
-
-        //            oCarrito.CORREO_ELECTRONICO = CorreoUsuario;
-        //            oCarrito.CARRITO_ACTIVO = true;
-        //            oCarrito.ESTADO_CARRITO = "Procesando";
-
-        //            ContextoDB.CARRITOes.Add(oCarrito);
-        //            ContextoDB.SaveChanges();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        LblError.Visible = true;
-        //        LblError.Text = ex.Message;
-        //    }
-        //}
-
-        //void ValidarCreacionCarrito()
-        //{
-        //    String Rol = Session["TIPO_USUARIO"].ToString();
-
-        //    try
-        //    {
-        //        if (Rol == "Normal")
-        //        {
-        //            String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
-
-        //            string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-        //            SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
-
-        //            string Command = "SELECT CARRITO_ACTIVO, ESTADO_CARRITO FROM CARRITO WHERE CARRITO.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
-
-        //            SqlConnection SqlServer = new SqlConnection(cs);
-        //            con.Open();
-
-        //            SqlCommand cmd = new SqlCommand(Command, con);
-
-        //            SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
-
-        //            SqlDataReader dr = cmd.ExecuteReader();
-
-        //            if (dr.HasRows == true)
-        //            {
-        //                dr.Read();
-        //                LblEstadoCarrito.Text = dr["CARRITO_ACTIVO"].ToString();
-        //                EstadoCarrito = dr["ESTADO_CARRITO"].ToString();
-        //                CarritoActivo = Convert.ToBoolean(LblEstadoCarrito.Text);
-
-
-        //                dr.Close();
-        //            }
-        //            else
-        //            {
-        //                if (GridViewCarrito.Rows.Count > 0 && CarritoActivo == false)
-        //                {
-        //                    CrearCarrito();
-        //                }
-        //                else
-        //                {
-        //                    LblError.Visible = false;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        LblError.Visible = true;
-        //        LblError.Text = ex.Message;
-        //    }
-        //}
-
         protected void ButtonPagar_Click(object sender, EventArgs e)
         {
             try
             {
                 Response.Redirect("../OrdenCompra/OrdenCompra.aspx");
+            }
+            catch (Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
+        }
+
+        protected void ButtonIrMetPago_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("../MetodoPago/MetodoPago2.aspx");
             }
             catch (Exception ex)
             {

@@ -204,19 +204,28 @@ namespace Tienda.Mantenimientos
             //Exporta los datos del gridview administradores en formato excel
             try
             {
-                Response.Clear();
-                Response.Buffer = true;
-                Response.ContentType = "application/ms-excel";
-                Response.AddHeader("content-disposition", "attachment; filename = Administradores.xls");
-                Response.Charset = "";
-                StringWriter sw = new StringWriter();
-                HtmlTextWriter htw = new HtmlTextWriter(sw);
-                GridAdministrador.RenderControl(htw);
-                Response.Output.Write(sw.ToString());
-                Response.End();
+                using (TIENDA_VIERNESEntities1 ContextoDB = new TIENDA_VIERNESEntities1())
+                {
+                    if (GridAdministrador.Visible)
+                    {
+                        Response.AddHeader("content-disposition", "attachment; filename=Administradores.xls");
+                        Response.ContentType = "application/excel";
+                        StringWriter sWriter = new StringWriter();
+                        HtmlTextWriter hTextWriter = new HtmlTextWriter(sWriter);
+                        GridAdministrador.RenderControl(hTextWriter);
+                        Response.Write(sWriter.ToString());
+                        Response.End();
+                    }
+                    else
+                    {
+                        lblCamposNulos.Visible = true;
+                        lblCamposNulos.Text = "No hay datos";
+                    }
+                }
             }
             catch (Exception ex)
             {
+                lblCamposNulos.Visible = true;
                 lblCamposNulos.Text = ex.Message;
             }
         }

@@ -73,6 +73,9 @@
     <Compile Include="GENERO_ROPA.cs">
       <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
     </Compile>
+    <Compile Include="HISTORIAL_COMPRAS.cs">
+      <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
+    </Compile>
     <Compile Include="METODO_PAGO.cs">
       <DependentUpon>ModeloTiendaViernes.tt</DependentUpon>
     </Compile>

@@ -170,7 +170,6 @@ namespace Tienda.PagoFinal
 
             try
             {
-
                 SqlConnection conn = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
                 conn.Open();
 
@@ -180,16 +179,6 @@ namespace Tienda.PagoFinal
                 Command.ExecuteNonQuery();
 
                 conn.Close();
-
-                //SqlConnection conn2 = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
-                //conn.Open();
-
-                //SqlCommand Command2 = conn.CreateCommand();
-                //Command2.CommandType = System.Data.CommandType.Text;
-                //Command2.CommandText = "UPDATE CARRITO SET CARRITO_ACTIVO = '" + "False" + "'" + "WHERE CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
-                //Command2.ExecuteNonQuery();
-
-                //conn2.Close();
             }
             catch (Exception ex)
             {

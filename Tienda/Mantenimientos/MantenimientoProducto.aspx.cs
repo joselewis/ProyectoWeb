@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -184,16 +185,6 @@ namespace Tienda.Mantenimientos
             }
         }
 
-        protected void GridProductos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ButtonExportarProductoExcel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         void BotonVisible()
         {
             try
@@ -212,6 +203,43 @@ namespace Tienda.Mantenimientos
                 LblError.Visible = true;
                 LblError.Text = ex.Message;
             }
+        }
+
+        protected void GridProductos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ButtonExportarProductoExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (GridProductos.Visible)
+                {
+                    Response.AddHeader("content-disposition", "attachment; filename=Productos.xls");
+                    Response.ContentType = "application/excel";
+                    StringWriter sWriter = new StringWriter();
+                    HtmlTextWriter hTextWriter = new HtmlTextWriter(sWriter);
+                    GridProductos.RenderControl(hTextWriter);
+                    Response.Write(sWriter.ToString());
+                    Response.End();
+                }
+                else
+                {
+                    LblError.Visible = true;
+                    LblError.Text = "No hay datos";
+                }
+            }
+            catch(Exception ex)
+            {
+                LblError.Visible = true;
+                LblError.Text = ex.Message;
+            }
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+
         }
     }
 }

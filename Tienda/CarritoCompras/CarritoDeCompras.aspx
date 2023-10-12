@@ -87,6 +87,7 @@
 </center>
 <br />
 <center>
+    <asp:Button ID="ButtonIrMetPago" class="btn btn-dark" runat="server" OnClick="ButtonIrMetPago_Click" Text="Ingresar método de pago" Width="200px" Visible="false"/>
     <asp:Button ID="ButtonPagar" class="btn btn-dark" runat="server" OnClick="ButtonPagar_Click" Text="Proceder a Pagar" Width="150px" Visible="false"/>
 </center>
 <br />

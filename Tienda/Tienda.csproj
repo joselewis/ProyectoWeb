@@ -189,7 +189,6 @@
     <Content Include="MasterPage\js\scripts.js" />
     <Content Include="MetodoPago\MetodoPago.aspx" />
     <Content Include="MetodoPago\MetodoPago2.aspx" />
-    <Content Include="OrdenCompra\PagoOrdenCompra.aspx" />
     <Content Include="OrdenCompra\TodasOrdenesCompra.aspx" />
     <Content Include="PaginaPrincipal\PaginaPrincipal.aspx" />
     <Content Include="OrdenCompra\OrdenCompra.aspx" />
@@ -347,13 +346,6 @@
     </Compile>
     <Compile Include="MetodoPago\MetodoPago2.aspx.designer.cs">
       <DependentUpon>MetodoPago2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OrdenCompra\PagoOrdenCompra.aspx.cs">
-      <DependentUpon>PagoOrdenCompra.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OrdenCompra\PagoOrdenCompra.aspx.designer.cs">
-      <DependentUpon>PagoOrdenCompra.aspx</DependentUpon>
     </Compile>
     <Compile Include="OrdenCompra\TodasOrdenesCompra.aspx.cs">
       <DependentUpon>TodasOrdenesCompra.aspx</DependentUpon>

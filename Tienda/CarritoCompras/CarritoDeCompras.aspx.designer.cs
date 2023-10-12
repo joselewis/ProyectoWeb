@@ -78,6 +78,15 @@ namespace Tienda.CarritoCompras
         protected global::System.Web.UI.WebControls.Label LblError;
 
         /// <summary>
+        /// Control ButtonIrMetPago.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonIrMetPago;
+
+        /// <summary>
         /// Control ButtonPagar.
         /// </summary>
         /// <remarks>

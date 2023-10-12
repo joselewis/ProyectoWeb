@@ -35,5 +35,6 @@ namespace CapaDatos
         public virtual DbSet<DINERO_PAGO> DINERO_PAGO { get; set; }
         public virtual DbSet<ORDEN_COMPRA> ORDEN_COMPRA { get; set; }
         public virtual DbSet<DETALLE_CARRITO> DETALLE_CARRITO { get; set; }
+        public virtual DbSet<HISTORIAL_COMPRAS> HISTORIAL_COMPRAS { get; set; }
     }
 }

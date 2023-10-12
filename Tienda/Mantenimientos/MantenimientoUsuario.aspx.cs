@@ -217,17 +217,21 @@ namespace Tienda.Mantenimientos
         { 
             try
             {
-                Response.Clear();
-                Response.Buffer = true;
-                Response.ContentType = "application/ms-excel";
-                Response.AddHeader("content-disposition", "attachment; filename = Usuarios.xls");
-                Response.Charset = "";
-                StringWriter sw = new StringWriter();
-                HtmlTextWriter htw = new HtmlTextWriter(sw);
-                GridUsuarios.RenderControl(htw);
-                Response.Output.Write(sw.ToString());
-                Response.End();
-
+                if (GridUsuarios.Visible)
+                {
+                    Response.AddHeader("content-disposition", "attachment; filename=Usuarios.xls");
+                    Response.ContentType = "application/excel";
+                    StringWriter sWriter = new StringWriter();
+                    HtmlTextWriter hTextWriter = new HtmlTextWriter(sWriter);
+                    GridUsuarios.RenderControl(hTextWriter);
+                    Response.Write(sWriter.ToString());
+                    Response.End();
+                }
+                else
+                {
+                    lblCamposNulos.Visible = true;
+                    lblCamposNulos.Text = "No hay datos";
+                }
             }              
             catch (Exception ex)
             {
