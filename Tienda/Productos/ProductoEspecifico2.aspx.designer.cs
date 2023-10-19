@@ -87,6 +87,15 @@ namespace Tienda.Productos.ProductoEspecifico
         protected global::System.Web.UI.WebControls.Label LabelCantidad;
 
         /// <summary>
+        /// Control LblCantidad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblCantidad;
+
+        /// <summary>
         /// Control DropDownCantidadProducto.
         /// </summary>
         /// <remarks>

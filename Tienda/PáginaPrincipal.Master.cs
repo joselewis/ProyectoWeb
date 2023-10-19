@@ -135,10 +135,8 @@ namespace Tienda
                 }
                 else
                 {
-                    lblError.Visible = false;
-                    //lblError.Text = "Ha ocurrido un error";
+                    ContadorCarrito.Text = "0";
                 }
-                
             }
             catch(Exception ex)
             {

@@ -101,13 +101,12 @@ namespace Tienda.PagoFinal
             String Rol = Session["TIPO_USUARIO"].ToString();
             String CorreoUsuario = Session["CORREO_ELECTRONICO"].ToString();
 
-            string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
-            SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
-
             try
             {
                 if (Rol == "Normal")
                 {
+                    string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
+
                     using (SqlConnection connection = new SqlConnection(cs))
                     {
                         DataSet ds = new DataSet();

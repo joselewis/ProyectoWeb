@@ -120,6 +120,7 @@ namespace Tienda.Productos.ProductoEspecifico
         void DesplegarCuentaDDL()
         {
             id = Convert.ToInt32(Request.QueryString["id"].ToString());
+            String Rol = Session["TIPO_USUARIO"].ToString();
 
             try
             {
@@ -138,13 +139,23 @@ namespace Tienda.Productos.ProductoEspecifico
                 if (dr.Read())
                 {
                     int Cantidad = Convert.ToInt32(dr["CANTIDAD_PRODUCTO"].ToString());
-                    
-                    //DropDownCantidadProducto.Items.Insert(0, new ListItem("-Cantidad-", "0"));
 
-                    for (int i = 1; i <= Cantidad; i++)
+                    if (Cantidad != 0 && Rol == "Normal")
                     {
-                        DropDownCantidadProducto.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                        for (int i = 1; i <= Cantidad; i++)
+                        {
+                            DropDownCantidadProducto.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                        }
+
+                        BotonAnnadirCarrito.Visible = true;
                     }
+                    else
+                    {
+                        DropDownCantidadProducto.Visible = false;
+                        LblCantidad.Visible = true;
+                        LblCantidad.Text = "Producto sin existencias disponibles.";
+                        BotonAnnadirCarrito.Visible = false;
+                    }       
                 }
                 con.Close();
             }
@@ -233,10 +244,6 @@ namespace Tienda.Productos.ProductoEspecifico
             if (Rol == "Administrador")
             {
                 BotonAnnadirCarrito.Visible = false;
-            }
-            else
-            {
-                BotonAnnadirCarrito.Visible = true;
             }
         }
 

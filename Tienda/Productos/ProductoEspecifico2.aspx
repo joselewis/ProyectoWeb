@@ -32,6 +32,7 @@
         <asp:Label runat="server" ID="LabelCantidad" CssClass="Cantidad"></asp:Label>
         <div class="add flex1">
             <span>
+                <asp:Label runat="server" ID="LblCantidad" Visible="false" ForeColor="Red"></asp:Label>
                 <asp:DropDownList runat="server" ID="DropDownCantidadProducto"></asp:DropDownList>
             </span>
         </div>

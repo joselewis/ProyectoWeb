@@ -19,9 +19,6 @@ body {
     justify-content: space-between;
 }
 
-.flex1 {
-    display: flex;
-}
 
 .Nombre, .Cantidad,
 .Descripcion, .Precio{
@@ -86,7 +83,8 @@ small {
 label,
 .add span,
 .color span {
-    width: 25px;
+    /*AQUI TAMBIEN*/
+    /*width: 25px;*/
     height: 25px;
     background: #000;
     border-radius: 50%;
@@ -113,10 +111,11 @@ label,
         background: #F04D44;
     }
 
+/*CREO QUE ES AQUI*/
 .add label,
 .add span {
     background: none;
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
     color: #000;
     text-align: center;
     line-height: 25px;
