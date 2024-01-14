@@ -8,7 +8,7 @@
         <h4>Mis Ordenes de Compra</h4>
         <asp:Label runat="server" ID="LblFecha" Text="Fecha" Visible="true"></asp:Label>
         <ul runat="server" id="Cosa">
-               
+
         </ul>
         <asp:Label ID="LblError" runat="server" ForeColor="red" Visible="false"></asp:Label>
     </center>

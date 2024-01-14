@@ -13,20 +13,18 @@ namespace Tienda.OrdenCompra
 {
     public partial class TodasOrdenesCompra : System.Web.UI.Page
     {
-        DateTime Fecha;
+        string Fecha;
         string Prenda;
-        int Cantidad;
-        int PrecioPrenda;
-
-        List<int> Cantidades = new List<int>();
-        List<string> Prendas = new List<string>();
-        List<DateTime> Fechas = new List<DateTime>();
-        List<int> Precios = new List<int>();
+        string Cantidad;
+        string PrecioPrenda;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ExtraerHistorial(); 
-            CrearHistorialCompra();
+            if (!IsPostBack)
+            {
+                ExtraerHistorial();
+                //CrearHistorialCompra();  
+            }
         }
 
         void ExtraerHistorial()
@@ -38,41 +36,89 @@ namespace Tienda.OrdenCompra
 
                 if (Rol == "Normal")
                 {
+
                     string cs = @"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10";
                     SqlConnection con = new SqlConnection(@"DATA SOURCE = JOSELEWIS; INITIAL CATALOG = TIENDA_VIERNES; USER = JoseLewis10; PASSWORD = joselewis10");
 
                     string Command = "SELECT TIPO_PRENDA, NUMERO_CANTIDAD, ESTADO_PRODUCTO, PRECIO_PRODUCTO, FECHA_ORDEN FROM HISTORIAL_COMPRAS " +
-                                        "INNER JOIN PRODUCTO_ROPA ON PRODUCTO_ROPA.CODIGO_PRODUCTO = HISTORIAL_COMPRAS.CODIGO_PRODUCTO " +
-                                        "INNER JOIN CARRITO ON CARRITO.ID_CARRITO = HISTORIAL_COMPRAS.ID_CARRITO " +
-                                        "INNER JOIN ORDEN_COMPRA ON ORDEN_COMPRA.CORREO_ELECTRONICO = HISTORIAL_COMPRAS.CORREO_ELECTRONICO " +
-                                        "WHERE ORDEN_COMPRA.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
-
-                    SqlConnection SqlServer = new SqlConnection(cs);
-                    con.Open();
+                                     "INNER JOIN PRODUCTO_ROPA ON PRODUCTO_ROPA.CODIGO_PRODUCTO = HISTORIAL_COMPRAS.CODIGO_PRODUCTO " +
+                                     "INNER JOIN CARRITO ON CARRITO.ID_CARRITO = HISTORIAL_COMPRAS.ID_CARRITO " +
+                                     "INNER JOIN ORDEN_COMPRA ON ORDEN_COMPRA.CORREO_ELECTRONICO = HISTORIAL_COMPRAS.CORREO_ELECTRONICO " +
+                                     "WHERE ORDEN_COMPRA.CORREO_ELECTRONICO = '" + CorreoUsuario + "'";
 
                     SqlCommand cmd = new SqlCommand(Command, con);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
 
-                    SqlDataAdapter Adapter = new SqlDataAdapter(cmd);
+                    DataSet ds = new DataSet();
 
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    adapter.Fill(ds);
 
-                    if (dr.Read())
+                    if (ds.Tables[0].Rows.Count != 0)
                     {
-                        Prenda = Convert.ToString(dr["TIPO_PRENDA"]);
-                        Cantidad = Convert.ToInt32(dr["NUMERO_CANTIDAD"]);
-                        Fecha = Convert.ToDateTime(dr["FECHA_ORDEN"]);
-                        PrecioPrenda = Convert.ToInt32(dr["PRECIO_PRODUCTO"]);
+                        Label LblPrenda;
+                        Label LblCantidad;
+                        Label LblFecha;
+                        Label LblPrecioPrenda;
 
-                        for (int i = 0; i < Cantidades.Count; i++)
+                        foreach (DataRow dr in ds.Tables[0].Rows)
                         {
-                            Cantidades.Add(Cantidad);
-                            Prendas.Add(Prenda);
-                            Fechas.Add(Fecha);
-                            Precios.Add(PrecioPrenda);
-                        }
+                            int Contador = 0;
 
-                        con.Close();
-                    }  
+                            LblPrenda = new Label();
+                            LblCantidad = new Label();
+                            LblFecha = new Label();
+                            LblPrecioPrenda = new Label();
+
+                            LblPrenda.Text = dr["TIPO_PRENDA"].ToString();
+                            LblCantidad.Text = dr["NUMERO_CANTIDAD"].ToString();
+                            LblFecha.Text = dr["FECHA_ORDEN"].ToString();
+                            LblPrecioPrenda.Text = dr["PRECIO_PRODUCTO"].ToString();
+
+                            List<int> Cantidades = new List<int>();
+                            List<string> Prendas = new List<string>();
+                            List<string> Fechas = new List<string>();
+                            List<int> Precios = new List<int>();
+
+                            for (int i = 0; i < Fechas.Count; i++)
+                            {
+                                Cantidades.Add(Convert.ToInt32(LblCantidad));
+                                Prendas.Add(Convert.ToString(LblPrenda));
+                                Fechas.Add(Convert.ToString(LblFecha));
+                                Precios.Add(Convert.ToInt32(LblPrecioPrenda));
+
+                                for (int j = 0; j < Fechas.Count; j++)
+                                {
+                                    //Falta sacar los datos de las listas
+                                }
+                            }
+
+                            Fecha = LblFecha.Text;
+                            Prenda = LblPrenda.Text;
+                            Cantidad = LblCantidad.Text;
+                            PrecioPrenda = LblPrecioPrenda.Text;
+
+                            string Historial = "<br/>" +
+                            "<div class='accordion' id='accordionPanelsStayOpenExample'>" +
+                                "<div class='accordion-item' style='margin-left: 50px; margin-right: 50px;'>" +
+                                    "<h2 class='accordion-header'  >" +
+                                        "<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#panelsStayOpen-collapseThree' aria-expanded='false' aria-controls='panelsStayOpen-collapseThree'>" +
+                                        Fecha +
+                                        "</button>" +
+                                    "</h2>" +
+                                    "<div id='panelsStayOpen-collapseThree' class='accordion-collapse collapse'>" +
+                                        "<div class='accordion-body'>" +
+                                        "<strong>" +
+                                        Prenda + " " + Cantidad + " " + PrecioPrenda +
+                                        "</strong>" +
+                                        "</strong>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>";
+
+                            Cosa.InnerHtml = Historial;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -80,31 +126,6 @@ namespace Tienda.OrdenCompra
                 LblError.Visible = true;
                 LblError.Text = ex.Message;
             }
-        }
-
-        void CrearHistorialCompra()
-        {
-            string Historial = "<br/>" +
-                        "<div class='accordion' id='accordionPanelsStayOpenExample'>" +
-                            "<div class='accordion-item' style='margin-left: 50px; margin-right: 50px;'>" +
-                                "<h2 class='accordion-header'  >" +
-                                    "<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#panelsStayOpen-collapseThree' aria-expanded='false' aria-controls='panelsStayOpen-collapseThree'>" +
-                                    Fechas +
-                                    "</button>" +
-                                "</h2>" +
-                                "<div id='panelsStayOpen-collapseThree' class='accordion-collapse collapse'>" +
-                                    "<div class='accordion-body'>" +
-                                    "<strong>" +
-                                    Prendas + " x " + Cantidades + " " + Precios +
-                                    "</strong>" +
-                                    "Hablada se shit" +
-                                    "</strong>" +
-                                    "</div>" +
-                                "</div>" +
-                            "</div>" +
-                        "</div>";
-
-            Cosa.InnerHtml = Historial;
         }
     }
 }

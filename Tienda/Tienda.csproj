@@ -194,7 +194,6 @@
     <Content Include="OrdenCompra\OrdenCompra.aspx" />
     <Content Include="Perfil\PerfilCambioFoto.aspx" />
     <Content Include="Perfil\PerfilUsuario.aspx" />
-    <Content Include="ProductosPrueba.aspx" />
     <Content Include="Productos\ProductoEspecifico2.aspx" />
     <Content Include="Productos\Productos.aspx" />
     <Content Include="Productos\RegistroProducto.aspx" />
@@ -381,13 +380,6 @@
     </Compile>
     <Compile Include="Perfil\PerfilUsuario.aspx.designer.cs">
       <DependentUpon>PerfilUsuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ProductosPrueba.aspx.cs">
-      <DependentUpon>ProductosPrueba.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ProductosPrueba.aspx.designer.cs">
-      <DependentUpon>ProductosPrueba.aspx</DependentUpon>
     </Compile>
     <Compile Include="Productos\ProductoEspecifico2.aspx.cs">
       <DependentUpon>ProductoEspecifico2.aspx</DependentUpon>
